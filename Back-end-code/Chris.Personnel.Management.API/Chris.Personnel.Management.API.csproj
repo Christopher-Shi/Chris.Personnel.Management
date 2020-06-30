@@ -4,5 +4,9 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Chris.Personnel.Management.EF.Storage\Chris.Personnel.Management.EF.Storage.csproj" />
+  </ItemGroup>
+
 
 </Project>
