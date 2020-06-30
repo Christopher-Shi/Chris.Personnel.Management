@@ -5,15 +5,23 @@ VisualStudioVersion = 16.0.30204.135
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Chris.Personnel.Management.API", "Chris.Personnel.Management.API\Chris.Personnel.Management.API.csproj", "{2573F727-B219-461E-9B4F-49FEE6185C36}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chris.Personnel.Management.Common", "Chris.Personnel.Management.Common\Chris.Personnel.Management.Common.csproj", "{D3033B5F-CF8C-444C-9A40-5D0687A6A135}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Chris.Personnel.Management.Common", "Chris.Personnel.Management.Common\Chris.Personnel.Management.Common.csproj", "{D3033B5F-CF8C-444C-9A40-5D0687A6A135}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chris.Personnel.Management.Entity", "Chris.Personnel.Management.Entity\Chris.Personnel.Management.Entity.csproj", "{D276D28B-570D-4358-8E17-7EC9FE72731C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Chris.Personnel.Management.Entity", "Chris.Personnel.Management.Entity\Chris.Personnel.Management.Entity.csproj", "{D276D28B-570D-4358-8E17-7EC9FE72731C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chris.Personnel.Management.UICommand", "Chris.Personnel.Management.UICommand\Chris.Personnel.Management.UICommand.csproj", "{DF2FA461-7F3F-4676-B169-B8D4E05A0FDD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Chris.Personnel.Management.UICommand", "Chris.Personnel.Management.UICommand\Chris.Personnel.Management.UICommand.csproj", "{DF2FA461-7F3F-4676-B169-B8D4E05A0FDD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chris.Personnel.Management.ViewModel", "Chris.Personnel.Management.ViewModel\Chris.Personnel.Management.ViewModel.csproj", "{314E868F-6125-4C45-98AA-FD160CFCDDAA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Chris.Personnel.Management.ViewModel", "Chris.Personnel.Management.ViewModel\Chris.Personnel.Management.ViewModel.csproj", "{314E868F-6125-4C45-98AA-FD160CFCDDAA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chris.Personnel.Management.EF.Storage", "Chris.Personnel.Management.EF.Storage\Chris.Personnel.Management.EF.Storage.csproj", "{30CFD8A8-CF72-4613-A4DE-41C2DA3FD874}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Chris.Personnel.Management.EF.Storage", "Chris.Personnel.Management.EF.Storage\Chris.Personnel.Management.EF.Storage.csproj", "{30CFD8A8-CF72-4613-A4DE-41C2DA3FD874}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chris.Personnel.Management.Repository", "Chris.Personnel.Management.Repository\Chris.Personnel.Management.Repository.csproj", "{6CAA00C6-EEBD-4703-ACC3-5C26A937B187}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chris.Personnel.Management.QueryService", "Chris.Personnel.Management.QueryService\Chris.Personnel.Management.QueryService.csproj", "{662F7A54-D805-4EC0-B8E4-344BBF29B32E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chris.Personnel.Management.Task", "Chris.Personnel.Management.Task\Chris.Personnel.Management.Task.csproj", "{88C1CA6A-6CAB-40EB-BF1D-42DF3E8F0F8E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chris.Personnel.Management.Test", "Chris.Personnel.Management.Test\Chris.Personnel.Management.Test.csproj", "{B86F871A-E5EB-4BBF-904A-95B8D18E741B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +53,22 @@ Global
 		{30CFD8A8-CF72-4613-A4DE-41C2DA3FD874}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{30CFD8A8-CF72-4613-A4DE-41C2DA3FD874}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{30CFD8A8-CF72-4613-A4DE-41C2DA3FD874}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6CAA00C6-EEBD-4703-ACC3-5C26A937B187}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6CAA00C6-EEBD-4703-ACC3-5C26A937B187}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6CAA00C6-EEBD-4703-ACC3-5C26A937B187}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6CAA00C6-EEBD-4703-ACC3-5C26A937B187}.Release|Any CPU.Build.0 = Release|Any CPU
+		{662F7A54-D805-4EC0-B8E4-344BBF29B32E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{662F7A54-D805-4EC0-B8E4-344BBF29B32E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{662F7A54-D805-4EC0-B8E4-344BBF29B32E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{662F7A54-D805-4EC0-B8E4-344BBF29B32E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{88C1CA6A-6CAB-40EB-BF1D-42DF3E8F0F8E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{88C1CA6A-6CAB-40EB-BF1D-42DF3E8F0F8E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{88C1CA6A-6CAB-40EB-BF1D-42DF3E8F0F8E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{88C1CA6A-6CAB-40EB-BF1D-42DF3E8F0F8E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B86F871A-E5EB-4BBF-904A-95B8D18E741B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B86F871A-E5EB-4BBF-904A-95B8D18E741B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B86F871A-E5EB-4BBF-904A-95B8D18E741B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B86F871A-E5EB-4BBF-904A-95B8D18E741B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
