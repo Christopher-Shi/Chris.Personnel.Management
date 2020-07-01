@@ -29,7 +29,7 @@ namespace Chris.Personnel.Management.API.Controllers
 
         // GET: api/Users/5
         [HttpGet("{id}")]
-        public async Task<UserFormViewModel> GetUser(Guid id)
+        public async Task<UserViewModel> GetUser(Guid id)
         {
             return await _userQueryService.Get(id);
         }

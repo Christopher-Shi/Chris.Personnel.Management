@@ -1,6 +1,6 @@
 ﻿namespace Chris.Personnel.Management.ViewModel
 {
-    public class UserFormViewModel
+    public class UserViewModel
     {
         public string Id { get; set; }
         public string Name { get; set; }

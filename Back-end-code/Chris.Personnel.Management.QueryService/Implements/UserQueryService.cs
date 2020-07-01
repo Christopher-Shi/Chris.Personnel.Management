@@ -14,13 +14,13 @@ namespace Chris.Personnel.Management.QueryService.Implements
             _userRepository = userRepository;
         }
 
-        public async Task<UserFormViewModel> Get(Guid id)
+        public async Task<UserViewModel> Get(Guid id)
         {
             var user = await _userRepository.Get(id);
             //var userViewModel = _map.Map<UserFormViewModel>(user);
 
 
-            return new UserFormViewModel
+            return new UserViewModel
             {
                 Id = user.Id.ToString(),
                 Name = user.Name,
