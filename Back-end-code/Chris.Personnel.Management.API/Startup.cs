@@ -22,8 +22,7 @@ namespace Chris.Personnel.Management.API
         {
             services.AddControllers();
 
-            //services.AddDbContext<SqliteContext>();
-            //services.AddDbContext<InMemoryContext>();
+            services.AddAutoMapperSetup();
 
             services.AddSwaggerGen(c =>
             {

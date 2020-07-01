@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using AutoMapper;
 using Chris.Personnel.Management.Repository;
 using Chris.Personnel.Management.UICommand;
 using Chris.Personnel.Management.ViewModel;
@@ -9,10 +10,12 @@ namespace Chris.Personnel.Management.LogicService
     public class UserLogicService : IUserLogicService
     {
         private readonly IUserRepository _userRepository;
+        private readonly IMapper _mapper;
 
-        public UserLogicService(IUserRepository userRepository)
+        public UserLogicService(IUserRepository userRepository, IMapper mapper)
         {
             _userRepository = userRepository;
+            _mapper = mapper;
         }
 
         public Task Add(UserAddUICommand entity)

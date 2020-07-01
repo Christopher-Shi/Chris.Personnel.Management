@@ -2,15 +2,18 @@
 using System.Collections.Generic;
 using System.Linq;
 using Autofac;
+using AutoMapper;
 using Chris.Personnel.Management.QueryService.AutoMapper;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Chris.Personnel.Management.API
 {
-    public class AutoMapperInstaller
+    public static class AutoMapperSetup
     {
-        public static void ConfigureContainer(ContainerBuilder builder)
+        public static void AddAutoMapperSetup(this IServiceCollection services)
         {
-            //services.AddSingleton<IMap, Mapper>();
+            if (services == null) throw new ArgumentNullException(nameof(services));
+
             //Register all the AutoMapper profiles
             var typeAutoMapperProfile = typeof(AutoMapper.Profile);
             var allViewModelProfileTypes = new List<Type>();
@@ -28,21 +31,7 @@ namespace Chris.Personnel.Management.API
             //        typeAutoMapperProfile.IsAssignableFrom(x)
             //));
 
-
-            //AutoMapper.Mapper.Initialize(cfg =>
-            //{
-            //    foreach (var typeProfile in allViewModelProfileTypes)
-            //    {
-            //        var profile = Activator.CreateInstance(typeProfile) as AutoMapper.Profile;
-            //        cfg.AddProfile(profile);
-            //    }
-
-            //    foreach (var typeProfile in allDomainServiceProfileTypes)
-            //    {
-            //        var profile = Activator.CreateInstance(typeProfile) as AutoMapper.Profile;
-            //        cfg.AddProfile(profile);
-            //    }
-            //});
+            services.AddAutoMapper(cfg => { }, allViewModelProfileTypes);
         }
     }
 }
