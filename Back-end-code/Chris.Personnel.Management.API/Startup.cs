@@ -1,10 +1,10 @@
-using Chris.Personnel.Management.EF.Storage;
+using Autofac;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.OpenApi.Models;
 
 namespace Chris.Personnel.Management.API
 {
@@ -22,10 +22,19 @@ namespace Chris.Personnel.Management.API
         {
             services.AddControllers();
 
-            services.AddDbContext<ChrisPersonnelManagementDbContext>(option =>
+            //services.AddDbContext<SqliteContext>();
+            //services.AddDbContext<InMemoryContext>();
+
+            services.AddSwaggerGen(c =>
             {
-                option.UseSqlite("Data Source=chrisPersonnelManagement.db");
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Chris.Personnel.Management.API", Version = "v1" });
             });
+        }
+
+        public void ConfigureContainer(ContainerBuilder builder)
+        {
+            // Register your own things directly with Autofac, like:
+            builder.RegisterModule(new AutofacModuleRegister());
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -41,6 +50,12 @@ namespace Chris.Personnel.Management.API
             app.UseRouting();
 
             app.UseAuthorization();
+
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Chris.Personnel.Management.API V1");
+            });
 
             app.UseEndpoints(endpoints =>
             {

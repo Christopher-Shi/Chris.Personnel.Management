@@ -1,17 +1,15 @@
-﻿using System.Linq;
-using Chris.Personnel.Management.EF.Storage.BasicData;
+﻿using Chris.Personnel.Management.EF.Storage.BasicData;
 using Chris.Personnel.Management.EF.Storage.Mappings;
 using Chris.Personnel.Management.Entity;
 using Microsoft.EntityFrameworkCore;
 
 namespace Chris.Personnel.Management.EF.Storage
 {
-    public class ChrisPersonnelManagementDbContext : DbContext
+    public abstract class BaseDbContext : DbContext
     {
-        public ChrisPersonnelManagementDbContext(DbContextOptions<ChrisPersonnelManagementDbContext> options)
-            : base(options)
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-
+            BuildDbContextOptionsBuilder(optionsBuilder);
         }
 
         public DbSet<User> Users { get; set; }
@@ -31,5 +29,7 @@ namespace Chris.Personnel.Management.EF.Storage
 
             base.OnModelCreating(modelBuilder);
         }
+
+        protected abstract void BuildDbContextOptionsBuilder(DbContextOptionsBuilder optionsBuilder);
     }
 }

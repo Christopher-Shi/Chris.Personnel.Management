@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Chris.Personnel.Management.EF.Storage.Migrations
 {
-    public partial class InitialDataBase : Migration
+    public partial class initialDatabase : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -32,7 +32,7 @@ namespace Chris.Personnel.Management.EF.Storage.Migrations
             migrationBuilder.InsertData(
                 table: "User",
                 columns: new[] { "Id", "CardId", "CreatedTime", "CreatedUserId", "Gender", "IsEnabled", "LastModifiedTime", "LastModifiedUserId", "Name", "Password", "Phone", "TrueName" },
-                values: new object[] { new Guid("64188630-7f43-49f2-8fb2-d90745339326"), "140226199401294051", new DateTime(2020, 6, 30, 22, 30, 29, 673, DateTimeKind.Local).AddTicks(9182), new Guid("32ec1e37-fe6d-4606-902e-6705beb0afc0"), 1, 1, null, null, "Admin", "admin123", "13259769759", "施晓勇" });
+                values: new object[] { new Guid("1631bef2-8d68-4253-b712-b1de13d80083"), "140226199401294051", new DateTime(2020, 7, 1, 14, 3, 3, 860, DateTimeKind.Local).AddTicks(3717), new Guid("32ec1e37-fe6d-4606-902e-6705beb0afc0"), 1, 1, null, null, "Admin", "admin123", "13259769759", "施晓勇" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_User_Name",

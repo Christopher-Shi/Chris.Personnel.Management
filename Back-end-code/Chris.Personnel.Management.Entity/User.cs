@@ -46,7 +46,6 @@ namespace Chris.Personnel.Management.Entity
         /// </summary>
         public Guid CreatedUserId { get; set; }
 
-
         /// <summary>
         /// 创建时间
         /// </summary>

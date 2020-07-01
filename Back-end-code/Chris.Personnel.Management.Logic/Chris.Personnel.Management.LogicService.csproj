@@ -5,7 +5,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Folder Include="Implements\" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Chris.Personnel.Management.Repository\Chris.Personnel.Management.Repository.csproj" />
+    <ProjectReference Include="..\Chris.Personnel.Management.UICommand\Chris.Personnel.Management.UICommand.csproj" />
     <ProjectReference Include="..\Chris.Personnel.Management.ViewModel\Chris.Personnel.Management.ViewModel.csproj" />
   </ItemGroup>
 

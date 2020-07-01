@@ -15,13 +15,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Chris.Personnel.Management.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Chris.Personnel.Management.EF.Storage", "Chris.Personnel.Management.EF.Storage\Chris.Personnel.Management.EF.Storage.csproj", "{30CFD8A8-CF72-4613-A4DE-41C2DA3FD874}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chris.Personnel.Management.Repository", "Chris.Personnel.Management.Repository\Chris.Personnel.Management.Repository.csproj", "{6CAA00C6-EEBD-4703-ACC3-5C26A937B187}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Chris.Personnel.Management.Repository", "Chris.Personnel.Management.Repository\Chris.Personnel.Management.Repository.csproj", "{6CAA00C6-EEBD-4703-ACC3-5C26A937B187}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chris.Personnel.Management.QueryService", "Chris.Personnel.Management.QueryService\Chris.Personnel.Management.QueryService.csproj", "{662F7A54-D805-4EC0-B8E4-344BBF29B32E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Chris.Personnel.Management.QueryService", "Chris.Personnel.Management.QueryService\Chris.Personnel.Management.QueryService.csproj", "{662F7A54-D805-4EC0-B8E4-344BBF29B32E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chris.Personnel.Management.Task", "Chris.Personnel.Management.Task\Chris.Personnel.Management.Task.csproj", "{88C1CA6A-6CAB-40EB-BF1D-42DF3E8F0F8E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Chris.Personnel.Management.Task", "Chris.Personnel.Management.Task\Chris.Personnel.Management.Task.csproj", "{88C1CA6A-6CAB-40EB-BF1D-42DF3E8F0F8E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chris.Personnel.Management.Test", "Chris.Personnel.Management.Test\Chris.Personnel.Management.Test.csproj", "{B86F871A-E5EB-4BBF-904A-95B8D18E741B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Chris.Personnel.Management.Test", "Chris.Personnel.Management.Test\Chris.Personnel.Management.Test.csproj", "{B86F871A-E5EB-4BBF-904A-95B8D18E741B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chris.Personnel.Management.LogicService", "Chris.Personnel.Management.Logic\Chris.Personnel.Management.LogicService.csproj", "{5005319B-556D-4B04-A9A3-BB7D6039BEFF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -69,6 +71,10 @@ Global
 		{B86F871A-E5EB-4BBF-904A-95B8D18E741B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B86F871A-E5EB-4BBF-904A-95B8D18E741B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B86F871A-E5EB-4BBF-904A-95B8D18E741B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5005319B-556D-4B04-A9A3-BB7D6039BEFF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5005319B-556D-4B04-A9A3-BB7D6039BEFF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5005319B-556D-4B04-A9A3-BB7D6039BEFF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5005319B-556D-4B04-A9A3-BB7D6039BEFF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
