@@ -9,7 +9,6 @@ namespace Chris.Personnel.Management.Repository
         public static void ConfigureContainer(ContainerBuilder builder)
         {
             builder.RegisterType<SqliteDbContextProvider>().As<IDbContextProvider>().InstancePerLifetimeScope();
-            //builder.RegisterType<SqliteDbContextProvider>().As<IDbContextProvider>().InstancePerLifetimeScope();
             builder.RegisterType<SqliteContext>();
             SharedWiring(builder);
         }
@@ -17,7 +16,7 @@ namespace Chris.Personnel.Management.Repository
         public static void ConfigureContainerForTest(ContainerBuilder builder)
         {
             builder.RegisterType<InMemoryDbContextProvider>().As<IDbContextProvider>().InstancePerLifetimeScope();
-
+            builder.RegisterType<InMemoryContext>();
             SharedWiring(builder);
         }
 

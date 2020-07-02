@@ -12,7 +12,7 @@ namespace Chris.Personnel.Management.QueryService.AutoMapper
             CreateMap<User, UserViewModel>()
                 .ForMember(dest => dest.Id,
                     opt =>
-                        opt.MapFrom(src => src.Id.ToUpperString()));
+                        opt.MapFrom(src => src.Id.ToUpperString())).ReverseMap();
         }
     }
 }

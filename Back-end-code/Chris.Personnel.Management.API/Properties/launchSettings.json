@@ -12,7 +12,7 @@
     "Chris.Personnel.Management.API": {
       "commandName": "Project",
       "launchBrowser": true,
-      "launchUrl": "users/",
+      //"launchUrl": "api/users",
       "applicationUrl": "https://localhost:5001",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
