@@ -54,6 +54,7 @@ namespace Chris.Personnel.Management.API
             app.UseSwaggerUI(c =>
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "Chris.Personnel.Management.API V1");
+                c.RoutePrefix = "";
             });
 
             app.UseEndpoints(endpoints =>
