@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Autofac;
 using AutoMapper;
+using Chris.Personnel.Management.LogicService.AutoMapper;
 using Chris.Personnel.Management.QueryService.AutoMapper;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -22,16 +23,18 @@ namespace Chris.Personnel.Management.API
                 typeof(UserViewModelAutoMapper).Assembly.GetTypes().Where(
                     x => x != typeAutoMapperProfile
                          && typeAutoMapperProfile.IsAssignableFrom(x)));
-            //var allDomainServiceProfileTypes = new List<Type>();
 
-            //allDomainServiceProfileTypes.AddRange(typeof(AreaAutoMapper).Assembly.GetTypes().Where(
-            //    x =>
-            //        x != typeAutoMapperProfile
-            //        &&
-            //        typeAutoMapperProfile.IsAssignableFrom(x)
-            //));
+            var allUICommandProfileTypes = new List<Type>();
+
+            allUICommandProfileTypes.AddRange(typeof(UserUICommandAutoMapper).Assembly.GetTypes().Where(
+                x =>
+                    x != typeAutoMapperProfile
+                    &&
+                    typeAutoMapperProfile.IsAssignableFrom(x)
+            ));
 
             services.AddAutoMapper(cfg => { }, allViewModelProfileTypes);
+            services.AddAutoMapper(cfg => { }, allUICommandProfileTypes);
         }
     }
 }

@@ -7,11 +7,11 @@ namespace Chris.Personnel.Management.LogicService
 {
     public interface IUserLogicService
     {
-        Task Add(UserAddUICommand entity);
-        Task Edit(UserEditUICommand entity);
-        Task EditPassword(UserEditPasswordUICommand entity);
+        Task Add(UserAddUICommand command);
+        Task Edit(UserEditUICommand command);
+        Task EditPassword(UserEditPasswordUICommand command);
         Task ResetPassword(Guid id);
-        Task StopUsing(UserDeleteUICommand entity);
+        Task StopUsing(UserDeleteUICommand command);
         Task<bool> UserNameIsUsing(Guid id, string value, string currentAction);
         Task<CurrentUserViewModel> Login(string userName, string password);
     }

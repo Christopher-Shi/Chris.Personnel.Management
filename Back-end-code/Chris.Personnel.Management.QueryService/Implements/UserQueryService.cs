@@ -1,8 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using Chris.Personnel.Management.Repository;
 using Chris.Personnel.Management.ViewModel;
+using Microsoft.EntityFrameworkCore;
 
 namespace Chris.Personnel.Management.QueryService.Implements
 {
@@ -23,6 +26,14 @@ namespace Chris.Personnel.Management.QueryService.Implements
             var userViewModel = _mapper.Map<UserViewModel>(user);
 
             return userViewModel;
+        }
+
+        public async Task<List<UserViewModel>> GetAll()
+        {
+            var users = await _userRepository.GetAll().ToListAsync();
+            var userViewModels = users.Select(user => _mapper.Map<UserViewModel>(user));
+
+            return userViewModels.ToList();
         }
     }
 }

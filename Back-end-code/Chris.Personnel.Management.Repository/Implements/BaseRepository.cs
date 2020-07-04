@@ -42,12 +42,5 @@ namespace Chris.Personnel.Management.Repository.Implements
         {
             return DbContext.Set<TEntity>().FindAsync(id);
         }
-
-
-        //private async Task SafeSaveChanges()
-        //{
-        //    await DbContext.SaveChangesAsync();
-        //}
-
     }
 }

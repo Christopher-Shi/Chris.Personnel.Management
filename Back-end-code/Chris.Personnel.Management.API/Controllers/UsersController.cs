@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Chris.Personnel.Management.LogicService;
 using Chris.Personnel.Management.QueryService;
 using Chris.Personnel.Management.ViewModel;
+using System.Collections.Generic;
 
 namespace Chris.Personnel.Management.API.Controllers
 {
@@ -20,12 +21,12 @@ namespace Chris.Personnel.Management.API.Controllers
             _userQueryService = userQueryService;
         }
 
-        //// GET: api/Users
-        //[HttpGet]
-        //public async Task<ActionResult<IEnumerable<User>>> GetUsers()
-        //{
-        //    return await _context.Users.ToListAsync();
-        //}
+        // GET: api/Users
+        [HttpGet]
+        public async Task<IEnumerable<UserViewModel>> GetUsers()
+        {
+            return await _userQueryService.GetAll();
+        }
 
         // GET: api/Users/5
         [HttpGet("{id}")]

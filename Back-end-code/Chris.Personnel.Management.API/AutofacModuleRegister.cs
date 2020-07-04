@@ -1,4 +1,5 @@
 ﻿using Autofac;
+using Chris.Personnel.Management.Common;
 using Chris.Personnel.Management.LogicService;
 using Chris.Personnel.Management.QueryService;
 using Chris.Personnel.Management.Repository;
@@ -14,6 +15,8 @@ namespace Chris.Personnel.Management.API
             LogicServiceInstaller.ConfigureContainer(builder);
 
             RepositoryInstaller.ConfigureContainer(builder);
+
+            CommonInstaller.ConfigureContainer(builder);
         }
     }
 }

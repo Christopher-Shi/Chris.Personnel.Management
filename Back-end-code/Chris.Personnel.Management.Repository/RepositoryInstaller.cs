@@ -1,6 +1,7 @@
 ﻿using Autofac;
 using Chris.Personnel.Management.EF.Storage;
 using Chris.Personnel.Management.Repository.Implements;
+using Chris.Personnel.Management.Repository.UnitOfWork;
 
 namespace Chris.Personnel.Management.Repository
 {
@@ -23,6 +24,9 @@ namespace Chris.Personnel.Management.Repository
 
         private static void SharedWiring(ContainerBuilder builder)
         {
+            builder.RegisterType<UnitOfWorkFactory>().As<IUnitOfWorkFactory>().InstancePerLifetimeScope();
+            builder.RegisterType<EntityFrameworkUnitOfWork>().As<IUnitOfWork>().InstancePerLifetimeScope();
+
             builder.RegisterType<UserRepository>().As<IUserRepository>().InstancePerLifetimeScope();
         }
     }
