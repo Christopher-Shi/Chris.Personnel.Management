@@ -5,6 +5,7 @@ using Chris.Personnel.Management.LogicService;
 using Chris.Personnel.Management.QueryService;
 using Chris.Personnel.Management.ViewModel;
 using System.Collections.Generic;
+using Chris.Personnel.Management.UICommand;
 
 namespace Chris.Personnel.Management.API.Controllers
 {
@@ -67,17 +68,14 @@ namespace Chris.Personnel.Management.API.Controllers
         //    return NoContent();
         //}
 
-        //// POST: api/Users
-        //// To protect from overposting attacks, enable the specific properties you want to bind to, for
-        //// more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
-        //[HttpPost]
-        //public async Task<ActionResult<User>> PostUser(User user)
-        //{
-        //    _context.Users.Add(user);
-        //    await _context.SaveChangesAsync();
-
-        //    return CreatedAtAction("GetUser", new { id = user.Id }, user);
-        //}
+        // POST: api/Users
+        // To protect from overposting attacks, enable the specific properties you want to bind to, for
+        // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
+        [HttpPost]
+        public async Task PostUser(UserAddUICommand command)
+        {
+            await _userLogicService.Add(command);
+        }
 
         //// DELETE: api/Users/5
         //[HttpDelete("{id}")]

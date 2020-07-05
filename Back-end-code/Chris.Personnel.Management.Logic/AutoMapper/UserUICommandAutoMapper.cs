@@ -1,9 +1,6 @@
 ﻿using AutoMapper;
 using Chris.Personnel.Management.Entity;
 using Chris.Personnel.Management.UICommand;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Chris.Personnel.Management.LogicService.AutoMapper
 {
@@ -17,7 +14,7 @@ namespace Chris.Personnel.Management.LogicService.AutoMapper
                         opt.MapFrom(src => src.User.UserName))
                 .ForMember(dest => dest.Password,
                     opt =>
-                        opt.MapFrom(src => "admin123"))
+                        opt.Ignore())
                 .ForMember(dest => dest.TrueName,
                     opt =>
                         opt.MapFrom(src => src.User.TrueName))
@@ -32,7 +29,22 @@ namespace Chris.Personnel.Management.LogicService.AutoMapper
                         opt.MapFrom(src => src.User.Phone))
                 .ForMember(dest => dest.IsEnabled,
                     opt =>
-                        opt.MapFrom(src => src.User.IsEnabled));
+                        opt.MapFrom(src => src.User.IsEnabled))
+                .ForMember(dest => dest.CreatedUserId,
+                    opt =>
+                        opt.Ignore())
+                .ForMember(dest => dest.CreatedTime,
+                    opt =>
+                        opt.Ignore())
+                .ForMember(dest => dest.LastModifiedUserId,
+                    opt =>
+                        opt.Ignore())
+                .ForMember(dest => dest.LastModifiedTime,
+                    opt =>
+                        opt.Ignore())
+                .ForMember(dest => dest.Id,
+                    opt =>
+                        opt.Ignore()).ReverseMap();
         }
     }
 }

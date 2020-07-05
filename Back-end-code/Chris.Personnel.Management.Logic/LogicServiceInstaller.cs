@@ -1,4 +1,5 @@
 ﻿using Autofac;
+using Chris.Personnel.Management.LogicService.Implements;
 
 namespace Chris.Personnel.Management.LogicService
 {

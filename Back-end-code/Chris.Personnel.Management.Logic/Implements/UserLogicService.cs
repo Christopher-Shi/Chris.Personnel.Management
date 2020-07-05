@@ -8,7 +8,7 @@ using Chris.Personnel.Management.Repository.UnitOfWork;
 using Chris.Personnel.Management.UICommand;
 using Chris.Personnel.Management.ViewModel;
 
-namespace Chris.Personnel.Management.LogicService
+namespace Chris.Personnel.Management.LogicService.Implements
 {
     public class UserLogicService : IUserLogicService
     {
@@ -31,9 +31,9 @@ namespace Chris.Personnel.Management.LogicService
 
         public async Task Add(UserAddUICommand command)
         {
-            var newUser = _mapper.Map<User>(command);
-            newUser.CreatedTime = _timeSource.GetCurrentTime();
-            newUser.CreatedUserId = new Guid("c088b225-bc74-4852-b3a1-05b57641b4cc");
+            var newUser = _mapper.Map<UserAddUICommand, User>(command);
+            //newUser.CreatedTime = _timeSource.GetCurrentTime();
+            //newUser.CreatedUserId = new Guid("c088b225-bc74-4852-b3a1-05b57641b4cc");
 
             using (var unitOfWork = _unitOfWorkFactory.GetCurrentUnitOfWork())
             {

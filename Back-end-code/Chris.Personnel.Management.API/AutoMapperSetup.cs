@@ -16,7 +16,7 @@ namespace Chris.Personnel.Management.API
             if (services == null) throw new ArgumentNullException(nameof(services));
 
             //Register all the AutoMapper profiles
-            var typeAutoMapperProfile = typeof(AutoMapper.Profile);
+            var typeAutoMapperProfile = typeof(Profile);
             var allViewModelProfileTypes = new List<Type>();
 
             allViewModelProfileTypes.AddRange(
@@ -33,8 +33,22 @@ namespace Chris.Personnel.Management.API
                     typeAutoMapperProfile.IsAssignableFrom(x)
             ));
 
-            services.AddAutoMapper(cfg => { }, allViewModelProfileTypes);
-            services.AddAutoMapper(cfg => { }, allUICommandProfileTypes);
+            services.AddAutoMapper(cfg =>
+            {
+                foreach (var typeProfile in allViewModelProfileTypes)
+                {
+                    var profile = Activator.CreateInstance(typeProfile) as AutoMapper.Profile;
+                    cfg.AddProfile(profile);
+                }
+            }, allViewModelProfileTypes);
+            services.AddAutoMapper(cfg =>
+            {
+                foreach (var typeProfile in allUICommandProfileTypes)
+                {
+                    var profile = Activator.CreateInstance(typeProfile) as AutoMapper.Profile;
+                    cfg.AddProfile(profile);
+                }
+            }, allUICommandProfileTypes);
         }
     }
 }
