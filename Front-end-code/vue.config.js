@@ -38,6 +38,25 @@ module.exports = {
     },
     before: require('./mock/mock-server.js')
   },
+  // devServer: {
+  //   open: true,
+  //   host: '0.0.0.0',
+  //   port: 9527,
+  //   https: false,
+  //   hotOnly: false,
+  //   proxy: { // 配置代理
+  //     '/api/': { // 匹配所有以 '/api' 开头的请求路径
+  //       target: 'http://localhost:5001/', // 本地的基础路径
+  //       changeOrigin: true, // 支持跨域
+  //       pathRewrite: { // 重写路径： 去掉路径中开头的'/api'
+  //         '^/api/': ''
+  //       }
+  //     }
+  //   },
+  //   before: app => {
+  //     // `app` 是一个 express 实例
+  //   }
+  // },
   configureWebpack: {
     // provide the app's title in webpack's name field, so that
     // it can be accessed in index.html to inject the correct title.
@@ -88,7 +107,7 @@ module.exports = {
             .plugin('ScriptExtHtmlWebpackPlugin')
             .after('html')
             .use('script-ext-html-webpack-plugin', [{
-            // `runtime` must same as runtimeChunk name. default is `runtime`
+              // `runtime` must same as runtimeChunk name. default is `runtime`
               inline: /runtime\..*\.js$/
             }])
             .end()

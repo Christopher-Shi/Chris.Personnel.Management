@@ -44,6 +44,15 @@ namespace Chris.Personnel.Management.API
                 app.UseDeveloperExceptionPage();
             }
 
+            // 设置只允许特定来源可以跨域
+            app.UseCors(options =>
+            {
+                options.WithOrigins("http://localhost:9527/", "http://127.0.0.1:9527/"); // 允许特定ip跨域
+                options.AllowAnyHeader();
+                options.AllowAnyMethod();
+                options.AllowCredentials();
+            });
+
             app.UseHttpsRedirection();
 
             app.UseRouting();

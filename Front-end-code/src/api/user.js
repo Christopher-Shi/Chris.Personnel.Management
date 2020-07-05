@@ -16,6 +16,13 @@ export function getInfo(token) {
   })
 }
 
+export function getAll() {
+  return request({
+    url: 'https://localhost:5001/api/users/',
+    method: 'get'
+  })
+}
+
 export function logout() {
   return request({
     url: '/vue-element-admin/user/logout',
