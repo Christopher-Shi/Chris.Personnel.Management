@@ -2,16 +2,17 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Chris.Personnel.Management.ViewModel;
+using Chris.Personnel.Management.ViewModel.Filters;
 
 namespace Chris.Personnel.Management.QueryService
 {
     public interface IUserQueryService
     {
-        Task<UserViewModel> Get(Guid id);
-        Task<List<UserViewModel>> GetAll();
+        Task<UserFormViewModel> Get(Guid id);
+        Task<List<UserFormViewModel>> GetAll();
         //Task<IEnumerable<UserDropDownListItem>> GetForDropDownList();
-        //Task<UserPaginationViewModel> GetByPage(UserFilters filters,
-        //    int currentPage, int pageSize, string orderByPropertyName, bool isAsc);
+        Task<UserPaginationViewModel> GetByPage(UserFilters filters,
+            int currentPage, int pageSize, string orderByPropertyName, bool isAsc);
         //Task<CurrentUserViewModel> GetCurrentUser();
     }
 }

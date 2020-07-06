@@ -5,7 +5,9 @@ using Chris.Personnel.Management.LogicService;
 using Chris.Personnel.Management.QueryService;
 using Chris.Personnel.Management.ViewModel;
 using System.Collections.Generic;
+using Chris.Personnel.Management.Common.Enums;
 using Chris.Personnel.Management.UICommand;
+using Chris.Personnel.Management.ViewModel.Filters;
 
 namespace Chris.Personnel.Management.API.Controllers
 {
@@ -24,16 +26,26 @@ namespace Chris.Personnel.Management.API.Controllers
 
         // GET: api/Users
         [HttpGet]
-        public async Task<IEnumerable<UserViewModel>> GetUsers()
+        public async Task<IEnumerable<UserFormViewModel>> GetUsers()
         {
             return await _userQueryService.GetAll();
         }
 
         // GET: api/Users/5
         [HttpGet("{id}")]
-        public async Task<UserViewModel> GetUser(Guid id)
+        public async Task<UserFormViewModel> GetUser(Guid id)
         {
             return await _userQueryService.Get(id);
+        }
+
+        [Route("pagination")]
+        [HttpGet]
+        public async Task<UserPaginationViewModel> GetByPage(
+            string trueName, Gender? gender, IsEnabled? isEnabled,
+            int current, int pageSize, string orderByPropertyName, bool isAsc)
+        {
+            return await _userQueryService.GetByPage(new UserFilters(trueName, gender, isEnabled),
+                current, pageSize, orderByPropertyName, isAsc);
         }
 
         //// PUT: api/Users/5
