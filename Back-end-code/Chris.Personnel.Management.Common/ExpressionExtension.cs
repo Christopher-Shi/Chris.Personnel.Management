@@ -3,7 +3,7 @@ using System.Linq.Expressions;
 
 namespace Chris.Personnel.Management.Common
 {
-    public static class LinqExpressions
+    public static class ExpressionExtension
     {
         public static Expression<Func<T, bool>> Not<T>(this Expression<Func<T, bool>> expr)
         {
