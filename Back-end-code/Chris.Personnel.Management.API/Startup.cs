@@ -1,4 +1,5 @@
 using Autofac;
+using Chris.Personnel.Management.Common;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -20,9 +21,13 @@ namespace Chris.Personnel.Management.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
+            services.AddSingleton(new Appsettings(Configuration));
 
             services.AddAutoMapperSetup();
+
+            services.AddControllers();
+
+            
 
             services.AddSwaggerGen(c =>
             {

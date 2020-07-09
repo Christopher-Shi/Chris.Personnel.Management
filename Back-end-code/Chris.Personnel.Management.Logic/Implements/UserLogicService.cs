@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using AutoMapper;
 using Chris.Personnel.Management.Common;
+using Chris.Personnel.Management.Common.Enums;
 using Chris.Personnel.Management.Entity;
 using Chris.Personnel.Management.Repository;
 using Chris.Personnel.Management.Repository.UnitOfWork;
@@ -31,9 +32,22 @@ namespace Chris.Personnel.Management.LogicService.Implements
 
         public async Task Add(UserAddUICommand command)
         {
-            var newUser = _mapper.Map<UserAddUICommand, User>(command);
-            //newUser.CreatedTime = _timeSource.GetCurrentTime();
-            //newUser.CreatedUserId = new Guid("c088b225-bc74-4852-b3a1-05b57641b4cc");
+            var newUser = _mapper.Map<User>(command);
+            newUser.CreatedTime = _timeSource.GetCurrentTime();
+            newUser.CreatedUserId = new Guid("1631BEF2-8D68-4253-B712-B1DE13D80083");
+
+            //var newUser = new User
+            //{
+            //    Name = command.User.UserName,
+            //    Password = "admin123",
+            //    TrueName = command.User.TrueName,
+            //    Gender = command.User.Gender,
+            //    CardId = command.User.CardId,
+            //    Phone = command.User.Phone,
+            //    IsEnabled = command.User.IsEnabled,
+            //    CreatedUserId = new Guid("1631BEF2-8D68-4253-B712-B1DE13D80083"),
+            //    CreatedTime = _timeSource.GetCurrentTime()
+            //};
 
             using (var unitOfWork = _unitOfWorkFactory.GetCurrentUnitOfWork())
             {

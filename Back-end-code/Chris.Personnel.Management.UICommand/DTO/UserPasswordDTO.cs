@@ -6,6 +6,6 @@
 
         public string NewPassword { get; set; }
 
-        public string ComfirmedNewPassword { get; set; }
+        public string ConfirmedNewPassword { get; set; }
     }
 }

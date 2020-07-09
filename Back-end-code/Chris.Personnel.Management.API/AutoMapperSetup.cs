@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Autofac;
 using AutoMapper;
 using Chris.Personnel.Management.LogicService.AutoMapper;
 using Chris.Personnel.Management.QueryService.AutoMapper;
@@ -26,29 +25,40 @@ namespace Chris.Personnel.Management.API
 
             var allUICommandProfileTypes = new List<Type>();
 
-            allUICommandProfileTypes.AddRange(typeof(UserUICommandAutoMapper).Assembly.GetTypes().Where(
-                x =>
-                    x != typeAutoMapperProfile
-                    &&
-                    typeAutoMapperProfile.IsAssignableFrom(x)
-            ));
+            allUICommandProfileTypes.AddRange(
+                typeof(UserUICommandAutoMapper).Assembly.GetTypes().Where(
+                    x =>
+                        x != typeAutoMapperProfile
+                        && typeAutoMapperProfile.IsAssignableFrom(x)));
 
-            services.AddAutoMapper(cfg =>
+            //services.AddAutoMapper(cfg =>
+            //{
+            //    foreach (var typeProfile in allViewModelProfileTypes)
+            //    {
+            //        var profile = Activator.CreateInstance(typeProfile) as Profile;
+            //        cfg.AddProfile(profile);
+            //    }
+            //}, allViewModelProfileTypes);
+
+            //services.AddAutoMapper(cfg =>
+            //{
+            //    foreach (var typeProfile in allUICommandProfileTypes)
+            //    {
+            //        var profile = Activator.CreateInstance(typeProfile) as Profile;
+            //        cfg.AddProfile(profile);
+            //    }
+            //}, allUICommandProfileTypes);
+
+            foreach (var typeProfile in allViewModelProfileTypes)
             {
-                foreach (var typeProfile in allViewModelProfileTypes)
-                {
-                    var profile = Activator.CreateInstance(typeProfile) as AutoMapper.Profile;
-                    cfg.AddProfile(profile);
-                }
-            }, allViewModelProfileTypes);
-            services.AddAutoMapper(cfg =>
-            {
-                foreach (var typeProfile in allUICommandProfileTypes)
-                {
-                    var profile = Activator.CreateInstance(typeProfile) as AutoMapper.Profile;
-                    cfg.AddProfile(profile);
-                }
-            }, allUICommandProfileTypes);
+                services.AddAutoMapper(typeProfile);
+            }
+            //foreach (var typeProfile in allUICommandProfileTypes)
+            //{
+            //    services.AddAutoMapper(typeProfile);
+            //}
+
+            services.AddAutoMapper(typeof(UserUICommandAutoMapper));
         }
     }
 }
