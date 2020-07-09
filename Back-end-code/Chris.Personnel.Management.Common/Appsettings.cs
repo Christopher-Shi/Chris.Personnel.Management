@@ -37,7 +37,7 @@ namespace Chris.Personnel.Management.Common
         /// </summary>
         /// <param name="sections">节点配置</param>
         /// <returns></returns>
-        public static string app(params string[] sections)
+        public static string Apply(params string[] sections)
         {
             try
             {
@@ -60,7 +60,7 @@ namespace Chris.Personnel.Management.Common
         /// <typeparam name="T"></typeparam>
         /// <param name="sections"></param>
         /// <returns></returns>
-        public static List<T> app<T>(params string[] sections)
+        public static List<T> Apply<T>(params string[] sections)
         {
             var list = new List<T>();
             Configuration.Bind(string.Join(":", sections), list);

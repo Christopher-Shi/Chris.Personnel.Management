@@ -1,4 +1,5 @@
-﻿using System.Text.RegularExpressions;
+﻿using System;
+using System.Text.RegularExpressions;
 
 namespace Chris.Personnel.Management.Common
 {
@@ -58,5 +59,36 @@ namespace Chris.Personnel.Management.Common
         {
             return Regex.IsMatch(str, @"^[1-9]\d{16}[\dXx]$");
         }
+
+        /// <summary>
+        /// 是否是图片文件名
+        /// </summary>
+        /// <returns> </returns>
+        public static bool IsImgFileName(this string fileName)
+        {
+            if (fileName.IndexOf(".", StringComparison.Ordinal) == -1)
+                return false;
+
+            var tempFileName = fileName.Trim().ToLower();
+            var extension = tempFileName.Substring(tempFileName.LastIndexOf(".", StringComparison.Ordinal));
+            return extension == ".png" || extension == ".bmp" || extension == ".jpg" || extension == ".jpeg" || extension == ".gif";
+        }
+
+        #region 空判断
+        public static bool IsNullOrEmpty(this string inputStr)
+        {
+            return string.IsNullOrEmpty(inputStr);
+        }
+
+        public static bool IsNullOrWhiteSpace(this string inputStr)
+        {
+            return string.IsNullOrWhiteSpace(inputStr);
+        }
+
+        public static string Format(this string inputStr, params object[] obj)
+        {
+            return string.Format(inputStr, obj);
+        }
+        #endregion
     }
 }
