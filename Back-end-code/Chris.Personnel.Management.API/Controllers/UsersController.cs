@@ -48,66 +48,36 @@ namespace Chris.Personnel.Management.API.Controllers
                 current, pageSize, orderByPropertyName, isAsc);
         }
 
-        //// PUT: api/Users/5
-        //// To protect from overposting attacks, enable the specific properties you want to bind to, for
-        //// more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
-        //[HttpPut("{id}")]
-        //public async Task<IActionResult> PutUser(Guid id, User user)
-        //{
-        //    if (id != user.Id)
-        //    {
-        //        return BadRequest();
-        //    }
-
-        //    _context.Entry(user).State = EntityState.Modified;
-
-        //    try
-        //    {
-        //        await _context.SaveChangesAsync();
-        //    }
-        //    catch (DbUpdateConcurrencyException)
-        //    {
-        //        if (!UserExists(id))
-        //        {
-        //            return NotFound();
-        //        }
-        //        else
-        //        {
-        //            throw;
-        //        }
-        //    }
-
-        //    return NoContent();
-        //}
+        // PUT: api/Users/5
+        [HttpPut("{id}")]
+        public async Task PutUser(UserEditUICommand command)
+        {
+            await _userLogicService.Edit(command);
+        }
 
         // POST: api/Users
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for
-        // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPost]
         public async Task PostUser(UserAddUICommand command)
         {
             await _userLogicService.Add(command);
         }
 
-        //// DELETE: api/Users/5
-        //[HttpDelete("{id}")]
-        //public async Task<ActionResult<User>> DeleteUser(Guid id)
-        //{
-        //    var user = await _context.Users.FindAsync(id);
-        //    if (user == null)
-        //    {
-        //        return NotFound();
-        //    }
+        [HttpPut("password/modification")]
+        public async Task UpdatePassword([FromBody] UserEditPasswordUICommand command)
+        {
+            await _userLogicService.EditPassword(command);
+        }
 
-        //    _context.Users.Remove(user);
-        //    await _context.SaveChangesAsync();
+        [HttpPut("password/resetting")]
+        public async Task ResetPassword([FromBody] Guid id)
+        {
+            await _userLogicService.ResetPassword(id);
+        }
 
-        //    return user;
-        //}
-
-        //private bool UserExists(Guid id)
-        //{
-        //    return _context.Users.Any(e => e.Id == id);
-        //}
+        [HttpDelete("{id}/disable")]
+        public async Task Disable(Guid id)
+        {
+            await _userLogicService.StopUsing(new UserDeleteUICommand { Id = id });
+        }
     }
 }

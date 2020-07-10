@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Linq.Dynamic.Core;
 using System.Threading.Tasks;
 using AutoMapper;
+using Chris.Personnel.Management.Common;
 using Chris.Personnel.Management.QueryService.Specifications;
 using Chris.Personnel.Management.Repository;
 using Chris.Personnel.Management.ViewModel;
@@ -44,7 +44,7 @@ namespace Chris.Personnel.Management.QueryService.Implements
         {
             var specifications = new UserSpecifications(filters.TrueName, filters.Gender, filters.IsEnabled);
             var users = await _userRepository.GetAll().Where(specifications.Expression)
-                .OrderBy(orderByPropertyName + (isAsc ? " ascending" : " descending"))
+                .SortByProperty(orderByPropertyName, isAsc)
                 .Skip(pageSize * (currentPage - 1))
                 .Take(pageSize).ToListAsync();
             var total = _userRepository.GetAll().Where(specifications.Expression).Count();

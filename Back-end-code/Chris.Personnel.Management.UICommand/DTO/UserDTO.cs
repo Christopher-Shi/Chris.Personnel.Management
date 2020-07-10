@@ -1,4 +1,5 @@
-﻿using Chris.Personnel.Management.Common.Enums;
+﻿using System;
+using Chris.Personnel.Management.Common.Enums;
 
 namespace Chris.Personnel.Management.UICommand.DTO
 {
@@ -13,6 +14,8 @@ namespace Chris.Personnel.Management.UICommand.DTO
         public string CardId { get; set; }
 
         public string Phone { get; set; }
+
+        public Guid? RoleId { get; set; }
 
         public IsEnabled IsEnabled { get; set; }
     }

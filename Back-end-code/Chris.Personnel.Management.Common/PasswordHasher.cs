@@ -24,7 +24,7 @@ namespace Chris.Personnel.Management.Common
         public static HashedPassword HashedPassword(string password)
         {
             var salt = Guid.NewGuid();
-            return new HashedPassword()
+            return new HashedPassword
             {
                 Salt = salt.ToString(),
                 Hash = Hash(salt.ToByteArray(), password)

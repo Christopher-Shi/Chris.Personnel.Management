@@ -35,6 +35,10 @@ namespace Chris.Personnel.Management.EF.Storage.Mappings
             builder.Property(t => t.IsEnabled).HasColumnName("IsEnabled");
 
             // Relationships
+            builder.HasOne(t => t.Role)
+                .WithMany(t => t.Users)
+                .HasForeignKey(t => t.RoleId)
+                .IsRequired(false);
         }
     }
 }

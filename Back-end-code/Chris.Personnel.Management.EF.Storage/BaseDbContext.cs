@@ -18,9 +18,11 @@ namespace Chris.Personnel.Management.EF.Storage
         {
             //应用map配置
             modelBuilder.ApplyConfiguration(new UserMap());
+            modelBuilder.ApplyConfiguration(new RoleMap());
 
             //seed data
             modelBuilder.Entity<User>().HasData(UserCreator.Create());
+            modelBuilder.Entity<Role>().HasData(RoleCreator.Create());
 
             //foreach (var relationship in modelBuilder.Model.GetEntityTypes().SelectMany(e => e.GetForeignKeys()))
             //{

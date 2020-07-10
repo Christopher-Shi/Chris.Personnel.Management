@@ -12,7 +12,6 @@ namespace Chris.Personnel.Management.LogicService
         Task EditPassword(UserEditPasswordUICommand command);
         Task ResetPassword(Guid id);
         Task StopUsing(UserDeleteUICommand command);
-        Task<bool> UserNameIsUsing(Guid id, string value, string currentAction);
         Task<CurrentUserViewModel> Login(string userName, string password);
     }
 }

@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Chris.Personnel.Management.Repository.Implements
 {
-    public abstract class BaseRepository<TEntity> where TEntity : EntityBase
+    public abstract class BaseRepository<TEntity> where TEntity : RootEntity
     {
         private readonly IDbContextProvider _dbContextProvider;
         protected DbContext DbContext => _dbContextProvider.GetDbContext();

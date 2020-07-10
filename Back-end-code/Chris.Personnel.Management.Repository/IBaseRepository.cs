@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Chris.Personnel.Management.Repository
 {
-    public interface IBaseRepository<TEntity> where TEntity : EntityBase
+    public interface IBaseRepository<TEntity> where TEntity : RootEntity
     {
         void Add(TEntity entity);
         void Edit(TEntity entity);

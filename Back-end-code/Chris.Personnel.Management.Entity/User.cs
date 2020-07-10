@@ -4,7 +4,7 @@ using Chris.Personnel.Management.Common.Enums;
 
 namespace Chris.Personnel.Management.Entity
 {
-    public class User : EntityBase
+    public class User : RootEntity
     {
         /// <summary>
         /// 用户名
@@ -15,6 +15,8 @@ namespace Chris.Personnel.Management.Entity
         /// 密码
         /// </summary>
         public string Password { get; private set; }
+
+        public string Salt { get; private set; }
 
         /// <summary>
         /// 姓名
@@ -42,6 +44,11 @@ namespace Chris.Personnel.Management.Entity
         public IsEnabled IsEnabled { get; private set; }
 
         /// <summary>
+        /// 用户角色Id
+        /// </summary>
+        public Guid? RoleId { get; private set; }
+
+        /// <summary>
         /// 创建人
         /// </summary>
         public Guid? CreatedUserId { get; private set; }
@@ -61,6 +68,11 @@ namespace Chris.Personnel.Management.Entity
         /// </summary>
         public DateTime? LastModifiedTime { get; private set; }
 
+        /// <summary>
+        /// 用户角色
+        /// </summary>
+        public virtual Role Role { get; private set; }
+
         public static User Create(
             string name,
             string password,
@@ -68,6 +80,7 @@ namespace Chris.Personnel.Management.Entity
             Gender gender,
             string cardId,
             string phone,
+            Guid? roleId,
             Guid? createdUserId,
             DateTime createdTime)
         {
@@ -77,10 +90,12 @@ namespace Chris.Personnel.Management.Entity
             {
                 Name = name,
                 Password = hashedPassword.Hash,
+                Salt = hashedPassword.Salt,
                 TrueName = trueName,
                 Gender = gender,
                 CardId = cardId,
                 Phone = phone,
+                RoleId = roleId,
                 IsEnabled = IsEnabled.Enabled,
                 CreatedUserId = createdUserId,
                 CreatedTime = createdTime
@@ -94,6 +109,7 @@ namespace Chris.Personnel.Management.Entity
             Gender gender,
             string cardId,
             string phoneId,
+            Guid? roleId,
             Guid lastModifiedUserId,
             DateTime lastModifiedTime)
         {
@@ -103,6 +119,7 @@ namespace Chris.Personnel.Management.Entity
             Gender = gender;
             CardId = cardId;
             Phone = phoneId;
+            RoleId = roleId;
             IsEnabled = isEnabled;
             LastModifiedUserId = lastModifiedUserId;
             LastModifiedTime = lastModifiedTime;
@@ -110,13 +127,13 @@ namespace Chris.Personnel.Management.Entity
         }
 
         public User EditPassword(
-            string password,
+            string salt,
+            string hashedPassword,
             Guid lastModifiedUserId,
             DateTime lastModifiedTime)
         {
-            var hashedPassword = PasswordHasher.HashedPassword(password);
-
-            Password = hashedPassword.Hash;
+            Salt = salt;
+            Password = hashedPassword;
             LastModifiedUserId = lastModifiedUserId;
             LastModifiedTime = lastModifiedTime;
             return this;

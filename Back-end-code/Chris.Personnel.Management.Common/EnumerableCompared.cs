@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace Chris.Personnel.Management.Common
 {
-    public class EnumerableCompared<T> where T : EntityBase
+    public class EnumerableCompared<T> where T : RootEntity
     {
         public List<T> DeletedItems { get; }
         public List<T> AddedItems { get; }
