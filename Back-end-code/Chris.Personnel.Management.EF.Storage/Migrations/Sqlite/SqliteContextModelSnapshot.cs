@@ -3,20 +3,69 @@ using System;
 using Chris.Personnel.Management.EF.Storage;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace Chris.Personnel.Management.EF.Storage.Migrations
+namespace Chris.Personnel.Management.EF.Storage.Migrations.Sqlite
 {
     [DbContext(typeof(SqliteContext))]
-    [Migration("20200710073708_InitialDatabase")]
-    partial class InitialDatabase
+    partial class SqliteContextModelSnapshot : ModelSnapshot
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "3.1.5");
+
+            modelBuilder.Entity("Chris.Personnel.Management.Entity.Role", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnName("Id")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("CreatedTime")
+                        .HasColumnName("CreatedTime")
+                        .HasColumnType("TEXT");
+
+                    b.Property<Guid>("CreatedUserId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnName("IsDeleted")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime?>("LastModifiedTime")
+                        .HasColumnName("LastModifiedTime")
+                        .HasColumnType("TEXT");
+
+                    b.Property<Guid?>("LastModifiedUserId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Memo")
+                        .HasColumnName("Memo")
+                        .HasColumnType("TEXT")
+                        .HasMaxLength(200);
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnName("Name")
+                        .HasColumnType("TEXT")
+                        .HasMaxLength(50);
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Role");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("32ec1e12-fe6d-4606-902e-6705beb0afc1"),
+                            CreatedTime = new DateTime(2020, 7, 9, 23, 15, 14, 0, DateTimeKind.Unspecified),
+                            CreatedUserId = new Guid("32ec1e37-fe6d-4606-902e-6705beb0afc0"),
+                            IsDeleted = false,
+                            Name = "管理员"
+                        });
+                });
 
             modelBuilder.Entity("Chris.Personnel.Management.Entity.User", b =>
                 {
@@ -69,6 +118,9 @@ namespace Chris.Personnel.Management.EF.Storage.Migrations
                         .HasColumnType("TEXT")
                         .HasMaxLength(100);
 
+                    b.Property<Guid?>("RoleId")
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("Salt")
                         .HasColumnType("TEXT");
 
@@ -83,6 +135,8 @@ namespace Chris.Personnel.Management.EF.Storage.Migrations
                     b.HasIndex("Name")
                         .IsUnique();
 
+                    b.HasIndex("RoleId");
+
                     b.ToTable("User");
 
                     b.HasData(
@@ -94,11 +148,19 @@ namespace Chris.Personnel.Management.EF.Storage.Migrations
                             Gender = 1,
                             IsEnabled = 1,
                             Name = "Admin",
-                            Password = "D0988414729740502483CA8D031EC71EA9DDC0D41537B5995F63F88AE3DDE789",
+                            Password = "544060585A394B6FE1F1C5A54E15042067C0C6DD223EE92CB6D6AAE3762242C1",
                             Phone = "13259769759",
-                            Salt = "2f460e1f-0193-4c5d-bed4-64b8a88d7f62",
+                            RoleId = new Guid("32ec1e12-fe6d-4606-902e-6705beb0afc1"),
+                            Salt = "bb4d7200-9acb-48c7-98cd-baae42a7f5be",
                             TrueName = "Admin"
                         });
+                });
+
+            modelBuilder.Entity("Chris.Personnel.Management.Entity.User", b =>
+                {
+                    b.HasOne("Chris.Personnel.Management.Entity.Role", "Role")
+                        .WithMany("Users")
+                        .HasForeignKey("RoleId");
                 });
 #pragma warning restore 612, 618
         }

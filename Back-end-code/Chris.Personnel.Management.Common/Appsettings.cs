@@ -6,13 +6,9 @@ using System.Linq;
 
 namespace Chris.Personnel.Management.Common
 {
-    /// <summary>
-    /// appsettings.json操作类
-    /// </summary>
     public class Appsettings
     {
         static IConfiguration Configuration { get; set; }
-        static string contentPath { get; set; }
 
         public Appsettings(string contentPath)
         {
