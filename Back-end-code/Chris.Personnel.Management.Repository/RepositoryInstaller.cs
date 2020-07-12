@@ -45,6 +45,7 @@ namespace Chris.Personnel.Management.Repository
             builder.RegisterType<EntityFrameworkUnitOfWork>().As<IUnitOfWork>().InstancePerLifetimeScope();
 
             builder.RegisterType<UserRepository>().As<IUserRepository>().InstancePerLifetimeScope();
+            builder.RegisterType<RoleRepository>().As<IRoleRepository>().InstancePerLifetimeScope();
         }
     }
 }

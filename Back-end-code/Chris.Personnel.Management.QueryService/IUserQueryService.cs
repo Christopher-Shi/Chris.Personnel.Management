@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Chris.Personnel.Management.ViewModel;
+using Chris.Personnel.Management.ViewModel.DropDownListItems;
 using Chris.Personnel.Management.ViewModel.Filters;
 
 namespace Chris.Personnel.Management.QueryService
@@ -10,7 +11,7 @@ namespace Chris.Personnel.Management.QueryService
     {
         Task<UserFormViewModel> Get(Guid id);
         Task<List<UserFormViewModel>> GetAll();
-        //Task<IEnumerable<UserDropDownListItem>> GetForDropDownList();
+        Task<IEnumerable<UserDropDownListViewModel>> GetForDropDownList();
         Task<UserPaginationViewModel> GetByPage(UserFilters filters,
             int currentPage, int pageSize, string orderByPropertyName, bool isAsc);
     }

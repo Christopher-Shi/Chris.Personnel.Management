@@ -40,6 +40,20 @@ namespace Chris.Personnel.Management.Common
             return $"{dateTime: HH:mm:ss}";
         }
 
+        public static long To64Int(this string inputStr)
+        {
+            if (inputStr.IsNullOrEmpty()) return 0;
+            long.TryParse(inputStr, out var result);
+            return result;
+        }
+
+        public static long To32Int(this string inputStr)
+        {
+            if (inputStr.IsNullOrEmpty()) return 0;
+            int.TryParse(inputStr, out var result);
+            return result;
+        }
+
         #region 字符串截取
         /// <summary>
         /// 截取字符串

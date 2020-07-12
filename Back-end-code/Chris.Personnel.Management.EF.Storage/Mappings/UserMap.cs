@@ -1,6 +1,7 @@
 ﻿using Chris.Personnel.Management.Entity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using Pomelo.EntityFrameworkCore.MySql;
 
 namespace Chris.Personnel.Management.EF.Storage.Mappings
 {
@@ -17,10 +18,11 @@ namespace Chris.Personnel.Management.EF.Storage.Mappings
             // Properties
             builder.Property(t => t.Name).IsRequired().HasMaxLength(100);
             builder.Property(t => t.Password).IsRequired().HasMaxLength(100);
+            builder.Property(t => t.Salt).IsRequired().HasMaxLength(36);
             builder.Property(t => t.TrueName).IsRequired().HasMaxLength(100);
-            builder.Property(t => t.Gender).IsRequired();
+            builder.Property(t => t.Gender).IsRequired(); 
             builder.Property(t => t.CardId).IsRequired().HasMaxLength(100);
-            builder.Property(t => t.Phone).IsRequired().HasMaxLength(100);
+            builder.Property(t => t.Phone).IsRequired().HasMaxLength(11);
             builder.Property(t => t.IsEnabled).IsRequired();
 
             // Table & Column Mappings
@@ -33,6 +35,11 @@ namespace Chris.Personnel.Management.EF.Storage.Mappings
             builder.Property(t => t.CardId).HasColumnName("CardId");
             builder.Property(t => t.Phone).HasColumnName("Phone");
             builder.Property(t => t.IsEnabled).HasColumnName("IsEnabled");
+            builder.Property(t => t.RoleId).HasColumnName("RoleId");
+            builder.Property(t => t.CreatedUserId).HasColumnName("CreatedUserId");
+            builder.Property(t => t.CreatedTime).HasColumnName("CreatedTime");
+            builder.Property(t => t.LastModifiedUserId).HasColumnName("LastModifiedUserId");
+            builder.Property(t => t.LastModifiedTime).HasColumnName("LastModifiedTime");
 
             // Relationships
             builder.HasOne(t => t.Role)

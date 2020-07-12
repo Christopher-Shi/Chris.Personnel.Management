@@ -5,9 +5,11 @@ using Chris.Personnel.Management.LogicService;
 using Chris.Personnel.Management.QueryService;
 using Chris.Personnel.Management.ViewModel;
 using System.Collections.Generic;
+using Chris.Personnel.Management.Common;
 using Chris.Personnel.Management.Common.Enums;
 using Chris.Personnel.Management.UICommand;
 using Chris.Personnel.Management.ViewModel.Filters;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Chris.Personnel.Management.API.Controllers
 {
@@ -41,11 +43,20 @@ namespace Chris.Personnel.Management.API.Controllers
         [Route("pagination")]
         [HttpGet]
         public async Task<UserPaginationViewModel> GetByPage(
-            string trueName, Gender? gender, IsEnabled? isEnabled,
-            int current, int pageSize, string orderByPropertyName, bool isAsc)
+            string trueName,
+            Gender? gender,
+            IsEnabled? isEnabled,
+            int current,
+            int pageSize,
+            string orderByPropertyName,
+            bool isAsc)
         {
-            return await _userQueryService.GetByPage(new UserFilters(trueName, gender, isEnabled),
-                current, pageSize, orderByPropertyName, isAsc);
+            return await _userQueryService.GetByPage(
+                new UserFilters(trueName, gender, isEnabled),
+                current,
+                pageSize,
+                orderByPropertyName,
+                isAsc);
         }
 
         // PUT: api/Users/5
@@ -68,16 +79,31 @@ namespace Chris.Personnel.Management.API.Controllers
             await _userLogicService.EditPassword(command);
         }
 
+        //[Authorize(Roles = "管理员")]
         [HttpPut("password/resetting")]
         public async Task ResetPassword([FromBody] Guid id)
         {
             await _userLogicService.ResetPassword(id);
         }
 
+        [Authorize(Roles = "管理员")]
         [HttpDelete("{id}/disable")]
         public async Task Disable(Guid id)
         {
             await _userLogicService.StopUsing(new UserDeleteUICommand { Id = id });
+        }
+
+        [HttpGet]
+        [Route("login")]
+        public async Task<string> Login(string name, string password)
+        {
+            var currentUsr = await _userLogicService.Login(name, password);
+
+            var tokenModel = new TokenModelJwt { Uid = currentUsr.UserId, Role = currentUsr.RoleName };
+
+            var jwtStr = JwtHelper.IssueJwt(tokenModel);
+
+            return jwtStr;
         }
     }
 }

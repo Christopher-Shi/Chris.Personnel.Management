@@ -7,6 +7,7 @@ using Chris.Personnel.Management.Common;
 using Chris.Personnel.Management.QueryService.Specifications;
 using Chris.Personnel.Management.Repository;
 using Chris.Personnel.Management.ViewModel;
+using Chris.Personnel.Management.ViewModel.DropDownListItems;
 using Chris.Personnel.Management.ViewModel.Filters;
 using Microsoft.EntityFrameworkCore;
 
@@ -39,8 +40,19 @@ namespace Chris.Personnel.Management.QueryService.Implements
             return userViewModels.ToList();
         }
 
-        public async Task<UserPaginationViewModel> GetByPage(UserFilters filters,
-            int currentPage, int pageSize, string orderByPropertyName, bool isAsc)
+        public async Task<IEnumerable<UserDropDownListViewModel>> GetForDropDownList()
+        {
+            var uses = await _userRepository.GetAll()
+                .Select(x => _mapper.Map<UserDropDownListViewModel>(x)).ToListAsync();
+            return uses;
+        }
+
+        public async Task<UserPaginationViewModel> GetByPage(
+            UserFilters filters,
+            int currentPage, 
+            int pageSize, 
+            string orderByPropertyName,
+            bool isAsc)
         {
             var specifications = new UserSpecifications(filters.TrueName, filters.Gender, filters.IsEnabled);
             var users = await _userRepository.GetAll().Where(specifications.Expression)
@@ -49,7 +61,7 @@ namespace Chris.Personnel.Management.QueryService.Implements
                 .Take(pageSize).ToListAsync();
             var total = _userRepository.GetAll().Where(specifications.Expression).Count();
 
-            var results = users.Select(x => _mapper.Map<UserListViewModel>(x)).ToList();
+            var results = users.Select(x => _mapper.Map<UserPageViewModel>(x)).ToList();
             return new UserPaginationViewModel(results, currentPage, pageSize, total);
         }
     }

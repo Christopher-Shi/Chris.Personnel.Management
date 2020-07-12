@@ -21,7 +21,9 @@ namespace Chris.Personnel.Management.EF.Storage.Mappings
             builder.Property(t => t.Name).HasColumnName("Name");
             builder.Property(t => t.Memo).HasColumnName("Memo");
             builder.Property(t => t.IsDeleted).HasColumnName("IsDeleted");
+            builder.Property(t => t.CreatedUserId).HasColumnName("CreatedUserId");
             builder.Property(t => t.CreatedTime).HasColumnName("CreatedTime");
+            builder.Property(t => t.LastModifiedUserId).HasColumnName("LastModifiedUserId");
             builder.Property(t => t.LastModifiedTime).HasColumnName("LastModifiedTime");
 
             // Relationships

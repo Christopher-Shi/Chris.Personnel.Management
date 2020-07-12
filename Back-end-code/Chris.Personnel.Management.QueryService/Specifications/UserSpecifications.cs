@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Chris.Personnel.Management.Common.Enums;
+﻿using Chris.Personnel.Management.Common.Enums;
 using Chris.Personnel.Management.Entity;
 
 namespace Chris.Personnel.Management.QueryService.Specifications

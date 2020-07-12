@@ -1,4 +1,5 @@
-﻿using Chris.Personnel.Management.UICommand.DTO;
+﻿using System.Collections.Generic;
+using Chris.Personnel.Management.UICommand.DTO;
 
 namespace Chris.Personnel.Management.UICommand
 {

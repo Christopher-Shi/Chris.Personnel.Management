@@ -1,5 +1,4 @@
 ﻿using Chris.Personnel.Management.Common;
-using Chris.Personnel.Management.EF.Storage;
 using Microsoft.EntityFrameworkCore.Design;
 
 namespace Chris.Personnel.Management.EF.Storage
@@ -7,19 +6,19 @@ namespace Chris.Personnel.Management.EF.Storage
     /// <summary>
     /// 生成SqlServer数据库必须有此class
     /// </summary>
-    public class DesignTimeContextFactory : IDesignTimeDbContextFactory<SqlServerContext>
+    public class DesignTimeSqlServerContextFactory : IDesignTimeDbContextFactory<SqlServerContext>
     {
         private readonly Appsettings _appsettings;
 
         /// <summary>
         /// 不可删除，否则migration 报错
         /// </summary>
-        public DesignTimeContextFactory()
+        public DesignTimeSqlServerContextFactory()
         {
             
         }
 
-        public DesignTimeContextFactory(Appsettings appsettings)
+        public DesignTimeSqlServerContextFactory(Appsettings appsettings)
         {
             _appsettings = appsettings;
         }

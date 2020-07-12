@@ -1,9 +1,9 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace Chris.Personnel.Management.EF.Storage.Migrations.Sqlite
+namespace Chris.Personnel.Management.EF.Storage.Migrations
 {
-    public partial class InitialDatabase : Migration
+    public partial class InitialSqlServerDatabase : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -32,11 +32,11 @@ namespace Chris.Personnel.Management.EF.Storage.Migrations.Sqlite
                     Id = table.Column<Guid>(nullable: false),
                     Name = table.Column<string>(maxLength: 100, nullable: false),
                     Password = table.Column<string>(maxLength: 100, nullable: false),
-                    Salt = table.Column<string>(nullable: true),
+                    Salt = table.Column<string>(maxLength: 36, nullable: false),
                     TrueName = table.Column<string>(maxLength: 100, nullable: false),
                     Gender = table.Column<int>(nullable: false),
                     CardId = table.Column<string>(maxLength: 100, nullable: false),
-                    Phone = table.Column<string>(maxLength: 100, nullable: false),
+                    Phone = table.Column<string>(maxLength: 11, nullable: false),
                     IsEnabled = table.Column<int>(nullable: false),
                     RoleId = table.Column<Guid>(nullable: true),
                     CreatedUserId = table.Column<Guid>(nullable: true),
@@ -63,7 +63,7 @@ namespace Chris.Personnel.Management.EF.Storage.Migrations.Sqlite
             migrationBuilder.InsertData(
                 table: "User",
                 columns: new[] { "Id", "CardId", "CreatedTime", "CreatedUserId", "Gender", "IsEnabled", "LastModifiedTime", "LastModifiedUserId", "Name", "Password", "Phone", "RoleId", "Salt", "TrueName" },
-                values: new object[] { new Guid("32ec1e37-fe6d-4606-902e-6705beb0afc0"), "140226199401294051", new DateTime(2020, 7, 9, 23, 15, 14, 0, DateTimeKind.Unspecified), null, 1, 1, null, null, "Admin", "544060585A394B6FE1F1C5A54E15042067C0C6DD223EE92CB6D6AAE3762242C1", "13259769759", new Guid("32ec1e12-fe6d-4606-902e-6705beb0afc1"), "bb4d7200-9acb-48c7-98cd-baae42a7f5be", "Admin" });
+                values: new object[] { new Guid("32ec1e37-fe6d-4606-902e-6705beb0afc0"), "140226199401294051", new DateTime(2020, 7, 9, 23, 15, 14, 0, DateTimeKind.Unspecified), null, 1, 1, null, null, "Admin", "C62A9E820F5AB0ADA440C395F5B3D707945EA47C200FC1A5DDA6B1F542647FB4", "13259769759", new Guid("32ec1e12-fe6d-4606-902e-6705beb0afc1"), "a7386c09-b3e5-4767-840e-0316ab580a92", "Admin" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_User_Name",

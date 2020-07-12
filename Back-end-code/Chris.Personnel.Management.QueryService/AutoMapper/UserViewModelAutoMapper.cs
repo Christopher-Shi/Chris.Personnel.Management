@@ -3,6 +3,7 @@ using Chris.Personnel.Management.Common;
 using Chris.Personnel.Management.Entity;
 using Chris.Personnel.Management.QueryService.Enums;
 using Chris.Personnel.Management.ViewModel;
+using Chris.Personnel.Management.ViewModel.DropDownListItems;
 
 namespace Chris.Personnel.Management.QueryService.AutoMapper
 {
@@ -15,7 +16,7 @@ namespace Chris.Personnel.Management.QueryService.AutoMapper
                     opt =>
                         opt.MapFrom(src => src.Id.ToUpperString())).ReverseMap();
 
-            CreateMap<User, UserListViewModel>()
+            CreateMap<User, UserPageViewModel>()
                 .ForMember(dest => dest.Id,
                     opt =>
                         opt.MapFrom(src => src.Id.ToString()))
@@ -25,6 +26,14 @@ namespace Chris.Personnel.Management.QueryService.AutoMapper
                 .ForMember(dest => dest.LastModifiedTime,
                     opt =>
                         opt.MapFrom(src => src.LastModifiedTime.ToDateTimeString()));
+
+            CreateMap<User, UserDropDownListViewModel>()
+                .ForMember(dest => dest.Key,
+                    opt =>
+                        opt.MapFrom(src => src.Id.ToUpperString()))
+                .ForMember(dest => dest.Value,
+                    opt =>
+                        opt.MapFrom(src => src.Name));
         }
     }
 }

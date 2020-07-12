@@ -31,6 +31,7 @@ namespace Chris.Personnel.Management.EF.Storage.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<Guid>("CreatedUserId")
+                        .HasColumnName("CreatedUserId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<bool>("IsDeleted")
@@ -42,6 +43,7 @@ namespace Chris.Personnel.Management.EF.Storage.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<Guid?>("LastModifiedUserId")
+                        .HasColumnName("LastModifiedUserId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Memo")
@@ -84,9 +86,11 @@ namespace Chris.Personnel.Management.EF.Storage.Migrations
                         .HasMaxLength(100);
 
                     b.Property<DateTime>("CreatedTime")
+                        .HasColumnName("CreatedTime")
                         .HasColumnType("datetime2");
 
                     b.Property<Guid?>("CreatedUserId")
+                        .HasColumnName("CreatedUserId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<int>("Gender")
@@ -98,9 +102,11 @@ namespace Chris.Personnel.Management.EF.Storage.Migrations
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("LastModifiedTime")
+                        .HasColumnName("LastModifiedTime")
                         .HasColumnType("datetime2");
 
                     b.Property<Guid?>("LastModifiedUserId")
+                        .HasColumnName("LastModifiedUserId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Name")
@@ -118,14 +124,17 @@ namespace Chris.Personnel.Management.EF.Storage.Migrations
                     b.Property<string>("Phone")
                         .IsRequired()
                         .HasColumnName("Phone")
-                        .HasColumnType("nvarchar(100)")
-                        .HasMaxLength(100);
+                        .HasColumnType("nvarchar(11)")
+                        .HasMaxLength(11);
 
                     b.Property<Guid?>("RoleId")
+                        .HasColumnName("RoleId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Salt")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasColumnType("nvarchar(36)")
+                        .HasMaxLength(36);
 
                     b.Property<string>("TrueName")
                         .IsRequired()
@@ -151,10 +160,10 @@ namespace Chris.Personnel.Management.EF.Storage.Migrations
                             Gender = 1,
                             IsEnabled = 1,
                             Name = "Admin",
-                            Password = "A945FC6ADD2E0AB35C172BD987CC3FC630C4402677F0661A89CAE68F9DF622FC",
+                            Password = "C62A9E820F5AB0ADA440C395F5B3D707945EA47C200FC1A5DDA6B1F542647FB4",
                             Phone = "13259769759",
                             RoleId = new Guid("32ec1e12-fe6d-4606-902e-6705beb0afc1"),
-                            Salt = "9ad6ead0-3444-455c-a03c-35c1013643af",
+                            Salt = "a7386c09-b3e5-4767-840e-0316ab580a92",
                             TrueName = "Admin"
                         });
                 });

@@ -12,7 +12,8 @@ namespace Chris.Personnel.Management.EF.Storage
         }
         private string GetConnectionStringKey()
         {
-            return "ChrisPersonnelManagementDB";
+            return "ChrisPersonnelManagementSQlServerDB";
+            //return "ChrisPersonnelManagementMySqlDB";
         }
 
         public string GetConnectionString()

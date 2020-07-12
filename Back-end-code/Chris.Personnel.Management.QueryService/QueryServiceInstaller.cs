@@ -8,6 +8,7 @@ namespace Chris.Personnel.Management.QueryService
         public static void ConfigureContainer(ContainerBuilder builder)
         {
             builder.RegisterType<UserQueryService>().As<IUserQueryService>().InstancePerLifetimeScope();
+            builder.RegisterType<RoleQueryService>().As<IRoleQueryService>().InstancePerLifetimeScope();
         }
     }
 }
