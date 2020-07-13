@@ -14,9 +14,9 @@ namespace Chris.Personnel.Management.API
 
             LogicServiceInstaller.ConfigureContainer(builder);
 
-            RepositoryInstaller.ConfigureContainerForSqlServer(builder);
+            //RepositoryInstaller.ConfigureContainerForSqlServer(builder);
             //RepositoryInstaller.ConfigureContainerForMySql(builder);
-            //RepositoryInstaller.ConfigureContainerForSqllite(builder);
+            RepositoryInstaller.ConfigureContainerForSqllite(builder);
 
             CommonInstaller.ConfigureContainer(builder);
         }

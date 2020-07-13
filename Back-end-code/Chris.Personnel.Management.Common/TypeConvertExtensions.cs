@@ -40,6 +40,12 @@ namespace Chris.Personnel.Management.Common
             return $"{dateTime: HH:mm:ss}";
         }
 
+        public static string ToTimestamp(this DateTime dateTime)
+        {
+            var ts = DateTime.Now - new DateTime(1970, 1, 1, 0, 0, 0, 0);
+            return Convert.ToInt64(ts.TotalSeconds).ToString();
+        }
+
         public static long To64Int(this string inputStr)
         {
             if (inputStr.IsNullOrEmpty()) return 0;

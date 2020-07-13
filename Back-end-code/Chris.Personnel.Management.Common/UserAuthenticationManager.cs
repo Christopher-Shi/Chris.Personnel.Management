@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using Chris.Personnel.Management.Common.CodeSection;
 using Microsoft.AspNetCore.Http;
 
@@ -8,7 +7,8 @@ namespace Chris.Personnel.Management.Common
     public class UserAuthenticationManager : IUserAuthenticationManager
     {
         private readonly IHttpContextAccessor _httpContextAccessor;
-        private LoginUserInformationForCodeSection _currentUser;
+        private static LoginUserInformationForCodeSection _currentUser;
+
         public UserAuthenticationManager(IHttpContextAccessor httpContextAccessor)
         {
             _httpContextAccessor = httpContextAccessor;
@@ -23,11 +23,15 @@ namespace Chris.Personnel.Management.Common
                     return _currentUser;
                 }
 
-                if (_httpContextAccessor.HttpContext.User == null)
+                var jwtStr = _httpContextAccessor.HttpContext.Request.Headers["Authorization"].ToString()
+                    .Replace("Bearer ", "");
+
+                if (jwtStr.IsNullOrEmpty())
                 {
                     throw new UnauthorizedException();
                 }
-                var userId = _httpContextAccessor.HttpContext.User.Claims.FirstOrDefault(x => x.Type == "sub")?.Value;
+                var tokenModelJwt = JwtHelper.SerializeJwt(jwtStr);
+                var userId = tokenModelJwt.Uid;
                 var userName = _httpContextAccessor.HttpContext.User.Identity.Name;
                 if (string.IsNullOrEmpty(userId))
                 {

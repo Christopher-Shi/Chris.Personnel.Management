@@ -86,7 +86,7 @@ namespace Chris.Personnel.Management.API.Controllers
             await _userLogicService.ResetPassword(id);
         }
 
-        [Authorize(Roles = "管理员")]
+        [Authorize]
         [HttpDelete("{id}/disable")]
         public async Task Disable(Guid id)
         {

@@ -1,6 +1,7 @@
 using System;
 using System.Text;
 using Autofac;
+using Chris.Personnel.Management.API.Extensions;
 using Chris.Personnel.Management.Common;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
@@ -52,12 +53,16 @@ namespace Chris.Personnel.Management.API
                 });
             });
 
+            services.AddHttpContextSetup();
+            //services.AddHttpContextAccessor();
+
             #region JWT хож╓
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options =>
                 {
                     options.TokenValidationParameters = new TokenValidationParameters
                     {
+                        ValidateIssuerSigningKey = true,
                         ValidIssuer = Appsettings.Apply("Audience", "Issuer"),
                         ValidAudience = Appsettings.Apply("Audience", "Audience"),
                         IssuerSigningKey =
@@ -104,7 +109,7 @@ namespace Chris.Personnel.Management.API
             app.UseSwaggerUI(c =>
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "Chris.Personnel.Management.API V1");
-                //c.RoutePrefix = "";
+                c.RoutePrefix = "";
             });
 
             

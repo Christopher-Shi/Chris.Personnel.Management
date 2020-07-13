@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using Chris.Personnel.Management.Common;
 using Chris.Personnel.Management.Entity;
