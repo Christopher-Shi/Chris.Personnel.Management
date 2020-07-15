@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Chris.Personnel.Management.API</name>
+    </assembly>
+    <members>
+        <member name="T:Chris.Personnel.Management.API.Controllers.UsersController">
+            <summary>
+            用户管理
+            </summary>
+        </member>
+        <member name="M:Chris.Personnel.Management.API.Controllers.UsersController.GetUsers">
+            <summary>
+            获取全部用户
+            </summary>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

@@ -20,29 +20,24 @@ namespace Chris.Personnel.Management.Common
             var aud = Appsettings.Apply("Audience", "Audience");
             var secret = Appsettings.Apply("Audience", "Secret");
 
-            //var claims = new Claim[] //old
             var claims = new List<Claim>
-                {
-                 /*
-                 * 特别重要：
-                   1、这里将用户的部分信息，比如 uid 存到了Claim 中，如果你想知道如何在其他地方将这个 uid从 Token 中取出来，请看下边的SerializeJwt() 方法，或者在整个解决方案，搜索这个方法，看哪里使用了！
-                   2、你也可以研究下 HttpContext.User.Claims ，具体的你可以看看 Policys/PermissionHandler.cs 类中是如何使用的。
-                 */
-                 //jwt的唯一身份标识，主要用来作为一次性token,从而回避重放攻击
-                 new Claim(JwtRegisteredClaimNames.Jti, tokenModel.Uid),
-                //jwt的签发时间
+            {
+                //jwt的唯一身份标识，主要用来作为一次性token,从而回避重放攻击
+                new Claim(JwtRegisteredClaimNames.Jti, tokenModel.Uid),
+                //签发时间
                 new Claim(JwtRegisteredClaimNames.Iat, $"{new DateTimeOffset(DateTime.Now).ToUnixTimeSeconds()}"),
-                //定义在什么时间之前，该jwt都是不可用的
-                new Claim(JwtRegisteredClaimNames.Nbf,$"{new DateTimeOffset(DateTime.Now.AddDays(5)).ToUnixTimeSeconds()}") ,
-                //这个就是过期时间，目前是过期1000秒，可自定义，注意JWT有自己的缓冲过期时间(jwt的过期时间，这个过期时间必须要大于签发时间)
-                new Claim (JwtRegisteredClaimNames.Exp,$"{new DateTimeOffset(DateTime.Now.AddDays(5)).ToUnixTimeSeconds()}"),
-                // jwt签发者
-                new Claim(JwtRegisteredClaimNames.Iss,iss),
-                //接收jwt的一方
-                new Claim(JwtRegisteredClaimNames.Aud,aud),
+                //生效时间
+                new Claim(JwtRegisteredClaimNames.Nbf, $"{new DateTimeOffset(DateTime.Now).ToUnixTimeSeconds()}"),
+                //过期时间
+                new Claim(JwtRegisteredClaimNames.Exp,
+                    $"{new DateTimeOffset(DateTime.Now.AddDays(5)).ToUnixTimeSeconds()}"),
+                // 签发人
+                new Claim(JwtRegisteredClaimNames.Iss, iss),
+                //受众
+                new Claim(JwtRegisteredClaimNames.Aud, aud),
 
-                new Claim(ClaimTypes.Role,tokenModel.Role),//为了解决一个用户多个角色(比如：Admin,System)，用下边的方法
-               };
+                new Claim(ClaimTypes.Role, tokenModel.Role), //为了解决一个用户多个角色(比如：Admin,System)，用下边的方法
+            };
 
             // 可以将一个用户的多个角色全部赋予；
             //claims.AddRange(tokenModel.Role.Split(',').Select(s => new Claim(ClaimTypes.Role, s)));

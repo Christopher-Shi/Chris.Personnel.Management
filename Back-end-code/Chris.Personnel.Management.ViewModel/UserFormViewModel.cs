@@ -9,6 +9,5 @@
         public string CardId { get; set; }
         public string Phone { get; set; }
         public string IsEnabled { get; set; }
-       
     }
 }

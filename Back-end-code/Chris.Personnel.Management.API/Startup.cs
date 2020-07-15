@@ -1,4 +1,5 @@
 using System;
+using System.IO;
 using System.Text;
 using Autofac;
 using Chris.Personnel.Management.API.Extensions;
@@ -33,45 +34,12 @@ namespace Chris.Personnel.Management.API
 
             services.AddControllers();
 
-            services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Chris.Personnel.Management.API", Version = "v1" });
-                // 开启加权小锁
-                c.OperationFilter<AddResponseHeadersFilter>();
-                c.OperationFilter<AppendAuthorizeToSummaryOperationFilter>();
+            services.AddSwaggerSetup();
 
-                // 在header中添加token，传递到后台
-                c.OperationFilter<SecurityRequirementsOperationFilter>();
-
-                // Jwt Bearer 认证，必须是 oauth2
-                c.AddSecurityDefinition("oauth2", new OpenApiSecurityScheme
-                {
-                    Description = "JWT授权(数据将在请求头中进行传输) 直接在下框中输入Bearer {token}（注意两者之间是一个空格）\"",
-                    Name = "Authorization",//jwt默认的参数名称
-                    In = ParameterLocation.Header,//jwt默认存放Authorization信息的位置(请求头中)
-                    Type = SecuritySchemeType.ApiKey
-                });
-            });
+            //JWT 认证
+            services.AddAuthorizationSetup();
 
             services.AddHttpContextSetup();
-            //services.AddHttpContextAccessor();
-
-            #region JWT 认证
-            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-                .AddJwtBearer(options =>
-                {
-                    options.TokenValidationParameters = new TokenValidationParameters
-                    {
-                        ValidateIssuerSigningKey = true,
-                        ValidIssuer = Appsettings.Apply("Audience", "Issuer"),
-                        ValidAudience = Appsettings.Apply("Audience", "Audience"),
-                        IssuerSigningKey =
-                            new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Appsettings.Apply("Audience", "Secret"))),
-                        // 默认允许 300s  的时间偏移量，设置为0
-                        ClockSkew = TimeSpan.Zero
-                    };
-                });
-            #endregion
         }
 
         public void ConfigureContainer(ContainerBuilder builder)
@@ -101,18 +69,19 @@ namespace Chris.Personnel.Management.API
             app.UseHttpsRedirection();
 
             app.UseRouting();
+           
             // 先开启认证
             app.UseAuthentication();
+            
             // 然后是授权中间件
             app.UseAuthorization();
+           
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "Chris.Personnel.Management.API V1");
                 c.RoutePrefix = "";
             });
-
-            
 
             app.UseEndpoints(endpoints =>
             {

@@ -5,7 +5,7 @@ using AutoMapper;
 using Chris.Personnel.Management.QueryService.AutoMapper;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Chris.Personnel.Management.API
+namespace Chris.Personnel.Management.API.Extensions
 {
     public static class AutoMapperSetup
     {
