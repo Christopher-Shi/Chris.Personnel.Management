@@ -1,18 +1,13 @@
-using System;
-using System.IO;
-using System.Text;
 using Autofac;
 using Chris.Personnel.Management.API.Extensions;
 using Chris.Personnel.Management.Common;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.IdentityModel.Tokens;
-using Microsoft.OpenApi.Models;
-using Swashbuckle.AspNetCore.Filters;
+using Microsoft.Extensions.Logging;
+using NLog.Extensions.Logging;
 
 namespace Chris.Personnel.Management.API
 {
@@ -69,13 +64,13 @@ namespace Chris.Personnel.Management.API
             app.UseHttpsRedirection();
 
             app.UseRouting();
-           
+
             // 先开启认证
             app.UseAuthentication();
-            
+
             // 然后是授权中间件
             app.UseAuthorization();
-           
+
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {

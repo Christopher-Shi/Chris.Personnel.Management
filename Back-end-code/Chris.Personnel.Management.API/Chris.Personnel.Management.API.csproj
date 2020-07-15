@@ -22,6 +22,7 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.3" />
+    <PackageReference Include="NLog.Web.AspNetCore" Version="4.9.2" />
     <PackageReference Include="Swashbuckle.AspNetCore.Filters" Version="5.1.2" />
   </ItemGroup>
 
@@ -30,6 +31,12 @@
     <ProjectReference Include="..\Chris.Personnel.Management.QueryService\Chris.Personnel.Management.QueryService.csproj" />
     <ProjectReference Include="..\Chris.Personnel.Management.UICommand\Chris.Personnel.Management.UICommand.csproj" />
     <ProjectReference Include="..\Chris.Personnel.Management.ViewModel\Chris.Personnel.Management.ViewModel.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="NLog.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
 

@@ -1,6 +1,7 @@
 using Autofac.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
+using NLog.Web;
 
 namespace Chris.Personnel.Management.API
 {
@@ -18,6 +19,8 @@ namespace Chris.Personnel.Management.API
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
-                });
+                })
+                //“˝»ÎNLog
+                .UseNLog();
     }
 }

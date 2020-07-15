@@ -6,6 +6,7 @@ using Chris.Personnel.Management.Repository;
 using Chris.Personnel.Management.Repository.UnitOfWork;
 using Chris.Personnel.Management.UICommand;
 using Chris.Personnel.Management.ViewModel;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 
 namespace Chris.Personnel.Management.LogicService.Implements
@@ -18,20 +19,24 @@ namespace Chris.Personnel.Management.LogicService.Implements
         private readonly IRoleRepository _roleRepository;
         private readonly IUnitOfWorkFactory _unitOfWorkFactory;
         private readonly IUserAuthenticationManager _userAuthenticationManager;
+        private readonly IHttpContextAccessor _httpContextAccessor;
 
         public UserLogicService(
             ITimeSource timeSource,
             IUserRepository userRepository,
             IUnitOfWorkFactory unitOfWorkFactory,
             IUserAuthenticationManager userAuthenticationManager,
-            IRoleRepository roleRepository)
+            IRoleRepository roleRepository,
+            IHttpContextAccessor httpContextAccessor)
         {
             _timeSource = timeSource;
             _userRepository = userRepository;
             _roleRepository = roleRepository;
+            _httpContextAccessor = httpContextAccessor;
             _unitOfWorkFactory = unitOfWorkFactory;
             _userAuthenticationManager = userAuthenticationManager;
             _initialPassword = Appsettings.Apply("InitialPassword");
+            _httpContextAccessor = httpContextAccessor;
         }
 
         public async Task Add(UserAddUICommand command)
@@ -117,7 +122,7 @@ namespace Chris.Personnel.Management.LogicService.Implements
         {
             var user = await _userRepository.Get(command.Id);
             user.StopUsing(_userAuthenticationManager.CurrentUser.UserId, _timeSource.GetCurrentTime());
-
+            var test = _httpContextAccessor.HttpContext.User.Identity.Name;
             using var unitOfWork = _unitOfWorkFactory.GetCurrentUnitOfWork();
             _userRepository.Edit(user);
             await unitOfWork.Commit();
