@@ -47,6 +47,14 @@ namespace Chris.Personnel.Management.Common.AOP
                         _logger.Info(dataIntercept);
                     });
                 }
+                else
+                {
+                    dataIntercept += ($"【执行完成结果】：{invocation.ReturnValue}");
+                    Parallel.For(0, 1, e =>
+                    {
+                        _logger.Info(dataIntercept);
+                    });
+                }
             }
             catch (Exception e)
             {
