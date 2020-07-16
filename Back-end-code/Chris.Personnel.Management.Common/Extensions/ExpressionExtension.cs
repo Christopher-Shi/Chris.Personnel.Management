@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq.Expressions;
 
-namespace Chris.Personnel.Management.Common
+namespace Chris.Personnel.Management.Common.Extensions
 {
     public static class ExpressionExtension
     {

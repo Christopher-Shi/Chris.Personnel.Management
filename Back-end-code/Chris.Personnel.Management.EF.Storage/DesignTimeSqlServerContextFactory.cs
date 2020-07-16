@@ -1,4 +1,4 @@
-﻿using Chris.Personnel.Management.Common;
+﻿using Chris.Personnel.Management.Common.Helper;
 using Microsoft.EntityFrameworkCore.Design;
 
 namespace Chris.Personnel.Management.EF.Storage

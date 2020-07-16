@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace Chris.Personnel.Management.Common
+namespace Chris.Personnel.Management.Common.Helper
 {
     public class EnumerableCompared<T> where T : RootEntity
     {

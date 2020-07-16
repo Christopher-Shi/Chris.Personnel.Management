@@ -1,6 +1,8 @@
 ﻿using System;
 using Chris.Personnel.Management.Common;
 using Chris.Personnel.Management.Common.Enums;
+using Chris.Personnel.Management.Common.Extensions;
+using Chris.Personnel.Management.Common.Helper;
 
 namespace Chris.Personnel.Management.Entity
 {

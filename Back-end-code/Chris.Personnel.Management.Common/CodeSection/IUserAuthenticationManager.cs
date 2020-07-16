@@ -1,6 +1,4 @@
-﻿using Chris.Personnel.Management.Common.CodeSection;
-
-namespace Chris.Personnel.Management.Common
+﻿namespace Chris.Personnel.Management.Common.CodeSection
 {
     public interface IUserAuthenticationManager
     {

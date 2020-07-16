@@ -1,8 +1,9 @@
 ﻿using System;
-using Chris.Personnel.Management.Common.CodeSection;
+using Chris.Personnel.Management.Common.Extensions;
+using Chris.Personnel.Management.Common.Helper;
 using Microsoft.AspNetCore.Http;
 
-namespace Chris.Personnel.Management.Common
+namespace Chris.Personnel.Management.Common.CodeSection
 {
     public class UserAuthenticationManager : IUserAuthenticationManager
     {

@@ -1,13 +1,11 @@
 using Autofac;
 using Chris.Personnel.Management.API.Extensions;
-using Chris.Personnel.Management.Common;
+using Chris.Personnel.Management.Common.Helper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-using NLog.Extensions.Logging;
 
 namespace Chris.Personnel.Management.API
 {

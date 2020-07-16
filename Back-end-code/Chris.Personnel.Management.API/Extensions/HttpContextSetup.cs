@@ -1,5 +1,5 @@
 ﻿using System;
-using Chris.Personnel.Management.Common;
+using Chris.Personnel.Management.Common.CodeSection;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 

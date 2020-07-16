@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 
-namespace Chris.Personnel.Management.Common
+namespace Chris.Personnel.Management.Common.Extensions
 {
     public static class LinqExtension
     {

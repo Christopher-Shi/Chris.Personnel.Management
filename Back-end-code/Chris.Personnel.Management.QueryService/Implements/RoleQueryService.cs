@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
-using Chris.Personnel.Management.Common;
+using Chris.Personnel.Management.Common.Extensions;
 using Chris.Personnel.Management.QueryService.Specifications;
 using Chris.Personnel.Management.Repository;
 using Chris.Personnel.Management.ViewModel;

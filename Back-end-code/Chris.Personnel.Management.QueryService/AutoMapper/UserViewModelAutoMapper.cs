@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using Chris.Personnel.Management.Common;
+using Chris.Personnel.Management.Common.Extensions;
 using Chris.Personnel.Management.Entity;
 using Chris.Personnel.Management.QueryService.Enums;
 using Chris.Personnel.Management.ViewModel;

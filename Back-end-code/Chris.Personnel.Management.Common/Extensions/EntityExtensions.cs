@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Chris.Personnel.Management.Common
+namespace Chris.Personnel.Management.Common.Extensions
 {
     public static class EntityExtensions
     {

@@ -1,5 +1,4 @@
-﻿using Chris.Personnel.Management.Common;
-using Microsoft.Extensions.Configuration;
+﻿using Chris.Personnel.Management.Common.Helper;
 
 namespace Chris.Personnel.Management.EF.Storage
 {

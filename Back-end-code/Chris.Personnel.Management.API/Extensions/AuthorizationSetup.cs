@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Text;
-using Chris.Personnel.Management.Common;
+using Chris.Personnel.Management.Common.Helper;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;

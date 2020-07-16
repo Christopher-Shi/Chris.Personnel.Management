@@ -1,4 +1,5 @@
 ﻿using Chris.Personnel.Management.Common;
+using Chris.Personnel.Management.Common.Extensions;
 
 namespace Chris.Personnel.Management.QueryService
 {

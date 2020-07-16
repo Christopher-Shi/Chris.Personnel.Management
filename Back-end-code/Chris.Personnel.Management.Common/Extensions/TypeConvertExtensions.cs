@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Text.RegularExpressions;
 
-namespace Chris.Personnel.Management.Common
+namespace Chris.Personnel.Management.Common.Extensions
 {
     public static class TypeConvertExtensions
     {

@@ -1,7 +1,6 @@
 ﻿using Chris.Personnel.Management.Entity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Pomelo.EntityFrameworkCore.MySql;
 
 namespace Chris.Personnel.Management.EF.Storage.Mappings
 {

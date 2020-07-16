@@ -3,7 +3,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
 
-namespace Chris.Personnel.Management.Common
+namespace Chris.Personnel.Management.Common.Extensions
 {
     public static class PrivateAccess
     {
