@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Chris.Personnel.Management.Common
+namespace Chris.Personnel.Management.Common.Exceptions
 {
     public class UnauthorizedException : Exception
     {

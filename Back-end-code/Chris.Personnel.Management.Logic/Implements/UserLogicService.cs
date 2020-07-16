@@ -2,13 +2,13 @@
 using System.Threading.Tasks;
 using Chris.Personnel.Management.Common;
 using Chris.Personnel.Management.Common.CodeSection;
+using Chris.Personnel.Management.Common.Exceptions;
 using Chris.Personnel.Management.Common.Helper;
 using Chris.Personnel.Management.Entity;
 using Chris.Personnel.Management.Repository;
 using Chris.Personnel.Management.Repository.UnitOfWork;
 using Chris.Personnel.Management.UICommand;
 using Chris.Personnel.Management.ViewModel;
-using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 
 namespace Chris.Personnel.Management.LogicService.Implements
@@ -21,24 +21,20 @@ namespace Chris.Personnel.Management.LogicService.Implements
         private readonly IRoleRepository _roleRepository;
         private readonly IUnitOfWorkFactory _unitOfWorkFactory;
         private readonly IUserAuthenticationManager _userAuthenticationManager;
-        private readonly IHttpContextAccessor _httpContextAccessor;
 
         public UserLogicService(
             ITimeSource timeSource,
             IUserRepository userRepository,
             IUnitOfWorkFactory unitOfWorkFactory,
             IUserAuthenticationManager userAuthenticationManager,
-            IRoleRepository roleRepository,
-            IHttpContextAccessor httpContextAccessor)
+            IRoleRepository roleRepository)
         {
             _timeSource = timeSource;
             _userRepository = userRepository;
             _roleRepository = roleRepository;
-            _httpContextAccessor = httpContextAccessor;
             _unitOfWorkFactory = unitOfWorkFactory;
             _userAuthenticationManager = userAuthenticationManager;
             _initialPassword = Appsettings.Apply("InitialPassword");
-            _httpContextAccessor = httpContextAccessor;
         }
 
         public async Task Add(UserAddUICommand command)
@@ -124,7 +120,6 @@ namespace Chris.Personnel.Management.LogicService.Implements
         {
             var user = await _userRepository.Get(command.Id);
             user.StopUsing(_userAuthenticationManager.CurrentUser.UserId, _timeSource.GetCurrentTime());
-            var test = _httpContextAccessor.HttpContext.User.Identity.Name;
             using var unitOfWork = _unitOfWorkFactory.GetCurrentUnitOfWork();
             _userRepository.Edit(user);
             await unitOfWork.Commit();

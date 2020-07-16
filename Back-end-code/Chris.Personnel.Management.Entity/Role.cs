@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Chris.Personnel.Management.Common;
+using Chris.Personnel.Management.Common.Exceptions;
 
 namespace Chris.Personnel.Management.Entity
 {

@@ -1,4 +1,5 @@
 ﻿using System;
+using Chris.Personnel.Management.Common.Exceptions;
 using Chris.Personnel.Management.Common.Extensions;
 using Chris.Personnel.Management.Common.Helper;
 using Microsoft.AspNetCore.Http;

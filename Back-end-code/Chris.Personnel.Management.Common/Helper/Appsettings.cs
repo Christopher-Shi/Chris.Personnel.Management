@@ -8,7 +8,7 @@ namespace Chris.Personnel.Management.Common.Helper
 {
     public class Appsettings
     {
-        static IConfiguration Configuration { get; set; }
+        private static IConfiguration Configuration { get; set; }
 
         public Appsettings(string contentPath)
         {

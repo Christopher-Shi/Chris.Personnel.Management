@@ -1,9 +1,9 @@
-﻿using NLog;
+﻿using System;
+using NLog;
+using NLog.Web;
 
 namespace Chris.Personnel.Management.Common.Helper
 {
-    using System;
-
     /// <summary>
     /// Nlog日志帮助类
     /// Trace 包含大量的信息，例如 protocol payloads。一般仅在开发环境中启用, 仅输出不存文件。
@@ -15,77 +15,82 @@ namespace Chris.Personnel.Management.Common.Helper
     /// </summary>
     public class NLogHelper
     {
-        readonly Logger logger;
+        private readonly ILogger _logger;
 
-        private NLogHelper(Logger logger)
+        private NLogHelper(ILogger logger)
         {
-            this.logger = logger;
+            _logger = logger;
         }
 
         /// <summary>
         /// 自定义 ${logger} (我用于区分文件夹)
         /// </summary>
         /// <param name="name"></param>
-        //public NLogHelper(string name) : this(NLog.Web.NLogBuilder.ConfigureNLog("nlog.config").GetLogger(name))
-        //{
-        //}
+        public NLogHelper(string name) : this(NLogBuilder.ConfigureNLog("NLog.config").GetLogger(name))
+        {
+        }
 
         /// <summary>
         /// 默认 ${logger} (Default 文件夹下)
         /// </summary>
-        public static NLogHelper Default { get; private set; }
+        public static NLogHelper Default { get; }
         static NLogHelper()
         {
-            //Default = new NLogHelper(NLog.Web.NLogBuilder.ConfigureNLog("nlog.config").GetLogger("Default"));
+            Default = new NLogHelper(NLogBuilder.ConfigureNLog("NLog.config").GetLogger("Default"));
+        }
+
+        public static NLogHelper GetNLogHelper()
+        {
+            return Default;
         }
 
         public void Debug(string msg, params object[] args)
         {
-            logger.Debug(msg, args);
+            _logger.Debug(msg, args);
         }
         public void Debug(string msg, Exception err)
         {
-            logger.Debug(err, msg);
+            _logger.Debug(err, msg);
         }
 
         public void Info(string msg, params object[] args)
         {
-            logger.Info(msg, args);
+            _logger.Info(msg, args);
         }
 
         public void Info(string msg, Exception err)
         {
-            logger.Info(err, msg);
+            _logger.Info(err, msg);
         }
 
         public void Trace(string msg, params object[] args)
         {
-            logger.Trace(msg, args);
+            _logger.Trace(msg, args);
         }
 
         public void Trace(string msg, Exception err)
         {
-            logger.Trace(err, msg);
+            _logger.Trace(err, msg);
         }
 
         public void Error(string msg, params object[] args)
         {
-            logger.Error(msg, args);
+            _logger.Error(msg, args);
         }
 
         public void Error(string msg, Exception err)
         {
-            logger.Error(err, msg);
+            _logger.Error(err, msg);
         }
 
         public void Fatal(string msg, params object[] args)
         {
-            logger.Fatal(msg, args);
+            _logger.Fatal(msg, args);
         }
 
         public void Fatal(string msg, Exception err)
         {
-            logger.Fatal(err, msg);
+            _logger.Fatal(err, msg);
         }
     }
 }

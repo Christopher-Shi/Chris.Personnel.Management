@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Text.RegularExpressions;
 
 namespace Chris.Personnel.Management.Common.Extensions
@@ -58,6 +59,13 @@ namespace Chris.Personnel.Management.Common.Extensions
             if (inputStr.IsNullOrEmpty()) return 0;
             int.TryParse(inputStr, out var result);
             return result;
+        }
+
+        public static bool ToBool(this string inputStr)
+        {
+            if (inputStr.IsNullOrEmpty()) return false;
+            if (!new[] { "true", "false" }.Contains(inputStr.ToLower())) return false;
+            return bool.Parse(inputStr);
         }
 
         #region 字符串截取

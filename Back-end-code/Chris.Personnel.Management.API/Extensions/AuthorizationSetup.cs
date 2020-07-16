@@ -9,7 +9,7 @@ namespace Chris.Personnel.Management.API.Extensions
 {
     public static class AuthorizationSetup
     {
-        public static void AddAuthorizationSetup(this IServiceCollection services)
+        public static void AddAuthenticationSetup(this IServiceCollection services)
         {
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options =>

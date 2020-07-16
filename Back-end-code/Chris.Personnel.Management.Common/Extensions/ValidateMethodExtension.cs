@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Reflection;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 
 namespace Chris.Personnel.Management.Common.Extensions
 {
@@ -90,5 +92,18 @@ namespace Chris.Personnel.Management.Common.Extensions
             return string.Format(inputStr, obj);
         }
         #endregion
+
+        /// <summary>
+        /// 是否是异步方法
+        /// </summary>
+        /// <param name="method"></param>
+        /// <returns></returns>
+        public static bool IsAsyncMethod(this MethodInfo method)
+        {
+            return
+                method.ReturnType == typeof(Task)
+                ||
+                method.ReturnType.IsGenericType && method.ReturnType.GetGenericTypeDefinition() == typeof(Task<>);
+        }
     }
 }

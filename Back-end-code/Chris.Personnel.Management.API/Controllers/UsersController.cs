@@ -10,7 +10,6 @@ using Chris.Personnel.Management.Common.Helper;
 using Chris.Personnel.Management.UICommand;
 using Chris.Personnel.Management.ViewModel.Filters;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.Extensions.Logging;
 
 namespace Chris.Personnel.Management.API.Controllers
 {
@@ -18,27 +17,19 @@ namespace Chris.Personnel.Management.API.Controllers
     {
         private readonly IUserLogicService _userLogicService;
         private readonly IUserQueryService _userQueryService;
-        private readonly ILogger<UsersController> _logger;
 
         public UsersController(
             IUserLogicService userLogicService,
-            IUserQueryService userQueryService,
-            ILogger<UsersController> logger)
+            IUserQueryService userQueryService)
         {
             _userLogicService = userLogicService;
             _userQueryService = userQueryService;
-            _logger = logger;
         }
 
         // GET: api/Users
         [HttpGet]
         public async Task<IEnumerable<UserFormViewModel>> GetUsers()
         {
-            _logger.LogInformation("Index Begin...");
-            _logger.LogTrace("Index Begin...");
-            _logger.LogDebug("Index Begin...");
-            _logger.LogError("Index Begin...");
-
             return await _userQueryService.GetAll();
         }
 
@@ -88,15 +79,13 @@ namespace Chris.Personnel.Management.API.Controllers
             await _userLogicService.EditPassword(command);
         }
 
-        //[Authorize(Roles = "管理员")]
-        [Authorize]
         [HttpPut("password/resetting")]
         public async Task ResetPassword([FromBody] Guid id)
         {
             await _userLogicService.ResetPassword(id);
         }
 
-        [Authorize]
+        [Authorize(Roles = "管理员")]
         [HttpDelete("{id}/disable")]
         public async Task Disable(Guid id)
         {
