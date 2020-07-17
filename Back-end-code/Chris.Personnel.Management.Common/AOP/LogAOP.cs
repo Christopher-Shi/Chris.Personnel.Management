@@ -58,7 +58,7 @@ namespace Chris.Personnel.Management.Common.AOP
             }
             catch (Exception e)
             {
-                Console.WriteLine(e);
+                _logger.Error("An exception occurs at LogAOP.cs", e);
                 throw;
             }
         }
