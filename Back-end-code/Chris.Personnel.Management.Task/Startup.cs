@@ -2,7 +2,6 @@
 using Chris.Personnel.Management.Common.Helper;
 using Chris.Personnel.Management.Work.Quartz;
 using CrystalQuartz.AspNetCore;
-using CrystalQuartz.Core.SchedulerProviders;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Server.Kestrel.Core;
