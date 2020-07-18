@@ -3,7 +3,7 @@ using System.Diagnostics;
 using System.Threading.Tasks;
 using Quartz;
 
-namespace Chris.Personnel.Management.Work
+namespace Chris.Personnel.Management.Work.Quartz
 {
     public class JobBase
     {
@@ -12,7 +12,7 @@ namespace Chris.Personnel.Management.Work
         /// </summary>
         /// <param name="context"></param>
         /// <param name="func"></param>
-        public async Task<string> ExecuteJob(IJobExecutionContext context, Func<System.Threading.Tasks.Task> func)
+        public async Task<string> ExecuteJob(IJobExecutionContext context, Func<Task> func)
         {
             var jobHistory = $"【{DateTime.Now}】执行任务【Id：{context.JobDetail.Key.Name}，组别：{context.JobDetail.Key.Group}】";
             try

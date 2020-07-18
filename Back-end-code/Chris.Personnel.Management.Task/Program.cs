@@ -1,8 +1,11 @@
 ﻿using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 
-namespace Chris.Personnel.Management.Task
+namespace Chris.Personnel.Management.Work
 {
+    /// <summary>
+    /// https://www.cnblogs.com/yilezhu/p/12644208.html
+    /// </summary>
     public class Program
     {
         public static void Main(string[] args)

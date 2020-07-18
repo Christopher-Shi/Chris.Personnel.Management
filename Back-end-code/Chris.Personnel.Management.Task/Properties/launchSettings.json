@@ -8,9 +8,10 @@
     }
   },
   "profiles": {
-    "Chris.Personnel.Management.Task": {
+    "Chris.Personnel.Management.Work": {
       "commandName": "Project",
       "launchBrowser": true,
+      "launchUrl": "quartz",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
