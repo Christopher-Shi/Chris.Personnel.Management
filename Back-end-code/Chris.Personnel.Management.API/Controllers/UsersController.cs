@@ -22,8 +22,8 @@ namespace Chris.Personnel.Management.API.Controllers
             IUserLogicService userLogicService,
             IUserQueryService userQueryService)
         {
-            _userLogicService = userLogicService;
-            _userQueryService = userQueryService;
+            _userLogicService = userLogicService ?? throw new ArgumentNullException(nameof(userLogicService));
+            _userQueryService = userQueryService ?? throw new ArgumentNullException(nameof(userQueryService));
         }
 
         // GET: api/Users

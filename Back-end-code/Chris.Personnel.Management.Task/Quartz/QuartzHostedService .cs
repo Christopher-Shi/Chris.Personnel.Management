@@ -54,11 +54,6 @@ namespace Chris.Personnel.Management.Work.Quartz
             }
         }
 
-        private async Task<IScheduler> CreateScheduler()
-        {
-            return await _schedulerFactory.GetScheduler();
-        }
-
         private static IJobDetail CreateJob(JobSchedule schedule)
         {
             var jobType = schedule.JobType;

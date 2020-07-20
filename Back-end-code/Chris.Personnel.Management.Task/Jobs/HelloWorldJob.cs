@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Chris.Personnel.Management.Common.Extensions;
+using Chris.Personnel.Management.LogicService;
 using Chris.Personnel.Management.Work.Quartz;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -27,9 +28,7 @@ namespace Chris.Personnel.Management.Work.Jobs
             {
                 var result = ExecuteJob(context, () =>
                   {
-                      //var service = scope.ServiceProvider.GetService<IScopedService>();
-                      Console.WriteLine();
-
+                      var service = scope.ServiceProvider.GetService<IUserLogicService>();
                       return Task.CompletedTask;
                   });
 

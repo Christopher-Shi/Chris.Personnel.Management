@@ -20,8 +20,8 @@ namespace Chris.Personnel.Management.QueryService.Implements
 
         public RoleQueryService(IRoleRepository roleRepository, IMapper mapper)
         {
-            _roleRepository = roleRepository;
-            _mapper = mapper;
+            _roleRepository = roleRepository ?? throw new ArgumentNullException(nameof(roleRepository));
+            _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
         }
 
         public async Task<RoleViewModel> Get(Guid id)

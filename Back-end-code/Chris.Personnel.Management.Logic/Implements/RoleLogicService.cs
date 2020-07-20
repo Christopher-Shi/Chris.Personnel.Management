@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using Chris.Personnel.Management.Common;
 using Chris.Personnel.Management.Common.CodeSection;
@@ -22,10 +23,10 @@ namespace Chris.Personnel.Management.LogicService.Implements
             ITimeSource timeSource, 
             IUserAuthenticationManager userAuthenticationManager)
         {
-            _roleRepository = roleRepository;
-            _unitOfWorkFactory = unitOfWorkFactory;
-            _timeSource = timeSource;
-            _userAuthenticationManager = userAuthenticationManager;
+            _roleRepository = roleRepository ?? throw new ArgumentNullException(nameof(roleRepository));
+            _unitOfWorkFactory = unitOfWorkFactory ?? throw new ArgumentNullException(nameof(unitOfWorkFactory));
+            _timeSource = timeSource ?? throw new ArgumentNullException(nameof(timeSource));
+            _userAuthenticationManager = userAuthenticationManager ?? throw new ArgumentNullException(nameof(userAuthenticationManager));
         }
 
         public async Task Add(RoleAddUICommand command)

@@ -20,8 +20,8 @@ namespace Chris.Personnel.Management.QueryService.Implements
 
         public UserQueryService(IUserRepository userRepository, IMapper mapper)
         {
-            _userRepository = userRepository;
-            _mapper = mapper;
+            _userRepository = userRepository ?? throw new ArgumentNullException(nameof(userRepository));
+            _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
         }
 
         public async Task<UserFormViewModel> Get(Guid id)
@@ -49,8 +49,8 @@ namespace Chris.Personnel.Management.QueryService.Implements
 
         public async Task<UserPaginationViewModel> GetByPage(
             UserFilters filters,
-            int currentPage, 
-            int pageSize, 
+            int currentPage,
+            int pageSize,
             string orderByPropertyName,
             bool isAsc)
         {

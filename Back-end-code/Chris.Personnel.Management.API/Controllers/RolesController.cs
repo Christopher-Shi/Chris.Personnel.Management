@@ -18,8 +18,8 @@ namespace Chris.Personnel.Management.API.Controllers
             IRoleLogicService roleLogicService, 
             IRoleQueryService roleQueryService)
         {
-            _roleLogicService = roleLogicService;
-            _roleQueryService = roleQueryService;
+            _roleLogicService = roleLogicService ?? throw new ArgumentNullException(nameof(roleLogicService));
+            _roleQueryService = roleQueryService ?? throw new ArgumentNullException(nameof(roleQueryService));
         }
 
         // GET api/roles/id

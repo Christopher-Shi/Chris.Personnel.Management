@@ -11,6 +11,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Chris.Personnel.Management.Common\Chris.Personnel.Management.Common.csproj" />
+    <ProjectReference Include="..\Chris.Personnel.Management.Logic\Chris.Personnel.Management.LogicService.csproj" />
   </ItemGroup>
 
 </Project>

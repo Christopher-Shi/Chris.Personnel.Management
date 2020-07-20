@@ -29,11 +29,11 @@ namespace Chris.Personnel.Management.LogicService.Implements
             IUserAuthenticationManager userAuthenticationManager,
             IRoleRepository roleRepository)
         {
-            _timeSource = timeSource;
-            _userRepository = userRepository;
-            _roleRepository = roleRepository;
-            _unitOfWorkFactory = unitOfWorkFactory;
-            _userAuthenticationManager = userAuthenticationManager;
+            _timeSource = timeSource ?? throw new ArgumentNullException(nameof(timeSource));
+            _userRepository = userRepository ?? throw new ArgumentNullException(nameof(userRepository));
+            _roleRepository = roleRepository ?? throw new ArgumentNullException(nameof(roleRepository));
+            _unitOfWorkFactory = unitOfWorkFactory ?? throw new ArgumentNullException(nameof(unitOfWorkFactory));
+            _userAuthenticationManager = userAuthenticationManager ?? throw new ArgumentNullException(nameof(userAuthenticationManager));
             _initialPassword = Appsettings.Apply("InitialPassword");
         }
 
@@ -49,11 +49,9 @@ namespace Chris.Personnel.Management.LogicService.Implements
                 _userAuthenticationManager.CurrentUser.UserId,
                 _timeSource.GetCurrentTime());
 
-            using (var unitOfWork = _unitOfWorkFactory.GetCurrentUnitOfWork())
-            {
-                _userRepository.Add(newUser);
-                await unitOfWork.Commit();
-            }
+            using var unitOfWork = _unitOfWorkFactory.GetCurrentUnitOfWork();
+            _userRepository.Add(newUser);
+            await unitOfWork.Commit();
         }
 
         public async Task Edit(UserEditUICommand command)

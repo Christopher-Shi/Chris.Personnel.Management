@@ -19,7 +19,6 @@ namespace Chris.Personnel.Management.Work.Quartz
             _serviceProvider = serviceProvider;
         }
 
-
         public IJob NewJob(TriggerFiredBundle bundle, IScheduler scheduler)
         {
             try
