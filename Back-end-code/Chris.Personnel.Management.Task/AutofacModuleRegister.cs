@@ -1,0 +1,24 @@
+﻿using Autofac;
+using Chris.Personnel.Management.Common;
+using Chris.Personnel.Management.LogicService;
+using Chris.Personnel.Management.QueryService;
+using Chris.Personnel.Management.Repository;
+
+namespace Chris.Personnel.Management.Work
+{
+    public class AutofacModuleRegister : Module
+    {
+        protected override void Load(ContainerBuilder builder)
+        {
+            QueryServiceInstaller.ConfigureContainer(builder);
+
+            LogicServiceInstaller.ConfigureContainer(builder);
+
+            //RepositoryInstaller.ConfigureContainerForSqlServer(builder);
+            //RepositoryInstaller.ConfigureContainerForMySql(builder);
+            RepositoryInstaller.ConfigureContainerForSqllite(builder);
+
+            CommonInstaller.ConfigureContainer(builder);
+        }
+    }
+}

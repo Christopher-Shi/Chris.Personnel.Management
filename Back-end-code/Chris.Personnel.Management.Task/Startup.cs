@@ -1,4 +1,5 @@
 ﻿using System;
+using Autofac;
 using Chris.Personnel.Management.Common.Helper;
 using Chris.Personnel.Management.Work.Quartz;
 using CrystalQuartz.AspNetCore;
@@ -53,6 +54,12 @@ namespace Chris.Personnel.Management.Work
             services.AddSingleton<IHostedService, QuartzHostedService>();
 
             services.AddControllers();
+        }
+
+        public void ConfigureContainer(ContainerBuilder builder)
+        {
+            // Register your own things directly with Autofac, like:
+            builder.RegisterModule(new AutofacModuleRegister());
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IServiceProvider serviceProvider)

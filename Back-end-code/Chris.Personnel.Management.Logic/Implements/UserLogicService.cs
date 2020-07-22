@@ -118,6 +118,7 @@ namespace Chris.Personnel.Management.LogicService.Implements
         {
             var user = await _userRepository.Get(command.Id);
             user.StopUsing(_userAuthenticationManager.CurrentUser.UserId, _timeSource.GetCurrentTime());
+            //user.StopUsing(new Guid("32EC1E37-FE6D-4606-902E-6705BEB0AFC0"), _timeSource.GetCurrentTime());
             using var unitOfWork = _unitOfWorkFactory.GetCurrentUnitOfWork();
             _userRepository.Edit(user);
             await unitOfWork.Commit();

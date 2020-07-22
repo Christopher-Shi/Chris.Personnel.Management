@@ -10,7 +10,7 @@ namespace Chris.Personnel.Management.Work
         {
             services.AddSingleton<HelloWorldJob>();
             services.AddSingleton(
-                new JobSchedule(jobType: typeof(HelloWorldJob), cronExpression: "0/50 * * * * ?")
+                new JobSchedule(jobType: typeof(HelloWorldJob), cronExpression: "0/5 * * * * ?")
             );
         }
     }

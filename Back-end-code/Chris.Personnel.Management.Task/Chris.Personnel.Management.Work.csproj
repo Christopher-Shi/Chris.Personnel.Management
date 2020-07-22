@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="6.0.0" />
     <PackageReference Include="CrystalQuartz.AspNetCore" Version="6.8.1" />
     <PackageReference Include="Quartz" Version="3.0.7" />
   </ItemGroup>
@@ -12,6 +13,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Chris.Personnel.Management.Common\Chris.Personnel.Management.Common.csproj" />
     <ProjectReference Include="..\Chris.Personnel.Management.Logic\Chris.Personnel.Management.LogicService.csproj" />
+    <ProjectReference Include="..\Chris.Personnel.Management.QueryService\Chris.Personnel.Management.QueryService.csproj" />
   </ItemGroup>
 
 </Project>
