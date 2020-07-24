@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using Chris.Personnel.Management.Common.Extensions;
 using Chris.Personnel.Management.Entity;
-using Chris.Personnel.Management.QueryService.Enums;
 using Chris.Personnel.Management.ViewModel;
 using Chris.Personnel.Management.ViewModel.DropDownListItems;
 
@@ -22,7 +21,7 @@ namespace Chris.Personnel.Management.QueryService.AutoMapper
                         opt.MapFrom(src => src.Id.ToString()))
                 .ForMember(dest => dest.Gender,
                     opt =>
-                        opt.MapFrom(src => src.IsEnabled.GetEnabledDescription()))
+                        opt.MapFrom(src => src.IsEnabled.GetDescription()))
                 .ForMember(dest => dest.LastModifiedTime,
                     opt =>
                         opt.MapFrom(src => src.LastModifiedTime.ToDateTimeString()));

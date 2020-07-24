@@ -7,11 +7,29 @@ namespace Chris.Personnel.Management.Common.Extensions
 {
     public static class LinqExtension
     {
+        public static IEnumerable<TSource> Distinct<TSource, TKey>(this IEnumerable<TSource> source, Func<TSource, TKey> keySelector)
+        {
+            if (source == null)
+            {
+                throw new ArgumentNullException(nameof(source));
+            }
+
+            var hashSet = new HashSet<TKey>();
+
+            foreach (var element in source)
+            {
+                if (hashSet.Add(keySelector(element)))
+                {
+                    yield return element;
+                }
+            }
+        }
+
         public static IQueryable<T> SortByProperty<T>(this IQueryable<T> source, string propertyName, bool asc)
         {
             if (source == null)
             {
-                throw new ArgumentNullException("source");
+                throw new ArgumentNullException(nameof(source));
             }
 
             if (propertyName == null)
@@ -26,7 +44,7 @@ namespace Chris.Personnel.Management.Common.Extensions
                 return source;
             }
 
-            MemberExpression property = null;
+            MemberExpression property;
             var parameter = Expression.Parameter(source.ElementType, string.Empty);
             if (propertyName.IndexOf(".", StringComparison.Ordinal) > 0)
             {
@@ -52,6 +70,7 @@ namespace Chris.Personnel.Management.Common.Extensions
         {
             return left.Compose(right, Expression.And);
         }
+
         public static Expression<T> Compose<T>(this Expression<T> first, Expression<T> second, Func<Expression, Expression, Expression> merge)
         {
             var map = first.Parameters.Select((f, i) => new { f, s = second.Parameters[i] }).ToDictionary(p => p.s, p => p.f);

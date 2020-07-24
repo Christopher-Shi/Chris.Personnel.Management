@@ -13,4 +13,8 @@
     <ProjectReference Include="..\Chris.Personnel.Management.ViewModel\Chris.Personnel.Management.ViewModel.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Enums\" />
+  </ItemGroup>
+
 </Project>

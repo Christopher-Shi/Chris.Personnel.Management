@@ -163,5 +163,10 @@ namespace Chris.Personnel.Management.Common.Extensions
         }
 
         #endregion     
+
+        public static string ReverseString(this string input)
+        {
+            return string.IsNullOrEmpty(input) ? "" : new string(input.ToCharArray().Reverse().ToArray());
+        }
     }
 }
