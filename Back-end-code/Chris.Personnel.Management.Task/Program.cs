@@ -6,6 +6,7 @@ namespace Chris.Personnel.Management.Work
 {
     /// <summary>
     /// https://www.cnblogs.com/yilezhu/p/12644208.html
+    /// https://www.cnblogs.com/yilezhu/p/12757411.html
     /// </summary>
     public class Program
     {
@@ -16,7 +17,7 @@ namespace Chris.Personnel.Management.Work
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
-                .UseServiceProviderFactory(new AutofacServiceProviderFactory())
+                //.UseServiceProviderFactory(new AutofacServiceProviderFactory())
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();

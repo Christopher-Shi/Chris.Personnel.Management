@@ -1,5 +1,4 @@
 ﻿using System;
-using Autofac;
 using Chris.Personnel.Management.Common.Helper;
 using Chris.Personnel.Management.Work.Quartz;
 using CrystalQuartz.AspNetCore;
@@ -47,19 +46,16 @@ namespace Chris.Personnel.Management.Work
             services.AddSingleton<IJobFactory, SingletonJobFactory>();
             //处理调度和管理作业
             services.AddSingleton<ISchedulerFactory, StdSchedulerFactory>();
+            services.AddSingleton<QuartzJobRunner>();
             //添加我们的Job
             services.AddQuartzJobSetup();
 
             services.AddSingleton<QuartzHostedService>();
             services.AddSingleton<IHostedService, QuartzHostedService>();
 
-            services.AddControllers();
-        }
+            AutofacExtension.InitialAutofac();
 
-        public void ConfigureContainer(ContainerBuilder builder)
-        {
-            // Register your own things directly with Autofac, like:
-            builder.RegisterModule(new AutofacModuleRegister());
+            services.AddControllers();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IServiceProvider serviceProvider)

@@ -23,10 +23,7 @@ namespace Chris.Personnel.Management.Work.Quartz
         {
             try
             {
-                var serviceScope = _serviceProvider.CreateScope();
-                var job = serviceScope.ServiceProvider.GetService(bundle.JobDetail.JobType) as IJob;
-                return job;
-
+                return _serviceProvider.GetRequiredService<QuartzJobRunner>();
             }
             catch (Exception exception)
             {

@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Threading.Tasks;
-using Chris.Personnel.Management.Common.Extensions;
-using Chris.Personnel.Management.LogicService;
-using Chris.Personnel.Management.UICommand;
+using Chris.Personnel.Management.Common;
+using Chris.Personnel.Management.QueryService;
 using Chris.Personnel.Management.Work.Quartz;
+using Microsoft.AspNetCore.Mvc.Routing;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Quartz;
+using StackExchange.Profiling.Internal;
 
 namespace Chris.Personnel.Management.Work.Jobs
 {
@@ -14,33 +15,29 @@ namespace Chris.Personnel.Management.Work.Jobs
     {
         private readonly ILogger<HelloWorldJob> _logger;
         private readonly IServiceProvider _serviceProvider;
-        private readonly IUserLogicService _userLogicService;
 
         public HelloWorldJob(
             ILogger<HelloWorldJob> logger,
-            IServiceProvider serviceProvider,
-            IUserLogicService userLogicService)
+            IServiceProvider serviceProvider)
         {
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
             _serviceProvider = serviceProvider ?? throw new ArgumentNullException(nameof(serviceProvider));
-            _userLogicService = userLogicService ?? throw new ArgumentNullException(nameof(userLogicService));
         }
 
         public Task Execute(IJobExecutionContext context)
         {
-            using (var scope = _serviceProvider.CreateScope())
-            {
-                var result = ExecuteJob(context, () =>
-                  {
-                      _userLogicService.StopUsing(new UserDeleteUICommand
-                      {
-                          Id = new Guid("32EC1E37-FE6D-4606-902E-6705BEB0AFC0")
-                      });
-                      return Task.CompletedTask;
-                  });
+            // 解析你的作用域服务
+            //var service = scope.ServiceProvider.GetService<ITimeSource>();
+            //var result = ExecuteJob(context, () => Task.CompletedTask);
 
-                _logger.LogInformation($"{result} at {DateTime.Now.ToDateTimeString()}!");
-            }
+            //_logger.LogInformation($"{result} at {DateTime.Now.ToDateTimeString()}!"); 
+            var service = AutofacExtension.Resolve<IUserQueryService>();
+            _logger.LogInformation($"施晓勇测试：{service.GetAll().ToJson()}");
+
+
+
+            //var service = AutofacExtension.Resolve<ITimeSource>();
+            //_logger.LogInformation($"施晓勇测试：{service.GetCurrentTime()}");
             return Task.CompletedTask;
         }
     }
