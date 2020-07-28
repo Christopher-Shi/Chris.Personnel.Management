@@ -54,6 +54,7 @@ namespace Chris.Personnel.Management.Common.EntityModel
             }
         }
 
-        private TAggregate k__BackingFieldInstance = null;
+        // ReSharper disable once InconsistentNaming
+        private TAggregate k__BackingFieldInstance;
     }
 }
