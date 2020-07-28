@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Chris.Personnel.Management.Common
+namespace Chris.Personnel.Management.Common.EntityModel
 {
     public abstract class RootEntity
     {

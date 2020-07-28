@@ -4,7 +4,6 @@ using System.Threading.Tasks;
 using Castle.DynamicProxy;
 using Chris.Personnel.Management.Common.Extensions;
 using Chris.Personnel.Management.Common.Helper;
-using Newtonsoft.Json;
 
 namespace Chris.Personnel.Management.Common.AOP
 {
@@ -39,7 +38,7 @@ namespace Chris.Personnel.Management.Common.AOP
                     if (resultProperty != null)
                     {
                         dataIntercept +=
-                            $"【执行完成结果】：{JsonConvert.SerializeObject(resultProperty.GetValue(invocation.ReturnValue))}";
+                            $"【执行完成结果】：{JSON.ToJSON(resultProperty.GetValue(invocation.ReturnValue), true)}";
                     }
 
                     Parallel.For(0, 1, e =>

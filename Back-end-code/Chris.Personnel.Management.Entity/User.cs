@@ -1,5 +1,6 @@
 ﻿using System;
-using Chris.Personnel.Management.Common;
+using System.ComponentModel.DataAnnotations.Schema;
+using Chris.Personnel.Management.Common.EntityModel;
 using Chris.Personnel.Management.Common.Enums;
 using Chris.Personnel.Management.Common.Exceptions;
 using Chris.Personnel.Management.Common.Extensions;
@@ -7,7 +8,7 @@ using Chris.Personnel.Management.Common.Helper;
 
 namespace Chris.Personnel.Management.Entity
 {
-    public class User : RootEntity
+    public class User : Aggregate
     {
         /// <summary>
         /// 用户名
@@ -56,6 +57,9 @@ namespace Chris.Personnel.Management.Entity
         /// </summary>
         public Guid? CreatedUserId { get; private set; }
 
+        [NotMapped]
+        public AggregateReference<User> CreatedUser => CreatedUserId;
+
         /// <summary>
         /// 创建时间
         /// </summary>
@@ -65,6 +69,9 @@ namespace Chris.Personnel.Management.Entity
         /// 最后编辑人
         /// </summary>
         public Guid? LastModifiedUserId { get; private set; }
+
+        [NotMapped]
+        public AggregateReference<User> LastModifiedUser => LastModifiedUserId;
 
         /// <summary>
         /// 最后编辑时间

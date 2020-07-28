@@ -10,5 +10,6 @@
         public string Phone { get; set; }
         public string IsEnabled { get; set; }
         public string LastModifiedTime { get; set; }
+        public string LastModifiedUser { get; set; }
     }
 }

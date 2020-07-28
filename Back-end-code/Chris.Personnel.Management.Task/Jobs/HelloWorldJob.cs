@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
-using Chris.Personnel.Management.Common;
 using Chris.Personnel.Management.QueryService;
 using Chris.Personnel.Management.Work.Quartz;
-using Microsoft.AspNetCore.Mvc.Routing;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Quartz;
 using StackExchange.Profiling.Internal;
@@ -33,8 +30,6 @@ namespace Chris.Personnel.Management.Work.Jobs
             //_logger.LogInformation($"{result} at {DateTime.Now.ToDateTimeString()}!"); 
             var service = AutofacExtension.Resolve<IUserQueryService>();
             _logger.LogInformation($"施晓勇测试：{service.GetAll().ToJson()}");
-
-
 
             //var service = AutofacExtension.Resolve<ITimeSource>();
             //_logger.LogInformation($"施晓勇测试：{service.GetCurrentTime()}");

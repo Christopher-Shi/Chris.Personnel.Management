@@ -1,9 +1,9 @@
-﻿using Chris.Personnel.Management.Common;
-using System;
+﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
+using Chris.Personnel.Management.Common.EntityModel;
 
-namespace Chris.Personnel.Management.Repository
+namespace Chris.Personnel.Management.Common
 {
     public interface IBaseRepository<TEntity> where TEntity : RootEntity
     {

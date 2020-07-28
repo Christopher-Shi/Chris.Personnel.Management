@@ -1,4 +1,5 @@
 ﻿using System;
+using Chris.Personnel.Management.Common.EntityModel;
 
 namespace Chris.Personnel.Management.Common.Extensions
 {

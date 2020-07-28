@@ -24,7 +24,10 @@ namespace Chris.Personnel.Management.QueryService.AutoMapper
                         opt.MapFrom(src => src.IsEnabled.GetDescription()))
                 .ForMember(dest => dest.LastModifiedTime,
                     opt =>
-                        opt.MapFrom(src => src.LastModifiedTime.ToDateTimeString()));
+                        opt.MapFrom(src => src.LastModifiedTime.ToDateTimeString()))
+                .ForMember(dest => dest.LastModifiedUser,
+                    opt =>
+                        opt.MapFrom(src => src.LastModifiedUser.Instance.TrueName));
 
             CreateMap<User, UserDropDownListViewModel>()
                 .ForMember(dest => dest.Key,

@@ -1,5 +1,7 @@
 using Autofac;
+using Autofac.Extensions.DependencyInjection;
 using Chris.Personnel.Management.API.Extensions;
+using Chris.Personnel.Management.Common.EntityModel;
 using Chris.Personnel.Management.Common.Helper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -20,7 +22,7 @@ namespace Chris.Personnel.Management.API
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddSingleton(new Appsettings(Configuration));  
+            services.AddSingleton(new Appsettings(Configuration));
 
             services.AddAutoMapperSetup();
 
@@ -73,6 +75,9 @@ namespace Chris.Personnel.Management.API
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "Chris.Personnel.Management.API V1");
                 c.RoutePrefix = "";
             });
+
+            //»ñÈ¡Autofac£ºContainer
+            DependencyResolverInitializer.Initialize(app.ApplicationServices.GetAutofacRoot());
 
             app.UseEndpoints(endpoints =>
             {

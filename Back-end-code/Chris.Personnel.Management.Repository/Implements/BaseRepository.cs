@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
-using Chris.Personnel.Management.Common;
+using Chris.Personnel.Management.Common.EntityModel;
 using Microsoft.EntityFrameworkCore;
 
 namespace Chris.Personnel.Management.Repository.Implements

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Chris.Personnel.Management.Common.EntityModel;
 
 namespace Chris.Personnel.Management.Common.Helper
 {
