@@ -48,7 +48,7 @@ namespace Chris.Personnel.Management.Common.AOP
                 }
                 else
                 {
-                    dataIntercept += ($"【执行完成结果】：{invocation.ReturnValue}");
+                    dataIntercept += $"【执行完成结果】：{invocation.ReturnValue}";
                     Parallel.For(0, 1, e =>
                     {
                         _logger.Info(dataIntercept);
