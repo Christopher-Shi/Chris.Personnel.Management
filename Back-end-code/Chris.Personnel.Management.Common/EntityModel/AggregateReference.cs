@@ -39,17 +39,16 @@ namespace Chris.Personnel.Management.Common.EntityModel
             get
             {
                 // Make sure instance for the current Id hasn't been processed yet
-                if (k__BackingFieldInstance == null || !k__BackingFieldInstance.Id.Equals(Id))
-                {
-                    // Get aggregate instance from repository
-                    var serviceName = Assembly.CreateQualifiedName(
-                        "Chris.Personnel.Management.Repository",
-                        "Chris.Personnel.Management.Repository.I" + typeof(TAggregate).Name + "Repository");
-                    var repository =
-                        (IBaseRepository<TAggregate>)Dependency.Container.Resolve(Type.GetType(serviceName));
+                if (k__BackingFieldInstance != null && k__BackingFieldInstance.Id.Equals(Id))
+                    return k__BackingFieldInstance;
+                // Get aggregate instance from repository
+                var serviceName = Assembly.CreateQualifiedName(
+                    "Chris.Personnel.Management.Repository",
+                    "Chris.Personnel.Management.Repository.I" + typeof(TAggregate).Name + "Repository");
+                var repository =
+                    (IBaseRepository<TAggregate>)Dependency.Container.Resolve(Type.GetType(serviceName));
 
-                    k__BackingFieldInstance = repository.Get(Id).Result;
-                }
+                k__BackingFieldInstance = repository.Get(Id).Result;
 
                 return k__BackingFieldInstance;
             }
