@@ -10,12 +10,12 @@ namespace Chris.Personnel.Management.Common.EntityModel
     {
         protected ValueObject<T> Clone()
         {
-            return JSON.Clone(this);
+            return Json.Clone(this);
         }
 
         protected int GetNaiveHashCode()
         {
-            return JSON.ToJSON(this).GetHashCode();
+            return Json.ToJson(this).GetHashCode();
         }
 
         protected int GetMultiHashCode(params object[] args)
