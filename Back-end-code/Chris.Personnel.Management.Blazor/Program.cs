@@ -16,7 +16,8 @@ namespace Chris.Personnel.Management.Blazor
             builder.Services.AddTransient(sp => new HttpClient
             {
                 BaseAddress = new Uri("https://localhost:5001")
-            });
+            })
+            .AddAntDesign();
 
             await builder.Build().RunAsync();
         }
