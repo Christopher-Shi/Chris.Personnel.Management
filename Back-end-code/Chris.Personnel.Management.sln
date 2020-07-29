@@ -23,7 +23,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Chris.Personnel.Management.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Chris.Personnel.Management.LogicService", "Chris.Personnel.Management.Logic\Chris.Personnel.Management.LogicService.csproj", "{5005319B-556D-4B04-A9A3-BB7D6039BEFF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chris.Personnel.Management.Test", "Chris.Personnel.Management.Test\Chris.Personnel.Management.Test.csproj", "{E9624E69-0ED1-4A85-9C55-61832F3EE321}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Chris.Personnel.Management.Test", "Chris.Personnel.Management.Test\Chris.Personnel.Management.Test.csproj", "{E9624E69-0ED1-4A85-9C55-61832F3EE321}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chris.Personnel.Management.Blazor", "Chris.Personnel.Management.Blazor\Chris.Personnel.Management.Blazor.csproj", "{94E86428-CE91-4B2C-8551-F02CC8EAE947}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -75,6 +77,10 @@ Global
 		{E9624E69-0ED1-4A85-9C55-61832F3EE321}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E9624E69-0ED1-4A85-9C55-61832F3EE321}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E9624E69-0ED1-4A85-9C55-61832F3EE321}.Release|Any CPU.Build.0 = Release|Any CPU
+		{94E86428-CE91-4B2C-8551-F02CC8EAE947}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{94E86428-CE91-4B2C-8551-F02CC8EAE947}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{94E86428-CE91-4B2C-8551-F02CC8EAE947}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{94E86428-CE91-4B2C-8551-F02CC8EAE947}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

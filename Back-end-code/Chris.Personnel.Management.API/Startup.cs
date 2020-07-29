@@ -34,6 +34,13 @@ namespace Chris.Personnel.Management.API
             services.AddAuthenticationSetup();
             //TODO:_httpContextAccessor.HttpContext.User.Identity.Name IS NULL
             services.AddHttpContextSetup();
+
+            //跨域策略
+            services.AddCors(options =>
+            {
+                options.AddPolicy("Open",
+                    builder => builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
+            });
         }
 
         public void ConfigureContainer(ContainerBuilder builder)
@@ -48,16 +55,6 @@ namespace Chris.Personnel.Management.API
             {
                 app.UseDeveloperExceptionPage();
             }
-
-            // 设置只允许特定来源可以跨域
-            app.UseCors(options =>
-            {
-                //options.WithOrigins("http://localhost:9527/", "http://127.0.0.1:9527/"); // 允许特定ip跨域
-                options.WithOrigins(); // 允许特定ip跨域
-                options.AllowAnyHeader();
-                options.AllowAnyMethod();
-                options.AllowCredentials();
-            });
 
             app.UseHttpsRedirection();
 
@@ -78,6 +75,9 @@ namespace Chris.Personnel.Management.API
 
             //获取Autofac：Container
             DependencyResolverInitializer.Initialize(app.ApplicationServices.GetAutofacRoot());
+
+            //允许跨域
+            app.UseCors("Open");
 
             app.UseEndpoints(endpoints =>
             {

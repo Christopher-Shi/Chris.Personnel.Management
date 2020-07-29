@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using Chris.Personnel.Management.Common;
 using Chris.Personnel.Management.QueryService;
 using Chris.Personnel.Management.Work.Quartz;
 using Microsoft.Extensions.Logging;
@@ -23,16 +24,12 @@ namespace Chris.Personnel.Management.Work.Jobs
 
         public Task Execute(IJobExecutionContext context)
         {
-            // 解析你的作用域服务
-            //var service = scope.ServiceProvider.GetService<ITimeSource>();
-            //var result = ExecuteJob(context, () => Task.CompletedTask);
-
             //_logger.LogInformation($"{result} at {DateTime.Now.ToDateTimeString()}!"); 
-            var service = AutofacExtension.Resolve<IUserQueryService>();
-            _logger.LogInformation($"施晓勇测试：{service.GetAll().ToJson()}");
+            //var service = AutofacExtension.Resolve<IUserQueryService>();
+            //_logger.LogInformation($"施晓勇测试：{service.GetAll().ToJson()}");
 
-            //var service = AutofacExtension.Resolve<ITimeSource>();
-            //_logger.LogInformation($"施晓勇测试：{service.GetCurrentTime()}");
+            var service = AutofacExtension.Resolve<ITimeSource>();
+            _logger.LogInformation($"施晓勇测试：{service.GetCurrentTime()}");
             return Task.CompletedTask;
         }
     }
