@@ -8,7 +8,7 @@ namespace Chris.Personnel.Management.EF.Storage
     /// </summary>
     public class DesignTimeMySqlContextFactory : IDesignTimeDbContextFactory<MySqlContext>
     {
-        private readonly Appsettings _appsettings;
+        private readonly AppSettings _appSettings;
 
         /// <summary>
         /// 不可删除，否则migration 报错
@@ -18,14 +18,14 @@ namespace Chris.Personnel.Management.EF.Storage
 
         }
 
-        public DesignTimeMySqlContextFactory(Appsettings appsettings)
+        public DesignTimeMySqlContextFactory(AppSettings appSettings)
         {
-            _appsettings = appsettings;
+            _appSettings = appSettings;
         }
 
         public MySqlContext CreateDbContext(string[] args)
         {
-            return new MySqlContext(new ConnectionStringManager(_appsettings));
+            return new MySqlContext(new ConnectionStringManager(_appSettings));
         }
     }
 }

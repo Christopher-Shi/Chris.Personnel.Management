@@ -4,11 +4,11 @@ namespace Chris.Personnel.Management.EF.Storage
 {
     public class DataConfig
     {
-        public Appsettings Appsettings { get; }
+        public AppSettings AppSettings { get; }
 
-        public DataConfig(Appsettings appsettings)
+        public DataConfig(AppSettings appSettings)
         {
-            Appsettings = appsettings;
+            AppSettings = appSettings;
         }
         private string GetConnectionStringKey()
         {
@@ -20,7 +20,7 @@ namespace Chris.Personnel.Management.EF.Storage
         {
             var connectionStringKey = GetConnectionStringKey();
 
-            return Appsettings.Apply("ConnectionStrings", connectionStringKey);
+            return AppSettings.Apply("ConnectionStrings", connectionStringKey);
         }
     }
 }

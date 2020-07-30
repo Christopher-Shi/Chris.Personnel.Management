@@ -6,11 +6,11 @@ using System.Linq;
 
 namespace Chris.Personnel.Management.Common.Helper
 {
-    public class Appsettings
+    public class AppSettings
     {
         private static IConfiguration Configuration { get; set; }
 
-        public Appsettings(string contentPath)
+        public AppSettings(string contentPath)
         {
             var path = "appsettings.json";
 
@@ -23,7 +23,7 @@ namespace Chris.Personnel.Management.Common.Helper
                .Build();
         }
 
-        public Appsettings(IConfiguration configuration)
+        public AppSettings(IConfiguration configuration)
         {
             Configuration = configuration;
         }

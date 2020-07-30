@@ -39,7 +39,7 @@ namespace Chris.Personnel.Management.Work
                 options.AllowSynchronousIO = true;
             });
 
-            services.AddSingleton(new Appsettings(Configuration));
+            services.AddSingleton(new AppSettings(Configuration));
 
             //添加Quartz服务
             //用于创建作业实例

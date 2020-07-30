@@ -26,7 +26,7 @@ namespace Chris.Personnel.Management.LogicService
             }
 
             var aopType = new List<Type>();
-            if (Appsettings.Apply("AOP", "LogAOP", "Enabled").ToBool())
+            if (AppSettings.Apply("AOP", "LogAOP", "Enabled").ToBool())
             {
                 builder.RegisterType<LogAOP>();
                 aopType.Add(typeof(LogAOP));

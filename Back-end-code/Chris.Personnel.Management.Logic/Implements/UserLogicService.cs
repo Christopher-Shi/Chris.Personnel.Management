@@ -34,7 +34,7 @@ namespace Chris.Personnel.Management.LogicService.Implements
             _roleRepository = roleRepository ?? throw new ArgumentNullException(nameof(roleRepository));
             _unitOfWorkFactory = unitOfWorkFactory ?? throw new ArgumentNullException(nameof(unitOfWorkFactory));
             _userAuthenticationManager = userAuthenticationManager ?? throw new ArgumentNullException(nameof(userAuthenticationManager));
-            _initialPassword = Appsettings.Apply("InitialPassword");
+            _initialPassword = AppSettings.Apply("InitialPassword");
         }
 
         public async Task Add(UserAddUICommand command)

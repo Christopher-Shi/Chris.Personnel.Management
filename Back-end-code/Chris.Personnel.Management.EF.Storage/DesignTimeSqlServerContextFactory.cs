@@ -8,7 +8,7 @@ namespace Chris.Personnel.Management.EF.Storage
     /// </summary>
     public class DesignTimeSqlServerContextFactory : IDesignTimeDbContextFactory<SqlServerContext>
     {
-        private readonly Appsettings _appsettings;
+        private readonly AppSettings _appSettings;
 
         /// <summary>
         /// 不可删除，否则migration 报错
@@ -18,14 +18,14 @@ namespace Chris.Personnel.Management.EF.Storage
             
         }
 
-        public DesignTimeSqlServerContextFactory(Appsettings appsettings)
+        public DesignTimeSqlServerContextFactory(AppSettings appSettings)
         {
-            _appsettings = appsettings;
+            _appSettings = appSettings;
         }
 
         public SqlServerContext CreateDbContext(string[] args)
         {
-            return new SqlServerContext(new ConnectionStringManager(_appsettings));
+            return new SqlServerContext(new ConnectionStringManager(_appSettings));
         }
     }
 }

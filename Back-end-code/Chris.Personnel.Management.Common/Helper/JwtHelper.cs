@@ -16,9 +16,9 @@ namespace Chris.Personnel.Management.Common.Helper
         /// <returns></returns>
         public static string IssueJwt(TokenModelJwt tokenModel)
         {
-            var iss = Appsettings.Apply("Audience", "Issuer");
-            var aud = Appsettings.Apply("Audience", "Audience");
-            var secret = Appsettings.Apply("Audience", "Secret");
+            var iss = AppSettings.Apply("Audience", "Issuer");
+            var aud = AppSettings.Apply("Audience", "Audience");
+            var secret = AppSettings.Apply("Audience", "Secret");
 
             var claims = new List<Claim>
             {

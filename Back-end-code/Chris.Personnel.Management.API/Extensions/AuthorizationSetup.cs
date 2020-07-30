@@ -19,15 +19,15 @@ namespace Chris.Personnel.Management.API.Extensions
                         //是否验证发行人
                         ValidateIssuer = true,
                         //发行人
-                        ValidIssuer = Appsettings.Apply("Audience", "Issuer"),
+                        ValidIssuer = AppSettings.Apply("Audience", "Issuer"),
                         //是否验证受众人
                         ValidateAudience = true,
                         //受众人
-                        ValidAudience = Appsettings.Apply("Audience", "Audience"),
+                        ValidAudience = AppSettings.Apply("Audience", "Audience"),
                         //是否验证秘钥
                         ValidateIssuerSigningKey = true,
                         IssuerSigningKey =
-                            new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Appsettings.Apply("Audience", "Secret"))),
+                            new SymmetricSecurityKey(Encoding.UTF8.GetBytes(AppSettings.Apply("Audience", "Secret"))),
 
                         //是否验证Token有效期，使用当前时间与Token的Claims中的NotBefore和Expires对比
                         ValidateLifetime = true,

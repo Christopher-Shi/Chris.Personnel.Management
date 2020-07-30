@@ -22,7 +22,7 @@ namespace Chris.Personnel.Management.API
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddSingleton(new Appsettings(Configuration));
+            services.AddSingleton(new AppSettings(Configuration));
 
             services.AddAutoMapperSetup();
 

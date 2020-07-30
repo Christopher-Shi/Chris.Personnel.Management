@@ -4,9 +4,9 @@ namespace Chris.Personnel.Management.EF.Storage
 {
     public class ConnectionStringManager : IConnectionStringManager
     {
-        public ConnectionStringManager(Appsettings appsettings)
+        public ConnectionStringManager(AppSettings appSettings)
         {
-            ConnectionString = new DataConfig(appsettings).GetConnectionString();
+            ConnectionString = new DataConfig(appSettings).GetConnectionString();
         }
 
         public string ConnectionString { get; }
