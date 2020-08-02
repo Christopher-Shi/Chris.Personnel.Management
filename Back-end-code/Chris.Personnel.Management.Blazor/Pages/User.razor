@@ -1,23 +1,147 @@
 ﻿@page "/user"
+@using System.Text.Json
 
-<table class="table table-hover table-striped">
-    <thead class="thead-dark">
-        <tr>
-            <th>ID</th>
-            <th>用户名</th>
-            <th>姓名</th>
-            <th>性别</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var user in Users)
+@* 查询区 *@
+<div>
+    <Row>
+        <Col Span="5">
+        <Input Placeholder="用户名" Value="@txtValue" />
+        </Col>
+        <Col Span="1"></Col>
+        <Col Span="5">
+        <Input Placeholder="真实姓名" Value="@txtValue" />
+        </Col>
+        <Col Span="1"></Col>
+        <Col Span="5">
+        <Select Placeholder="启用状态" Style="width: 100%">
+            <SelectOption Value="1" Title="启用">启用</SelectOption>
+            <SelectOption Value="0" Title="停用">停用</SelectOption>
+        </Select>
+        </Col>
+        <Col Span="1"></Col>
+        <Col Span="6">
+        <Button Type="primary" Icon="search">查询</Button>
+        <Button Type="primary" Icon="sync">重置</Button>
+        </Col>
+    </Row>
+</div>
+<Divider />
+<div>
+    <Button Type="primary" Icon="plus" OnClick="@ShowAddModal">新增</Button>
+</div>
+<Divider />
+@* Table表格区 *@
+<Table DataSource="@Users">
+    <Column @bind-Field="@context.Name">
+        <a>@context.Name</a>
+    </Column>
+    <Column @bind-Field="@context.TrueName"></Column>
+    <Column @bind-Field="@context.CardId"></Column>
+    <Column @bind-Field="@context.Phone"></Column>
+    <Column @bind-Field="@context.Gender"></Column>
+    <Column @bind-Field="@context.IsEnabled"></Column>
+    <ActionColumn Title="操作">
+        <div>
+            <Button Type="link" OnClick="@ShowEditModal">
+                编辑
+            </Button>
+            @*<Divider Type="vertical" />*@
+            <Button Type="link" OnClick="@HandleConfirm">
+                删除
+            </Button>
+        </div>
+    </ActionColumn>
+</Table>
+
+@* 新增模态框 *@
+<Modal Title="@("新增")"
+       Visible="@_addModalVisible"
+       BodyStyle="text-align: center;"
+       OnOk="@HideAddModal"
+       OnCancel="@HideAddModal"
+       OkText="@("确认")"
+       CancelText="@("取消")">
+    <Form Model="@model"
+          LabelCol="new ColLayoutParam { Span = 8 }"
+          WrapperCol="new ColLayoutParam { Span = 16 }"
+          OnFinish="OnFinish"
+          OnFinishFailed="OnFinishFailed">
+        <FormItem Label="Input">
+            <Input @bind-Value="@context.Input" />
+        </FormItem>
+        <FormItem Label="InputArea">
+            <TextArea @bind-Value="@context.InputArea" />
+        </FormItem>
+        @*<FormItem Label="Cascader">
+            <Cascader @bind-Value="@context.Cascader" Options="districts" />
+        </FormItem>*@
+        <FormItem Label="DatePicker">
+            <DatePicker @bind-Value="@context.DatePicker" />
+        </FormItem>
+        <FormItem Label="InputNumber">
+            <AntDesign.InputNumber @bind-Value="@context.Number" />
+        </FormItem>
+        <FormItem Label="Switch">
+            <Switch @bind-Value="@context.Switch" />
+        </FormItem>
+        <FormItem Label="Radio">
+            <RadioGroup @bind-Value="@context.Radio">
+                <Radio RadioButton Value="@("Hangzhou")">Hangzhou</Radio>
+                <Radio RadioButton Value="@("Shanghai")">Shanghai</Radio>
+                <Radio RadioButton Value="@("Beijing")">Beijing</Radio>
+                <Radio RadioButton Value="@("Chengdu")">Chengdu</Radio>
+            </RadioGroup>
+        </FormItem>
+    </Form>
+</Modal>
+
+@* 编辑模态框 *@
+<Modal Title="@("编辑")"
+       Visible="@_editModalVisible"
+       OnOk="@HideEditModal"
+       OnCancel="@HideEditModal"
+       OkText="@("确认")"
+       CancelText="@("取消")">
+    <p>Edit</p>
+    <p>Some contents...</p>
+    <p>Some contents...</p>
+</Modal>
+
+
+@code{
+    private async Task HandleConfirm()
+    {
+        await ModalService.Confirm(new ConfirmOptions
         {
-            <tr>
-                <td>@user.Id</td>
-                <td>@user.Name</td>
-                <td>@user.TrueName</td>
-                <td>@user.Gender</td>
-            </tr>
-        }
-    </tbody>
-</table>
+            Title = "确认",
+            Icon = @<Icon Type="exclamation-circle" Theme="Outline"></Icon>,
+            Content = "确认删除",
+            OkText = "确认",
+            CancelText = "取消"
+        });
+    }
+
+    public class Model
+    {
+        public string Size { get; set; } = AntSizeLDSType.Small;
+        public string Input { get; set; } = "input";
+        public string InputArea { get; set; } = "inputArea";
+        public string Cascader { get; set; } = "11";
+        public DateTime DatePicker { get; set; } = DateTime.Now;
+        public double Number { get; set; } = 1;
+        public bool Switch { get; set; } = true;
+        public string Radio { get; set; } = "Beijing";
+    }
+
+    private Model model = new Model();
+
+    private void OnFinish(EditContext editContext)
+    {
+        Console.WriteLine($"Success:{JsonSerializer.Serialize(model)}");
+    }
+
+    private void OnFinishFailed(EditContext editContext)
+    {
+        Console.WriteLine($"Failed:{JsonSerializer.Serialize(model)}");
+    }
+}
