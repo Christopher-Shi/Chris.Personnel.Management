@@ -61,37 +61,40 @@
        OnCancel="@HideAddModal"
        OkText="@("确认")"
        CancelText="@("取消")">
-    <Form Model="@model"
+    <Form Model="@UserAddUICommand"
           LabelCol="new ColLayoutParam { Span = 8 }"
           WrapperCol="new ColLayoutParam { Span = 16 }"
           OnFinish="OnFinish"
           OnFinishFailed="OnFinishFailed">
-        <FormItem Label="Input">
-            <Input @bind-Value="@context.Input" />
+        <FormItem Label="用户名">
+            <Input @bind-Value="@UserAddUICommand.User.UserName" />
         </FormItem>
-        <FormItem Label="InputArea">
-            <TextArea @bind-Value="@context.InputArea" />
+        <FormItem Label="真实姓名">
+            <Input @bind-Value="@UserAddUICommand.User.TrueName" />
         </FormItem>
-        @*<FormItem Label="Cascader">
-            <Cascader @bind-Value="@context.Cascader" Options="districts" />
-        </FormItem>*@
-        <FormItem Label="DatePicker">
-            <DatePicker @bind-Value="@context.DatePicker" />
-        </FormItem>
-        <FormItem Label="InputNumber">
-            <AntDesign.InputNumber @bind-Value="@context.Number" />
-        </FormItem>
-        <FormItem Label="Switch">
-            <Switch @bind-Value="@context.Switch" />
-        </FormItem>
-        <FormItem Label="Radio">
-            <RadioGroup @bind-Value="@context.Radio">
-                <Radio RadioButton Value="@("Hangzhou")">Hangzhou</Radio>
-                <Radio RadioButton Value="@("Shanghai")">Shanghai</Radio>
-                <Radio RadioButton Value="@("Beijing")">Beijing</Radio>
-                <Radio RadioButton Value="@("Chengdu")">Chengdu</Radio>
+        <FormItem Label="性别">
+            <RadioGroup @bind-Value="@UserAddUICommand.User.Gender" Name="chris1">
+                <Radio Value="@("1")">男</Radio>
+                <Radio Value="@("0")">女</Radio>
             </RadioGroup>
         </FormItem>
+        <FormItem Label="身份证号码">
+            <Input @bind-Value="@UserAddUICommand.User.CardId" />
+        </FormItem>
+        <FormItem Label="电话号码">
+            <Input @bind-Value="@UserAddUICommand.User.Phone" />
+        </FormItem>
+        <FormItem Label="状态">
+            <RadioGroup @bind-Value="@UserAddUICommand.User.IsEnabled" Name="chris">
+                <Radio Value="@("1")">启用</Radio>
+                <Radio Value="@("0")">停用</Radio>
+            </RadioGroup>
+        </FormItem>
+        @*<FormItem>
+            <Button Type="primary" HtmlType="submit">
+                保存
+            </Button>
+        </FormItem>*@
     </Form>
 </Modal>
 
@@ -119,29 +122,5 @@
             OkText = "确认",
             CancelText = "取消"
         });
-    }
-
-    public class Model
-    {
-        public string Size { get; set; } = AntSizeLDSType.Small;
-        public string Input { get; set; } = "input";
-        public string InputArea { get; set; } = "inputArea";
-        public string Cascader { get; set; } = "11";
-        public DateTime DatePicker { get; set; } = DateTime.Now;
-        public double Number { get; set; } = 1;
-        public bool Switch { get; set; } = true;
-        public string Radio { get; set; } = "Beijing";
-    }
-
-    private Model model = new Model();
-
-    private void OnFinish(EditContext editContext)
-    {
-        Console.WriteLine($"Success:{JsonSerializer.Serialize(model)}");
-    }
-
-    private void OnFinishFailed(EditContext editContext)
-    {
-        Console.WriteLine($"Failed:{JsonSerializer.Serialize(model)}");
     }
 }

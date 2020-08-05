@@ -54,22 +54,14 @@ namespace Chris.Personnel.Management.Blazor.Services
 
         public async Task AddUser(UserAddUICommand user)
         {
-            var employeeJson =
+            var userJson =
                 new StringContent(
                     JsonSerializer.Serialize(user),
                     Encoding.UTF8,
                     "application/json");
 
             var response = await _httpClient.PostAsync(
-                $"api/Users", employeeJson);
-
-            //if (response.IsSuccessStatusCode)
-            //{
-            //    return await JsonSerializer.DeserializeAsync<UserAddUICommand>
-            //        (await response.Content.ReadAsStreamAsync());
-            //}
-
-            //return null;
+                $"api/Users", userJson);
         }
     }
 }

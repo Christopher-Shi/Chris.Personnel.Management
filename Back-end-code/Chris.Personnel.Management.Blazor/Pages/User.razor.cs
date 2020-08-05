@@ -1,9 +1,15 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Text.Json;
 using System.Threading.Tasks;
 using AntDesign;
 using Chris.Personnel.Management.Blazor.Services;
+using Chris.Personnel.Management.UICommand;
+using Chris.Personnel.Management.UICommand.DTO;
 using Chris.Personnel.Management.ViewModel;
 using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Forms;
 
 namespace Chris.Personnel.Management.Blazor.Pages
 {
@@ -18,6 +24,11 @@ namespace Chris.Personnel.Management.Blazor.Pages
         public IEnumerable<UserFormViewModel> Users { get; set; } = new List<UserFormViewModel>();
 
         //public UserPaginationViewModel UsersByPage { get; set; } = new UserPaginationViewModel();
+
+        public UserAddUICommand UserAddUICommand { get; set; } = new UserAddUICommand
+        {
+            User = new UserDTO()
+        };
 
         public string txtValue { get; set; }
 
@@ -39,9 +50,20 @@ namespace Chris.Personnel.Management.Blazor.Pages
             _addModalVisible = true;
         }
 
-        private void HideAddModal()
+        private async Task HideAddModal()
         {
+            await UserService.AddUser(UserAddUICommand);
             _addModalVisible = false;
+        }
+
+        private async Task OnFinish()
+        {
+            await UserService.AddUser(UserAddUICommand);
+        }
+
+        private void OnFinishFailed(EditContext editContext)
+        {
+            Console.WriteLine($"Failed:{JsonSerializer.Serialize(UserAddUICommand)}");
         }
 
         protected override async Task OnInitializedAsync()
