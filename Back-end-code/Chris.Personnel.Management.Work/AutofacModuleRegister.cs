@@ -6,9 +6,9 @@ using Chris.Personnel.Management.LogicService;
 using Chris.Personnel.Management.QueryService;
 using Chris.Personnel.Management.Repository;
 
-namespace Chris.Personnel.Management.API
+namespace Chris.Personnel.Management.Work
 {
-    internal class AutofacModuleRegister : Module
+    public class AutofacModuleRegister : Module
     {
         protected override void Load(ContainerBuilder builder)
         {
@@ -26,7 +26,7 @@ namespace Chris.Personnel.Management.API
             {
                 RepositoryInstaller.ConfigureContainerForMySql(builder);
             }
-            
+
             // Sqlite
             if (AppSettings.Apply("ConnectionStrings", "SqliteDb", "Enabled").ToBool())
             {

@@ -19,7 +19,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Chris.Personnel.Management.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Chris.Personnel.Management.QueryService", "Chris.Personnel.Management.QueryService\Chris.Personnel.Management.QueryService.csproj", "{662F7A54-D805-4EC0-B8E4-344BBF29B32E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Chris.Personnel.Management.Work", "Chris.Personnel.Management.Task\Chris.Personnel.Management.Work.csproj", "{88C1CA6A-6CAB-40EB-BF1D-42DF3E8F0F8E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Chris.Personnel.Management.Work", "Chris.Personnel.Management.Work\Chris.Personnel.Management.Work.csproj", "{88C1CA6A-6CAB-40EB-BF1D-42DF3E8F0F8E}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Chris.Personnel.Management.LogicService", "Chris.Personnel.Management.Logic\Chris.Personnel.Management.LogicService.csproj", "{5005319B-556D-4B04-A9A3-BB7D6039BEFF}"
 EndProject

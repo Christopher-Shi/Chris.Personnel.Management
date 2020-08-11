@@ -13,7 +13,10 @@ namespace Chris.Personnel.Management.EF.Storage
 
         protected override void BuildDbContextOptionsBuilder(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlite(_connectionStringManager.ConnectionString);
+            if (!optionsBuilder.IsConfigured)
+            {
+                optionsBuilder.UseSqlite(_connectionStringManager.ConnectionString);
+            }
         }
     }
 }

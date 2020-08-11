@@ -10,7 +10,7 @@ namespace Chris.Personnel.Management.Repository
         public static void ConfigureContainerForSqlServer(ContainerBuilder builder)
         {
             builder.RegisterType<SqlServerDbContextProvider>().As<IDbContextProvider>().InstancePerLifetimeScope();
-            builder.RegisterType<SqlServerContext>();
+            builder.RegisterType<SqlServerContext>().InstancePerLifetimeScope();
 
             SharedWiring(builder);
         }
@@ -18,7 +18,7 @@ namespace Chris.Personnel.Management.Repository
         public static void ConfigureContainerForSqllite(ContainerBuilder builder)
         {
             builder.RegisterType<SqliteDbContextProvider>().As<IDbContextProvider>().InstancePerLifetimeScope();
-            builder.RegisterType<SqliteContext>();
+            builder.RegisterType<SqliteContext>().InstancePerLifetimeScope();
 
             SharedWiring(builder);
         }
@@ -26,7 +26,7 @@ namespace Chris.Personnel.Management.Repository
         public static void ConfigureContainerForMySql(ContainerBuilder builder)
         {
             builder.RegisterType<MySqlDbContextProvider>().As<IDbContextProvider>().InstancePerLifetimeScope();
-            builder.RegisterType<MySqlContext>();
+            builder.RegisterType<MySqlContext>().InstancePerLifetimeScope();
 
             SharedWiring(builder);
         }
@@ -34,7 +34,7 @@ namespace Chris.Personnel.Management.Repository
         public static void ConfigureContainerForInMemory(ContainerBuilder builder)
         {
             builder.RegisterType<InMemoryDbContextProvider>().As<IDbContextProvider>().InstancePerLifetimeScope();
-            builder.RegisterType<InMemoryContext>();
+            builder.RegisterType<InMemoryContext>().InstancePerLifetimeScope();
             SharedWiring(builder);
         }
 

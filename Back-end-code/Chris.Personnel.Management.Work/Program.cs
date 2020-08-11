@@ -31,7 +31,7 @@ namespace Chris.Personnel.Management.Work
                             //添加NLog:不带参数表示NLog.config的配置文件就在应用程序根目录下，也可以指定配置文件的路径
                             var path = Path.Combine(Directory.GetCurrentDirectory(), "NLog.config");
                             builder.AddNLog(path);
-                        }); ;
+                        }); 
                 });
     }
 }

@@ -13,6 +13,7 @@ namespace Chris.Personnel.Management.EF.Storage
         }
 
         public DbSet<User> Users { get; set; }
+        public DbSet<Role> Roles { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

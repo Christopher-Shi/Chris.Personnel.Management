@@ -1,4 +1,5 @@
-﻿using Chris.Personnel.Management.Common.Helper;
+﻿using Chris.Personnel.Management.Common.Extensions;
+using Chris.Personnel.Management.Common.Helper;
 
 namespace Chris.Personnel.Management.EF.Storage
 {
@@ -10,18 +11,28 @@ namespace Chris.Personnel.Management.EF.Storage
         {
             AppSettings = appSettings;
         }
-        private string GetConnectionStringKey()
-        {
-            //return "ChrisPersonnelManagementSQlServerDB"; //SQlServer
-            //return "ChrisPersonnelManagementMySqlDB"; //MySqlDB
-            return "ChrisPersonnelManagementSqliteDb"; //Sqlite
-        }
 
         public string GetConnectionString()
         {
-            var connectionStringKey = GetConnectionStringKey();
+            var connectionString = default(string);
 
-            return AppSettings.Apply("ConnectionStrings", connectionStringKey);
+            // SQlServer
+            if (AppSettings.Apply("ConnectionStrings", "SQlServerDB", "Enabled").ToBool())
+            {
+                connectionString = AppSettings.Apply("ConnectionStrings", "SQlServerDB", "ConnectionString");
+            }
+            // MySqlDB
+            if (AppSettings.Apply("ConnectionStrings", "MySqlDB", "Enabled").ToBool())
+            {
+                connectionString = AppSettings.Apply("ConnectionStrings", "MySqlDB", "ConnectionString");
+            }
+            // Sqlite
+            if (AppSettings.Apply("ConnectionStrings", "SqliteDb", "Enabled").ToBool())
+            {
+                connectionString = AppSettings.Apply("ConnectionStrings", "SqliteDb", "ConnectionString");
+            }
+
+            return connectionString;
         }
     }
 }
