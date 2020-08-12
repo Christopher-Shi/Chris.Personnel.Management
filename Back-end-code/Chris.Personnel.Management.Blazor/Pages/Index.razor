@@ -6,9 +6,100 @@
 
 Welcome to your new app.
 
-<SurveyPrompt Title="How is Blazor working for you?" />
-
-<Button Type="primary" Icon="search">Search</Button>
-
 <p>ServerAddress: @Configuration["ServerAddress"]</p>
+
+<p>Last week this time: @(DateTime.Now - TimeSpan.FromDays(7))</p>
+@("<span>Hello World</span>")
+
+@{
+    var quote = "The future depends on what you do today. - Mahatma Gandhi";
+}
+
+<p>@quote</p>
+
+@{
+    quote = "Hate cannot drive out hate, only love can do that. - Martin Luther King, Jr.";
+}
+
+<p>@quote</p>
+
+@{
+    var inCSharp = true;
+    <p>Now in HTML, was in C# @inCSharp</p>
+}
+
+@{
+    var value1 = 7;
+    @if (value1 % 2 == 0)
+    {
+        <p>The value was even.</p>
+    }
+    else if (value1 >= 1337)
+    {
+        <p>The value is large.</p>
+    }
+    else
+    {
+        <p>The value is odd and small.</p>
+    }
+}
+
+
+@{
+    var value = 5;
+
+    @switch (value)
+    {
+        case 1:
+            <p>The value is 1!</p>
+            break;
+        case 1337:
+            <p>Your number is 1337!</p>
+            break;
+        default:
+            <p>Your number wasn't 1 or 1337.</p>
+            break;
+    }
+}
+
+@for (var i = 0; i < 5; i++)
+{
+    <p>Index: @i</p>
+}
+
+@foreach (var item in new int[] { 1, 2, 3, 4, 5 })
+{
+    <p>Index: @item</p>
+}
+
+@{ var j = 1; }
+@while (j <= 5)
+{
+    <p>j: @j</p>
+
+    j++;
+}
+
+@try
+{
+    throw new InvalidOperationException("You did something invalid.");
+}
+catch (Exception ex)
+{
+    <p>The exception message: @ex.Message</p>
+}
+finally
+{
+    <p>The finally statement.</p>
+}
+
+@functions
+{
+    public string GetHello()
+    {
+        return "Hello";
+    }
+}
+
+<div>From method: @GetHello()</div>
 
