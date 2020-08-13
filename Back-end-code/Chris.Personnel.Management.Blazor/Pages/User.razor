@@ -1,2 +1,53 @@
 ﻿@page "/user"
 
+    <Table TItem="BindItem" Items="@Items.Take(3)"
+           IsPagination="true" PageItemsSource="@PageItemsSource"
+           IsBordered="true" IsStriped="true"
+           ShowToolbar="true" ShowDefaultButtons="false" ShowSearch="false" IsMultipleSelect="true"
+           ShowExtendButtons="true" ExtendButtonColumnWidth="240">
+        <TableToolbarTemplate>
+            <TableToolbarButton TItem="BindItem" Color="Color.Primary" Icon="fa fa-fw fa-edit" Text="明细" />
+            <TableToolbarButton TItem="BindItem" Color="Color.Success" Icon="fa fa-fw fa-edit" Text="编辑" />
+            <TableToolbarButton TItem="BindItem" Color="Color.Warning" Icon="fa fa-fw fa-edit" Text="权限" />
+            <TableToolbarButton TItem="BindItem" Color="Color.Danger" Icon="fa fa-fw fa-edit" Text="审批" />
+        </TableToolbarTemplate>
+        <TableColumns>
+            <TableColumn @bind-Field="@context.DateTime" />
+            <TableColumn @bind-Field="@context.Name" />
+            <TableColumn @bind-Field="@context.Address" />
+        </TableColumns>
+    </Table>
+
+@code {
+    private static readonly Random random = new Random();
+
+    /// <summary>
+    ///
+    /// </summary>
+    /// <returns></returns>
+    protected static List<BindItem> GenerateItems() => new List<BindItem>(Enumerable.Range(1, 80).Select(i => new BindItem()
+    {
+        Id = i,
+        Name = $"张三 {i:d4}",
+        DateTime = DateTime.Now.AddDays(i - 1),
+        Address = $"上海市普陀区金沙江路 {random.Next(1000, 2000)} 弄",
+        Count = random.Next(1, 100),
+        Complete = random.Next(1, 100) > 50
+    }));
+
+    protected static IEnumerable<BindItem> Items { get; } = GenerateItems();
+
+    protected IEnumerable<int> PageItemsSource => new int[] { 2, 4, 10, 20 };
+
+
+
+    public class BindItem
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public DateTime DateTime { get; set; }
+        public string Address { get; set; }
+        public int Count { get; set; }
+        public bool Complete { get; set; }
+    }
+}
