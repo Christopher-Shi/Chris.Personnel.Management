@@ -88,6 +88,13 @@ namespace Chris.Personnel.Management.Common.Extensions
             return inputStr.IsNullOrEmpty() ? inputStr : inputStr.Replace(oldStr, newStr);
         }
 
+        /// <summary>
+        /// example: 删除字符串中的空格: "chris test ".RegexReplace(@"\s", "");
+        /// </summary>
+        /// <param name="inputStr"></param>
+        /// <param name="pattern"></param>
+        /// <param name="replacement"></param>
+        /// <returns></returns>
         public static string RegexReplace(this string inputStr, string pattern, string replacement)
         {
             return inputStr.IsNullOrEmpty() ? inputStr : Regex.Replace(inputStr, pattern, replacement);
