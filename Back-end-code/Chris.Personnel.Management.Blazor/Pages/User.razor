@@ -1,20 +1,72 @@
 ﻿@page "/user"
 
-<Table TItem="UserFormViewModel"
+    <Table TItem="UserFormViewModel"
        IsPagination="true" PageItemsSource="@PageItemsSource"
        IsStriped="true" IsBordered="true" SearchModel="@SearchModel" ShowSearch="true"
-       ShowToolbar="true" IsMultipleSelect="true" ShowExtendButtons="true"
-       AddModalTitle="增加" EditModalTitle="编辑"
-       OnQueryAsync="@OnQueryAsync"
-       OnAddAsync="@OnAddAsync" OnSaveAsync="@OnSaveAsync" OnDeleteAsync="@OnDeleteAsync">
+       ShowToolbar="true" IsMultipleSelect="true" ShowExtendButtons="false"
+       ShowDefaultButtons="false"
+       OnQueryAsync="@OnQueryAsync">
+    <TableToolbarTemplate>
+        <Button Color="Color.Primary" Icon="fa fa-fw fa-plus" @onclick="e => AddModal.Toggle()">新增</Button>
+        <Button Color="Color.Warning" Icon="fa fa-fw fa-edit" @onclick="e => EditModal.Toggle()">编辑</Button>
+        <Button Color="Color.Danger" Icon="fa fa-fw fa-trash" @onclick="e => AddModal.Toggle()">删除</Button>
+    </TableToolbarTemplate>
     <TableColumns>
-        <TableColumn @bind-Field="@context.Name" Filterable="true" Sortable="true" />
+        <TableColumn @bind-Field="@context.Name" Filterable="true" Sortable="true" Searchable="true" />
         <TableColumn @bind-Field="@context.TrueName" Filterable="true" Sortable="true" />
         <TableColumn @bind-Field="@context.Gender" Filterable="true" Sortable="true" />
         <TableColumn @bind-Field="@context.CardId" Filterable="true" Sortable="true" />
         <TableColumn @bind-Field="@context.Phone" Filterable="true" Sortable="true" />
     </TableColumns>
 </Table>
+
+@*新增模态框*@
+<Modal @ref="AddModal">
+    <ModalDialog IsScrolling="true" Title="新增用户">
+        <BodyTemplate>
+            <div class="form-inline">
+                <div class="row">
+                    <div class="form-group col-6">
+                        <label class="control-label">用户名</label>
+                    </div>
+                    <div class="form-group col-6">
+                        <BootstrapInput type="text" DisplayText="chris" maxlength="5" placeholder="请输入用户名" Value="@UserAdd.User.UserName">
+                            <RequiredValidator />
+                            <StringLengthValidator Length="5" />
+                        </BootstrapInput>
+                    </div>
+                </div>
+            </div>
+        </BodyTemplate>
+        <FooterTemplate>
+            <Button Color="Color.Success" Icon="fa fa-fw fa-save">保存</Button>
+        </FooterTemplate>
+    </ModalDialog>
+</Modal>
+
+@*编辑模态框*@
+<Modal @ref="EditModal">
+    <ModalDialog IsScrolling="true" Title="编辑用户">
+        <BodyTemplate>
+            <div class="form-inline">
+                <div class="row">
+                    <div class="form-group col-6">
+                        <label class="control-label">用户名</label>
+                    </div>
+                    <div class="form-group col-6">
+                        <BootstrapInput type="text" DisplayText="chris" maxlength="5" placeholder="请输入用户名" Value="@UserAdd.User.UserName">
+                            <RequiredValidator />
+                            <StringLengthValidator Length="5" />
+                        </BootstrapInput>
+                    </div>
+                </div>
+            </div>
+        </BodyTemplate>
+        <FooterTemplate>
+            <Button Color="Color.Success" Icon="fa fa-fw fa-save">保存</Button>
+        </FooterTemplate>
+    </ModalDialog>
+</Modal>
 
 @code {
     protected IEnumerable<int> PageItemsSource => new int[] { 2, 4, 10, 20 };
@@ -65,20 +117,11 @@
         });
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <returns></returns>
     protected Task<UserFormViewModel> OnAddAsync()
     {
-        return Task.FromResult(new UserFormViewModel() {  });
+        return Task.FromResult(new UserFormViewModel() { });
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <param name="item"></param>
-    /// <returns></returns>
     protected Task<bool> OnSaveAsync(UserFormViewModel item)
     {
         //// 增加数据演示代码
@@ -105,5 +148,10 @@
     {
         //items.ToList().ForEach(i => UserFormViewModel.Remove(i));
         return Task.FromResult(true);
+    }
+
+    private Task AddClickAsync()
+    {
+        return Task.CompletedTask;
     }
 }
