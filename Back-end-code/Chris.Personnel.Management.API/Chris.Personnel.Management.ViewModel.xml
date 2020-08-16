@@ -4,5 +4,15 @@
         <name>Chris.Personnel.Management.ViewModel</name>
     </assembly>
     <members>
+        <member name="M:Chris.Personnel.Management.ViewModel.DropDownListItems.RoleDropDownListViewModel.#ctor">
+            <summary>
+            不写的话，Blazor会报错
+            </summary>
+        </member>
+        <member name="M:Chris.Personnel.Management.ViewModel.DropDownListItems.UserDropDownListViewModel.#ctor">
+            <summary>
+            不写的话，Blazor会报错
+            </summary>
+        </member>
     </members>
 </doc>

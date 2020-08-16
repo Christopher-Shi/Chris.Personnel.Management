@@ -49,7 +49,8 @@
                     <div class="col-6">
                         <div class="form-group">
                             <label>性别</label>
-                            <Radio Items="@Items"></Radio>
+                            <Radio IsDisabled="false" Items="@GenderEnumItems.Select(x=> new SelectedItem { Text = x.Value ,Value = x.Key })"></Radio>
+
                         </div>
                     </div>
                     <div class="col-6">
@@ -72,6 +73,21 @@
                         <div class="form-group">
                             <label>启用状态</label>
                             <Radio Items="@Items"></Radio>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label>角色</label>
+                            <Select TValue="Guid?" @bind-Value="@UserAdd.User.RoleId">
+                                <SelectItems>
+                                    @foreach (var item in RoleEnumItems)
+                                    {
+                                        <SelectItem Text="@item.Value" Value="@item.Key" />
+                                    }
+                                </SelectItems>
+                            </Select>
                         </div>
                     </div>
                 </div>
@@ -108,6 +124,28 @@
 </Modal>
 
 @code {
+
+    public Task OnStateChanged(CheckboxState state, SelectedItem val)
+    {
+        // 子选项点击后，更新其余组件
+
+        // 通知其余兄弟控件
+        if (state == CheckboxState.Checked && Items != null)
+        {
+            foreach (var item in Items)
+            {
+                item.Active = item == val;
+            }
+
+            StateHasChanged();
+        }
+
+        // 触发外界 OnStateChanged 事件
+        //if (ValueChanged.HasDelegate) await ValueChanged.InvokeAsync(val);
+        //if (OnStateChanged != null) await OnStateChanged.Invoke(state, val);
+        return Task.CompletedTask;
+    }
+
     protected IEnumerable<int> PageItemsSource => new int[] { 2, 4, 10, 20 };
 
     protected Task<QueryData<UserFormViewModel>> OnQueryAsync(QueryPageOptions options) => BindItemQueryAsync(Users, options);

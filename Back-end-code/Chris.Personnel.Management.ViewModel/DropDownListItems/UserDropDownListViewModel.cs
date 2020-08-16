@@ -9,5 +9,13 @@ namespace Chris.Personnel.Management.ViewModel.DropDownListItems
             Key = id;
             Value = trueName;
         }
+
+        /// <summary>
+        /// 不写的话，Blazor会报错
+        /// </summary>
+        public UserDropDownListViewModel()
+        {
+
+        }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using BootstrapBlazor.Components;
 using Chris.Personnel.Management.Blazor.Services;
@@ -21,7 +22,9 @@ namespace Chris.Personnel.Management.Blazor.Pages
 
         public IEnumerable<GenderDropDownListItem> GenderEnumItems { get; set; } = new List<GenderDropDownListItem>();
         public IEnumerable<IsEnabledDropDownListItem> IsEnabledEnumItems { get; set; } = new List<IsEnabledDropDownListItem>();
+
         public IEnumerable<RoleDropDownListViewModel> RoleEnumItems { get; set; } = new List<RoleDropDownListViewModel>();
+        public IEnumerable<SelectedItem> RoleSelectedItems { get; set; } = new List<SelectedItem>();
 
         public UserFormViewModel SearchModel { get; set; } = new UserFormViewModel();
 
@@ -45,9 +48,12 @@ namespace Chris.Personnel.Management.Blazor.Pages
 
         public void ButtonClick()
         {
-            var dto = UserAdd.User.TrueName;
-            var dto2 = UserAdd.User.UserName;
-            var dto3 = UserAdd.User.Gender;
+            var trueName = UserAdd.User.TrueName;
+            var userName = UserAdd.User.UserName;
+            var gender = UserAdd.User.Gender;
+            var roleId = UserAdd.User.RoleId;
+            var phoneNumber = UserAdd.User.Phone;
+            var IDCard = UserAdd.User.CardId;
         }
 
         protected IEnumerable<SelectedItem> Items => new SelectedItem[]
