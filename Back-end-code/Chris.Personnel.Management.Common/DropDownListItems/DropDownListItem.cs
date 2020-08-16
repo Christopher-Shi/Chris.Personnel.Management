@@ -1,4 +1,4 @@
-﻿namespace Chris.Personnel.Management.Common
+﻿namespace Chris.Personnel.Management.Common.DropDownListItems
 {
     public abstract class DropDownListItem
     {

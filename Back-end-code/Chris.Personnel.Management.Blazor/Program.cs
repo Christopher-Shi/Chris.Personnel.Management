@@ -26,6 +26,8 @@ namespace Chris.Personnel.Management.Blazor
 
             builder.Services.AddHttpClient<IUserService, UserService>(
                 client => client.BaseAddress = new Uri("https://localhost:5001"));
+            builder.Services.AddHttpClient<IDropDownService, DropDownService>(
+                client => client.BaseAddress = new Uri("https://localhost:5001"));
 
             builder.Services.AddBootstrapBlazor();
 

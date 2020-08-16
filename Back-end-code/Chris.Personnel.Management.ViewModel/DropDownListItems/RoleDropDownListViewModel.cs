@@ -1,4 +1,4 @@
-﻿using Chris.Personnel.Management.Common;
+﻿using Chris.Personnel.Management.Common.DropDownListItems;
 
 namespace Chris.Personnel.Management.ViewModel.DropDownListItems
 {
