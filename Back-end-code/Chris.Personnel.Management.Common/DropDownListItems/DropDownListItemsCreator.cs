@@ -11,13 +11,13 @@ namespace Chris.Personnel.Management.Common.DropDownListItems
             {
                 new GenderDropDownListItem
                 {
-                    Key = ((int)Gender.Male).ToString(),
-                    Value = "男"
+                    Value = ((int)Gender.Male).ToString(),
+                    Text = "男"
                 },
                 new GenderDropDownListItem
                 {
-                    Key = ((int)Gender.Female).ToString(),
-                    Value = "女"
+                    Value = ((int)Gender.Female).ToString(),
+                    Text = "女"
                 }
             };
         }
@@ -28,13 +28,13 @@ namespace Chris.Personnel.Management.Common.DropDownListItems
             {
                 new IsEnabledDropDownListItem
                 {
-                    Key = ((int)IsEnabled.Enabled).ToString(),
-                    Value = "启用"
+                    Value = ((int)IsEnabled.Enabled).ToString(),
+                    Text = "启用"
                 },
                 new IsEnabledDropDownListItem
                 {
-                    Key = ((int)IsEnabled.Disabled).ToString(),
-                    Value = "禁用"
+                    Value = ((int)IsEnabled.Disabled).ToString(),
+                    Text = "禁用"
                 }
             };
         }

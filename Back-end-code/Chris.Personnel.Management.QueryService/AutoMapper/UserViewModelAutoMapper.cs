@@ -30,10 +30,10 @@ namespace Chris.Personnel.Management.QueryService.AutoMapper
                         opt.MapFrom(src => src.LastModifiedUser.Instance.TrueName));
 
             CreateMap<User, UserDropDownListViewModel>()
-                .ForMember(dest => dest.Key,
+                .ForMember(dest => dest.Value,
                     opt =>
                         opt.MapFrom(src => src.Id.ToUpperString()))
-                .ForMember(dest => dest.Value,
+                .ForMember(dest => dest.Text,
                     opt =>
                         opt.MapFrom(src => src.Name));
         }

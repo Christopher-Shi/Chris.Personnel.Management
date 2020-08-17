@@ -6,8 +6,8 @@ namespace Chris.Personnel.Management.ViewModel.DropDownListItems
     {
         public RoleDropDownListViewModel(string id, string name)
         {
-            Key = id;
-            Value = name;
+            Value = id;
+            Text = name;
         }
 
         /// <summary>

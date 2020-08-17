@@ -6,8 +6,8 @@ namespace Chris.Personnel.Management.ViewModel.DropDownListItems
     {
         public UserDropDownListViewModel(string id, string trueName)
         {
-            Key = id;
-            Value = trueName;
+            Value = id;
+            Text = trueName;
         }
 
         /// <summary>

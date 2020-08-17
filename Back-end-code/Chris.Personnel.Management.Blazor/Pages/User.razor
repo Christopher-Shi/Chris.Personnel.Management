@@ -49,8 +49,15 @@
                     <div class="col-6">
                         <div class="form-group">
                             <label>性别</label>
-                            <Radio IsDisabled="false" Items="@GenderEnumItems.Select(x=> new SelectedItem { Text = x.Value ,Value = x.Key })"></Radio>
-
+                            @*<Radio IsDisabled="false" Items="@GenderEnumItems.Select(x=> new SelectedItem { Text = x.Value ,Value = x.Key })"></Radio>*@
+                            <Select TValue="Gender" @bind-Value="@UserAdd.User.Gender">
+                                <SelectItems>
+                                    @foreach (var item in GenderEnumItems)
+                                    {
+                                        <SelectItem Text="@item.Text" Value="@item.Value" />
+                                    }
+                                </SelectItems>
+                            </Select>
                         </div>
                     </div>
                     <div class="col-6">
@@ -72,7 +79,14 @@
                     <div class="col-6">
                         <div class="form-group">
                             <label>启用状态</label>
-                            <Radio Items="@Items"></Radio>
+                            <Select TValue="IsEnabled" @bind-Value="@UserAdd.User.IsEnabled">
+                                <SelectItems>
+                                    @foreach (var item in IsEnabledEnumItems)
+                                    {
+                                        <SelectItem Text="@item.Text" Value="@item.Value" />
+                                    }
+                                </SelectItems>
+                            </Select>
                         </div>
                     </div>
                 </div>
@@ -84,7 +98,7 @@
                                 <SelectItems>
                                     @foreach (var item in RoleEnumItems)
                                     {
-                                        <SelectItem Text="@item.Value" Value="@item.Key" />
+                                        <SelectItem Text="@item.Text" Value="@item.Value" />
                                     }
                                 </SelectItems>
                             </Select>
@@ -94,10 +108,12 @@
             </form>
         </BodyTemplate>
         <FooterTemplate>
-            <Button Color="Color.Success" Icon="fa fa-fw fa-save" @onclick="@ButtonClick">保存</Button>
+            <Button Color="Color.Success" Icon="fa fa-fw fa-save" @onclick="@AddModalSaveClick">保存</Button>
         </FooterTemplate>
     </ModalDialog>
 </Modal>
+
+<Toast @ref="Toast"></Toast>
 
 @*编辑模态框*@
 <Modal @ref="EditModal">
@@ -125,110 +141,5 @@
 
 @code {
 
-    public Task OnStateChanged(CheckboxState state, SelectedItem val)
-    {
-        // 子选项点击后，更新其余组件
-
-        // 通知其余兄弟控件
-        if (state == CheckboxState.Checked && Items != null)
-        {
-            foreach (var item in Items)
-            {
-                item.Active = item == val;
-            }
-
-            StateHasChanged();
-        }
-
-        // 触发外界 OnStateChanged 事件
-        //if (ValueChanged.HasDelegate) await ValueChanged.InvokeAsync(val);
-        //if (OnStateChanged != null) await OnStateChanged.Invoke(state, val);
-        return Task.CompletedTask;
-    }
-
-    protected IEnumerable<int> PageItemsSource => new int[] { 2, 4, 10, 20 };
-
-    protected Task<QueryData<UserFormViewModel>> OnQueryAsync(QueryPageOptions options) => BindItemQueryAsync(Users, options);
-
-    protected Task<QueryData<UserFormViewModel>> BindItemQueryAsync(IEnumerable<UserFormViewModel> items, QueryPageOptions options)
-    {
-        if (!string.IsNullOrEmpty(SearchModel.Name)) items = items.Where(item => item.Name?.Contains(SearchModel.Name, StringComparison.OrdinalIgnoreCase) ?? false);
-        if (!string.IsNullOrEmpty(options.SearchText)) items = items.Where(item => (item.Name?.Contains(options.SearchText) ?? false)
-                                                                                   || (item.TrueName?.Contains(options.SearchText) ?? false));
-
-        // 过滤
-        var isFiltered = false;
-        if (options.Filters.Any())
-        {
-            items = items.Where(options.Filters.GetFilterFunc<UserFormViewModel>());
-
-            // 通知内部已经过滤数据了
-            isFiltered = true;
-        }
-
-        // 排序
-        //var isSorted = false;
-        //if (!string.IsNullOrEmpty(options.SortName))
-        //{
-        //    // 外部未进行排序，内部自动进行排序处理
-        //    var invoker = SortLambdaCache.GetOrAdd(typeof(UserFormViewModel), key => items.GetSortLambda().Compile());
-        //    items = invoker(items, options.SortName, options.SortOrder);
-
-        //    // 通知内部已经过滤数据了
-        //    isSorted = true;
-        //}
-
-        // 设置记录总数
-        var total = items.Count();
-
-        // 内存分页
-        items = items.Skip((options.PageIndex - 1) * options.PageItems).Take(options.PageItems).ToList();
-
-        return Task.FromResult(new QueryData<UserFormViewModel>()
-        {
-            Items = items,
-            TotalCount = total,
-            IsSorted = true,
-            IsFiltered = isFiltered,
-            IsSearch = !string.IsNullOrEmpty(SearchModel.Name) || !string.IsNullOrEmpty(SearchModel.TrueName)
-        });
-    }
-
-    protected Task<UserFormViewModel> OnAddAsync()
-    {
-        return Task.FromResult(new UserFormViewModel() { });
-    }
-
-    protected Task<bool> OnSaveAsync(UserFormViewModel item)
-    {
-        //// 增加数据演示代码
-        //if (item.Id == 0)
-        //{
-        //    lock (_objectLock)
-        //    {
-        //        item.Id = UserFormViewModel.Max(i => i.Id) + 1;
-        //        UserFormViewModel.Add(item);
-        //    }
-        //}
-        //else
-        //{
-        //    var oldItem = EditItems.FirstOrDefault(i => i.Id == item.Id);
-        //    oldItem.Name = item.Name;
-        //    oldItem.Address = item.Address;
-        //    oldItem.DateTime = item.DateTime;
-        //    oldItem.Count = item.Count;
-        //}
-        return Task.FromResult(true);
-    }
-
-    protected Task<bool> OnDeleteAsync(IEnumerable<UserFormViewModel> items)
-    {
-        //items.ToList().ForEach(i => UserFormViewModel.Remove(i));
-        return Task.FromResult(true);
-    }
-
-    private Task AddClickAsync()
-    {
-        return Task.CompletedTask;
-    }
+    
 }

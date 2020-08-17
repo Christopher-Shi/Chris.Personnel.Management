@@ -17,12 +17,8 @@ namespace Chris.Personnel.Management.Blazor
             //    .AddSingleton(new AppSettings(Environment.CurrentDirectory))
             //    .AddTransient(sp => new HttpClient
             //    {
-            //        //BaseAddress = new Uri(AppSettings.Apply("ServerAddress"))
             //        BaseAddress = new Uri("https://localhost:5001")
-            //    })
-            //.AddAntDesign();
-
-            //builder.Services.AddSingleton(new AppSettings(Configuration));
+            //    });
 
             builder.Services.AddHttpClient<IUserService, UserService>(
                 client => client.BaseAddress = new Uri("https://localhost:5001"));

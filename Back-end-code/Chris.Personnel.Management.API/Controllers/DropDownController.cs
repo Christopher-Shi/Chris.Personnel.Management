@@ -28,9 +28,9 @@ namespace Chris.Personnel.Management.API.Controllers
         }
 
         [HttpGet("enabledStatus")]
-        public IEnumerable<GenderDropDownListItem> GetIsEnabledEnumItems()
+        public IEnumerable<IsEnabledDropDownListItem> GetIsEnabledEnumItems()
         {
-            return DropDownListItemsCreator.GetGenderDropDownListItems();
+            return DropDownListItemsCreator.GetEnabledDropDownListItems();
         }
 
         [HttpGet("users")]
