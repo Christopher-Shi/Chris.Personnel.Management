@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.IdentityModel.Tokens;
 
 namespace Chris.Personnel.Management.API
 {
@@ -31,9 +32,22 @@ namespace Chris.Personnel.Management.API
             services.AddSwaggerSetup();
 
             //JWT ÈÏÖ¤
-            services.AddAuthenticationSetup();
+            //services.AddAuthenticationSetup();
             //TODO:_httpContextAccessor.HttpContext.User.Identity.Name IS NULL
             services.AddHttpContextSetup();
+
+            services.AddAuthentication("Bearer")
+                .AddJwtBearer("Bearer", options =>
+                {
+                    options.Authority = "https://localhost:6000";
+
+                    options.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        ValidateAudience = false
+                    };
+
+                    options.Audience = "Chris.Personnel.Management.API";
+                });
 
             //¿çÓò²ßÂÔ
             services.AddCors(options =>

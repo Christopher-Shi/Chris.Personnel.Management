@@ -1,12 +1,4 @@
 {
-  "iisSettings": {
-    "windowsAuthentication": false,
-    "anonymousAuthentication": true,
-    "iisExpress": {
-      "applicationUrl": "http://localhost:64939/",
-      "sslPort": 44394
-    }
-  },
   "profiles": {
     "Chris.Personnel.Management.Work": {
       "commandName": "Project",
