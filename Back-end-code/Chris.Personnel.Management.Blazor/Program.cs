@@ -31,10 +31,13 @@ namespace Chris.Personnel.Management.Blazor
             builder.Services.AddBootstrapBlazor();
 
             // https://docs.microsoft.com/zh-cn/aspnet/core/blazor/security/webassembly/standalone-with-authentication-library?view=aspnetcore-3.1&tabs=visual-studio
-            builder.Services.AddOidcAuthentication(options =>
-            {
-                builder.Configuration.Bind("Local", options.ProviderOptions);
-            });
+            // https://medium.com/@marcodesanctis2/securing-blazor-webassembly-with-identity-server-4-ee44aa1687ef
+            //builder.Services.AddOidcAuthentication(options =>
+            //{
+            //    //options.ProviderOptions.Authority = "https://localhost:5000/";
+            //    //options.ProviderOptions.ClientId = "blazor";
+            //    builder.Configuration.Bind("oidc", options.ProviderOptions);
+            //});
 
             await builder.Build().RunAsync();
         }

@@ -52,10 +52,10 @@ namespace Chris.Personnel.Management.SSO
 
                     AllowedGrantTypes = GrantTypes.Code,
 
-                    // where to redirect to after login
+                    // where to redirect to after login - client address
                     RedirectUris = { "https://localhost:5000/signin-oidc" },
 
-                    // where to redirect after logout
+                    // where to redirect after logout - client address
                     PostLogoutRedirectUris = { "https://localhost:5000/signout-callback-oidc" },
 
                     AllowedScopes = new List<string>
@@ -67,7 +67,7 @@ namespace Chris.Personnel.Management.SSO
                         IdentityServerConstants.StandardScopes.Address,
                         IdentityServerConstants.StandardScopes.Phone
                     }
-                },
+                }
             };
     }
 }

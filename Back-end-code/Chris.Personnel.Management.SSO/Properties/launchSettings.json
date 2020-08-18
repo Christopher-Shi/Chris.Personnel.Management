@@ -1,12 +1,12 @@
 {
   "profiles": {
-    "SelfHost": {
+    "Chris.Personnel.Management.SSO": {
       "commandName": "Project",
       "launchBrowser": true,
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
-      "applicationUrl": "https://localhost:6000"
+      "applicationUrl": "https://localhost:5004"
     }
   }
 }
