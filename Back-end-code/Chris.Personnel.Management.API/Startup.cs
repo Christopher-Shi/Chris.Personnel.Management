@@ -3,6 +3,7 @@ using Autofac.Extensions.DependencyInjection;
 using Chris.Personnel.Management.API.Extensions;
 using Chris.Personnel.Management.Common.EntityModel;
 using Chris.Personnel.Management.Common.Helper;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -36,10 +37,10 @@ namespace Chris.Personnel.Management.API
             //TODO:_httpContextAccessor.HttpContext.User.Identity.Name IS NULL
             services.AddHttpContextSetup();
 
-            services.AddAuthentication("Bearer")
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer("Bearer", options =>
                 {
-                    options.Authority = "https://localhost:6000";
+                    options.Authority = "https://localhost:5004";
 
                     options.TokenValidationParameters = new TokenValidationParameters
                     {
