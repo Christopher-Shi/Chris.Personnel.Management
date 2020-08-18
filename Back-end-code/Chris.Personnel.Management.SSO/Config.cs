@@ -47,8 +47,8 @@ namespace Chris.Personnel.Management.SSO
                 },
                 new Client
                 {
-                    ClientId = "blazor client",
-                    ClientSecrets = {new Secret("blazor secret".Sha256())},
+                    ClientId = "mvc client",
+                    ClientSecrets = {new Secret("mvc secret".Sha256())},
 
                     AllowedGrantTypes = GrantTypes.Code,
 
@@ -67,6 +67,26 @@ namespace Chris.Personnel.Management.SSO
                         IdentityServerConstants.StandardScopes.Address,
                         IdentityServerConstants.StandardScopes.Phone
                     }
+                },
+                new Client
+                {
+                    ClientId = "blazor client",
+                    AllowedGrantTypes = GrantTypes.Code,
+                    RequirePkce = true,
+                    RequireClientSecret = false,
+                    AllowedCorsOrigins = { "https://localhost:5000" },
+                    AllowedScopes = new List<string>
+                    {
+                        "Chris.Personnel.Management.API",
+                        IdentityServerConstants.StandardScopes.OpenId,
+                        IdentityServerConstants.StandardScopes.Profile,
+                        IdentityServerConstants.StandardScopes.Email,
+                        IdentityServerConstants.StandardScopes.Address,
+                        IdentityServerConstants.StandardScopes.Phone
+                    },
+                    RedirectUris = { "https://localhost:5000/authentication/login-callback" },
+                    PostLogoutRedirectUris = { "https://localhost:5000/" },
+                    Enabled = true
                 }
             };
     }

@@ -25,9 +25,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Chris.Personnel.Management.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Chris.Personnel.Management.Test", "Chris.Personnel.Management.Test\Chris.Personnel.Management.Test.csproj", "{E9624E69-0ED1-4A85-9C55-61832F3EE321}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chris.Personnel.Management.Blazor", "Chris.Personnel.Management.Blazor\Chris.Personnel.Management.Blazor.csproj", "{94E86428-CE91-4B2C-8551-F02CC8EAE947}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Chris.Personnel.Management.Blazor", "Chris.Personnel.Management.Blazor\Chris.Personnel.Management.Blazor.csproj", "{94E86428-CE91-4B2C-8551-F02CC8EAE947}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chris.Personnel.Management.SSO", "Chris.Personnel.Management.SSO\Chris.Personnel.Management.SSO.csproj", "{798B36B4-C147-4242-86A0-35747A6B4766}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Chris.Personnel.Management.SSO", "Chris.Personnel.Management.SSO\Chris.Personnel.Management.SSO.csproj", "{798B36B4-C147-4242-86A0-35747A6B4766}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
