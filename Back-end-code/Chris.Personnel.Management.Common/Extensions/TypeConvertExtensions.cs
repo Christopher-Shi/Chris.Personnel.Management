@@ -47,6 +47,16 @@ namespace Chris.Personnel.Management.Common.Extensions
             return Convert.ToInt64(ts.TotalSeconds).ToString();
         }
 
+        public static DateTime ToStartDateTime(this DateTime dateTime)
+        {
+            return new DateTime(dateTime.Year, dateTime.Month, dateTime.Day, 0, 0, 0);
+        }
+
+        public static DateTime ToEndDateTime(this DateTime dateTime)
+        {
+            return new DateTime(dateTime.Year, dateTime.Month, dateTime.Day, 23, 59, 59);
+        }
+
         public static long To64Int(this string inputStr)
         {
             if (inputStr.IsNullOrEmpty()) return 0;
