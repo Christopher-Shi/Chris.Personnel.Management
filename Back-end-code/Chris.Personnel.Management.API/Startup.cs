@@ -38,7 +38,7 @@ namespace Chris.Personnel.Management.API
             services.AddHttpContextSetup();
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-                .AddJwtBearer("Bearer", options =>
+                .AddJwtBearer(options =>
                 {
                     options.Authority = "https://localhost:5004";
 
@@ -75,6 +75,9 @@ namespace Chris.Personnel.Management.API
 
             app.UseRouting();
 
+            //允许跨域(顺序很重要, 必须放在UseAuthentication和UseAuthorization的前面)
+            app.UseCors("Open");
+
             // 先开启认证
             app.UseAuthentication();
 
@@ -90,9 +93,6 @@ namespace Chris.Personnel.Management.API
 
             //获取Autofac：Container
             DependencyResolverInitializer.Initialize(app.ApplicationServices.GetAutofacRoot());
-
-            //允许跨域
-            app.UseCors("Open");
 
             app.UseEndpoints(endpoints =>
             {

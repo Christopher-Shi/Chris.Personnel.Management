@@ -31,50 +31,11 @@ namespace Chris.Personnel.Management.SSO
             {
                 new Client
                 {
-                    ClientId = "console client",
-
-                    // no interactive user, use the clientid/secret for authentication
-                    AllowedGrantTypes = GrantTypes.ClientCredentials,
-
-                    // secret for authentication
-                    ClientSecrets =
-                    {
-                        new Secret("console secret".Sha256())
-                    },
-
-                    // scopes that client has access to
-                    AllowedScopes = { "Chris.Personnel.Management.API" }
-                },
-                new Client
-                {
-                    ClientId = "mvc client",
-                    ClientSecrets = {new Secret("mvc secret".Sha256())},
-
-                    AllowedGrantTypes = GrantTypes.Code,
-
-                    // where to redirect to after login - client address
-                    RedirectUris = { "https://localhost:5000/signin-oidc" },
-
-                    // where to redirect after logout - client address
-                    PostLogoutRedirectUris = { "https://localhost:5000/signout-callback-oidc" },
-
-                    AllowedScopes = new List<string>
-                    {
-                        "Chris.Personnel.Management.API",
-                        IdentityServerConstants.StandardScopes.OpenId,
-                        IdentityServerConstants.StandardScopes.Profile,
-                        IdentityServerConstants.StandardScopes.Email,
-                        IdentityServerConstants.StandardScopes.Address,
-                        IdentityServerConstants.StandardScopes.Phone
-                    }
-                },
-                new Client
-                {
                     ClientId = "blazor client",
                     AllowedGrantTypes = GrantTypes.Code,
                     RequirePkce = true,
                     RequireClientSecret = false,
-                    AllowedCorsOrigins = { "https://localhost:5000" },
+                    AllowedCorsOrigins = { "https://localhost:5000" }, // client address
                     AllowedScopes = new List<string>
                     {
                         "Chris.Personnel.Management.API",

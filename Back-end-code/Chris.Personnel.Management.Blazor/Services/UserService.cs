@@ -1,12 +1,16 @@
 ﻿using System.Collections.Generic;
+using System.IO;
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 using Chris.Personnel.Management.Common.Enums;
+using Chris.Personnel.Management.Common.Extensions;
 using Chris.Personnel.Management.UICommand;
 using Chris.Personnel.Management.ViewModel;
+using Newtonsoft.Json;
+using JsonSerializer = System.Text.Json.JsonSerializer;
 
 namespace Chris.Personnel.Management.Blazor.Services
 {

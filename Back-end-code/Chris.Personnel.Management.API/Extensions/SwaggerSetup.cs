@@ -24,20 +24,20 @@ namespace Chris.Personnel.Management.API.Extensions
                 c.IncludeXmlComments(xmlCommandPath);
 
                 // 开启加权小锁
-                c.OperationFilter<AddResponseHeadersFilter>();
-                c.OperationFilter<AppendAuthorizeToSummaryOperationFilter>();
+                //c.OperationFilter<AddResponseHeadersFilter>();
+                //c.OperationFilter<AppendAuthorizeToSummaryOperationFilter>();
 
-                // 在header中添加token，传递到后台
-                c.OperationFilter<SecurityRequirementsOperationFilter>();
+                //// 在header中添加token，传递到后台
+                //c.OperationFilter<SecurityRequirementsOperationFilter>();
 
-                // Jwt Bearer 认证，必须是 oauth2
-                c.AddSecurityDefinition("oauth2", new OpenApiSecurityScheme
-                {
-                    Description = "JWT授权(数据将在请求头中进行传输) 直接在下框中输入Bearer {token}（注意两者之间是一个空格）\"",
-                    Name = "Authorization",//jwt默认的参数名称
-                    In = ParameterLocation.Header,//jwt默认存放Authorization信息的位置(请求头中)
-                    Type = SecuritySchemeType.ApiKey
-                });
+                //// Jwt Bearer 认证，必须是 oauth2
+                //c.AddSecurityDefinition("oauth2", new OpenApiSecurityScheme
+                //{
+                //    Description = "JWT授权(数据将在请求头中进行传输) 直接在下框中输入Bearer {token}（注意两者之间是一个空格）\"",
+                //    Name = "Authorization",//jwt默认的参数名称
+                //    In = ParameterLocation.Header,//jwt默认存放Authorization信息的位置(请求头中)
+                //    Type = SecuritySchemeType.ApiKey
+                //});
             });
         }
     }

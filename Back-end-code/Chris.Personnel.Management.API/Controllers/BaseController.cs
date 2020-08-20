@@ -3,9 +3,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Chris.Personnel.Management.API.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
     public class BaseController : ControllerBase
     {
 
