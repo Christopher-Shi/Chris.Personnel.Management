@@ -38,7 +38,7 @@ namespace Chris.Personnel.Management.Common.AOP
                     if (resultProperty != null)
                     {
                         dataIntercept +=
-                            $"【执行完成结果】：{Json.ToJson(resultProperty.GetValue(invocation.ReturnValue), true)}";
+                            $"【执行完成结果】：{ Json.ToJson(resultProperty.GetValue(invocation.ReturnValue), true) }";
                     }
 
                     Parallel.For(0, 1, e =>
@@ -48,7 +48,7 @@ namespace Chris.Personnel.Management.Common.AOP
                 }
                 else
                 {
-                    dataIntercept += $"【执行完成结果】：{invocation.ReturnValue}";
+                    dataIntercept += $"【执行完成结果】：{ Json.ToJson(invocation.ReturnValue, true) }";
                     Parallel.For(0, 1, e =>
                     {
                         _logger.Info(dataIntercept);

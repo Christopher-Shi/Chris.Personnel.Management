@@ -2,6 +2,9 @@
 using Chris.Personnel.Management.EF.Storage.Mappings;
 using Chris.Personnel.Management.Entity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging.Console;
+using Microsoft.Extensions.Logging.Debug;
 
 namespace Chris.Personnel.Management.EF.Storage
 {
@@ -32,6 +35,14 @@ namespace Chris.Personnel.Management.EF.Storage
 
             base.OnModelCreating(modelBuilder);
         }
+
+        public static readonly ILoggerFactory MyLoggerFactory
+            = LoggerFactory.Create(builder =>
+            {
+                builder.AddConsole(options =>
+                {
+                });
+            });
 
         protected abstract void BuildDbContextOptionsBuilder(DbContextOptionsBuilder optionsBuilder);
     }
