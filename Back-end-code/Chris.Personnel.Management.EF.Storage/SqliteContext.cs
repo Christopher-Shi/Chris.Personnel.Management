@@ -15,7 +15,9 @@ namespace Chris.Personnel.Management.EF.Storage
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseLoggerFactory(MyLoggerFactory).UseSqlite(_connectionStringManager.ConnectionString);
+                optionsBuilder
+                    .UseLoggerFactory(MyLoggerFactory)
+                    .UseSqlite(_connectionStringManager.ConnectionString);
             }
         }
     }

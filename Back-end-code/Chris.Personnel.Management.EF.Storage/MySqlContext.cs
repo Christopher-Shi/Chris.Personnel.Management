@@ -15,7 +15,7 @@ namespace Chris.Personnel.Management.EF.Storage
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseMySql(_connectionStringManager.ConnectionString);
+                optionsBuilder.UseLoggerFactory(MyLoggerFactory).UseMySql(_connectionStringManager.ConnectionString);
             }
         }
     }

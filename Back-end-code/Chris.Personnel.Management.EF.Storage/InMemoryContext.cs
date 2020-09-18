@@ -13,7 +13,9 @@ namespace Chris.Personnel.Management.EF.Storage
 
         protected override void BuildDbContextOptionsBuilder(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseInMemoryDatabase(_connectionStringManager.ConnectionString);
+            optionsBuilder
+                .UseLoggerFactory(MyLoggerFactory)
+                .UseInMemoryDatabase(_connectionStringManager.ConnectionString);
         }
     }
 }

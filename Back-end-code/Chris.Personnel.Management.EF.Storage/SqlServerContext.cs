@@ -15,7 +15,9 @@ namespace Chris.Personnel.Management.EF.Storage
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseLazyLoadingProxies()
+                optionsBuilder
+                    .UseLoggerFactory(MyLoggerFactory)
+                    .UseLazyLoadingProxies()
                     .UseSqlServer(
                         _connectionStringManager.ConnectionString,
                         opt => opt.UseRowNumberForPaging());
