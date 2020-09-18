@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
+using Chris.Personnel.Management.Common.Attributes;
 using Chris.Personnel.Management.Common.Extensions;
 using Chris.Personnel.Management.QueryService.Specifications;
 using Chris.Personnel.Management.Repository;
@@ -32,6 +33,7 @@ namespace Chris.Personnel.Management.QueryService.Implements
             return userViewModel;
         }
 
+        [Cache]
         public async Task<List<UserFormViewModel>> GetAll()
         {
             var users = await _userRepository.GetAll().ToListAsync();

@@ -36,6 +36,7 @@ namespace Chris.Personnel.Management.EF.Storage
             base.OnModelCreating(modelBuilder);
         }
 
+        // 控制台输出sql脚本
         public static readonly ILoggerFactory MyLoggerFactory
             = LoggerFactory.Create(builder =>
             {

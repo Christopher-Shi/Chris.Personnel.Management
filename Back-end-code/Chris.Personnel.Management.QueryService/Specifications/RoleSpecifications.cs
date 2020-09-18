@@ -14,7 +14,7 @@ namespace Chris.Personnel.Management.QueryService.Specifications
         protected override void DefineExpression()
         {
             Expression = x =>
-                !x.IsDeleted 
+                !x.IsDeleted
                 && (string.IsNullOrEmpty(Name) || x.Name.ToLower().Contains(Name));
         }
     }

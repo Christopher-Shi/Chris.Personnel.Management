@@ -8,8 +8,7 @@ namespace Chris.Personnel.Management.QueryService
         public new static readonly AllAggregateSpecification<T> All = new AllAggregateSpecification<T>();
     }
 
-    public sealed class AllAggregateSpecification<T> : BaseAggregateSpecification<T>
-        where T : RootEntity
+    public sealed class AllAggregateSpecification<T> : BaseAggregateSpecification<T> where T : RootEntity
     {
         protected override void DefineExpression()
         {

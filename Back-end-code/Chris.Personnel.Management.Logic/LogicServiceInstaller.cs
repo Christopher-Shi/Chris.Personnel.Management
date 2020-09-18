@@ -31,6 +31,7 @@ namespace Chris.Personnel.Management.LogicService
                 builder.RegisterType<LogAOP>();
                 aopType.Add(typeof(LogAOP));
             }
+            
 
             var assemblyServices = Assembly.LoadFrom(servicesDllFile);
             builder.RegisterAssemblyTypes(assemblyServices)

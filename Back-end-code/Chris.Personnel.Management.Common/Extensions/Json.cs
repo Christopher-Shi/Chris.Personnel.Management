@@ -98,12 +98,12 @@ namespace Chris.Personnel.Management.Common.Extensions
 
         public static T FromJson<T>(T dummy, string json)
         {
-            return FromJson<T>(json); 
+            return FromJson<T>(json);
         }
 
         public static dynamic FromJsonDynamic(dynamic dummy, string json)
         {
-            return FromJson(dummy, json);
+            return JsonConvert.DeserializeObject(json, dummy);
         }
 
         public static T FromJsonFile<T>(string filePath)

@@ -44,8 +44,7 @@ namespace Chris.Personnel.Management.Common.Extensions
                 Expression.OrElse(newExprLeft, newExprRight), parameter);
         }
 
-        private class ReplaceExpressionVisitor
-            : ExpressionVisitor
+        private class ReplaceExpressionVisitor : ExpressionVisitor
         {
             private readonly Expression _oldValue;
             private readonly Expression _newValue;
