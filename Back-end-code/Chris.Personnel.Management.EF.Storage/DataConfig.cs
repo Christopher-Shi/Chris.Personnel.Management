@@ -27,9 +27,9 @@ namespace Chris.Personnel.Management.EF.Storage
                 connectionString = AppSettings.Apply("ConnectionStrings", "MySqlDB", "ConnectionString");
             }
             // Sqlite
-            if (AppSettings.Apply("ConnectionStrings", "SqliteDb", "Enabled").ToBool())
+            if (AppSettings.Apply("ConnectionStrings", "SqliteDB", "Enabled").ToBool())
             {
-                connectionString = AppSettings.Apply("ConnectionStrings", "SqliteDb", "ConnectionString");
+                connectionString = AppSettings.Apply("ConnectionStrings", "SqliteDB", "ConnectionString");
             }
 
             return connectionString;

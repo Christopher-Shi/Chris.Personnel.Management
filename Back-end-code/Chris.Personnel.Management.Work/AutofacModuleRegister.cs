@@ -28,7 +28,7 @@ namespace Chris.Personnel.Management.Work
             }
 
             // Sqlite
-            if (AppSettings.Apply("ConnectionStrings", "SqliteDb", "Enabled").ToBool())
+            if (AppSettings.Apply("ConnectionStrings", "SqliteDB", "Enabled").ToBool())
             {
                 RepositoryInstaller.ConfigureContainerForSqllite(builder);
             }
