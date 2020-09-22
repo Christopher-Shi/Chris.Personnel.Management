@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
@@ -24,11 +25,11 @@ namespace Chris.Personnel.Management.API.Extensions
                 c.IncludeXmlComments(xmlCommandPath);
 
                 // 开启加权小锁
-                //c.OperationFilter<AddResponseHeadersFilter>();
-                //c.OperationFilter<AppendAuthorizeToSummaryOperationFilter>();
+                c.OperationFilter<AddResponseHeadersFilter>();
+                c.OperationFilter<AppendAuthorizeToSummaryOperationFilter>();
 
-                //// 在header中添加token，传递到后台
-                //c.OperationFilter<SecurityRequirementsOperationFilter>();
+                // 在header中添加token，传递到后台
+                c.OperationFilter<SecurityRequirementsOperationFilter>();
 
                 //// Jwt Bearer 认证，必须是 oauth2
                 //c.AddSecurityDefinition("oauth2", new OpenApiSecurityScheme
@@ -38,6 +39,33 @@ namespace Chris.Personnel.Management.API.Extensions
                 //    In = ParameterLocation.Header,//jwt默认存放Authorization信息的位置(请求头中)
                 //    Type = SecuritySchemeType.ApiKey
                 //});
+
+                // 接入identityserver4认证
+                //c.AddSecurityDefinition("oauth2", new OAuth2Scheme
+                //{
+                //    Flow = "implicit", // 只需通过浏览器获取令牌（适用于swagger）
+                //    AuthorizationUrl = "http://localhost:5000/connect/authorize",//获取登录授权接口
+                //    Scopes = new Dictionary<string, string> {
+                //        { "swagger_api", "同意swagger_api 的访问权限" }//指定客户端请求的api作用域。 如果为空，则客户端无法访问
+                //    }
+                //});
+                c.AddSecurityDefinition("oauth2", new OpenApiSecurityScheme
+                {
+                    Type = SecuritySchemeType.OAuth2,
+                    Flows = new OpenApiOAuthFlows
+                    {
+                        Implicit = new OpenApiOAuthFlow
+                        {
+                            AuthorizationUrl = new Uri("https://localhost:5004/connect/authorize"),
+                            Scopes = new Dictionary<string, string> {
+                                {
+                                    "Chris.Personnel.Management.API",
+                                    "agree with Chris.Personnel.Management.API"
+                                }
+                            }
+                        }
+                    }
+                });
             });
         }
     }

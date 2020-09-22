@@ -34,27 +34,34 @@ namespace Chris.Personnel.Management.API
 
             //JWT 认证
             //services.AddAuthenticationSetup();
+
+            //IdentityServer4 认证
+            services.AddAuthorizationIds4Setup();
+
             //TODO:_httpContextAccessor.HttpContext.User.Identity.Name IS NULL
             services.AddHttpContextSetup();
 
-            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-                .AddJwtBearer(options =>
-                {
-                    options.Authority = "https://localhost:5004";
+            //services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+            //    .AddJwtBearer(options =>
+            //    {
+            //        options.Authority = "https://localhost:5004";
 
-                    options.TokenValidationParameters = new TokenValidationParameters
-                    {
-                        ValidateAudience = false
-                    };
+            //        options.TokenValidationParameters = new TokenValidationParameters
+            //        {
+            //            ValidateAudience = false
+            //        };
 
-                    options.Audience = "Chris.Personnel.Management.API";
-                });
+            //        options.Audience = "Chris.Personnel.Management.API";
+            //    });
 
             //跨域策略
             services.AddCors(options =>
             {
                 options.AddPolicy("Open",
-                    builder => builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
+                    builder => builder
+                        .AllowAnyOrigin()
+                        .AllowAnyHeader()
+                        .AllowAnyMethod());
             });
         }
 
