@@ -10,6 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
+using Swashbuckle.AspNetCore.SwaggerUI;
 
 namespace Chris.Personnel.Management.API
 {
@@ -92,10 +93,31 @@ namespace Chris.Personnel.Management.API
             app.UseAuthorization();
 
             app.UseSwagger();
-            app.UseSwaggerUI(c =>
+            app.UseSwaggerUI(options =>
             {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Chris.Personnel.Management.API V1");
-                c.RoutePrefix = "";
+                options.SwaggerEndpoint("/swagger/v1/swagger.json", "Chris.Personnel.Management.API V1");
+                options.RoutePrefix = "";
+                options.ConfigObject=new ConfigObject
+                {
+                    AdditionalItems = null,
+                    DeepLinking = false,
+                    DefaultModelExpandDepth = 0,
+                    DefaultModelRendering = ModelRendering.Example,
+                    DefaultModelsExpandDepth = 0,
+                    DisplayOperationId = false,
+                    DisplayRequestDuration = false,
+                    DocExpansion = DocExpansion.List,
+                    Filter = null,
+                    MaxDisplayedTags = null,
+                    OAuth2RedirectUrl = null,
+                    ShowCommonExtensions = false,
+                    ShowExtensions = false,
+                    SupportedSubmitMethods = null,
+                    Urls = null,
+                    ValidatorUrl = null
+                };
+                options.OAuthClientId("swagger client");//客服端名称
+                options.OAuthAppName("Swagger UI client"); // 描述
             });
 
             //获取Autofac：Container
