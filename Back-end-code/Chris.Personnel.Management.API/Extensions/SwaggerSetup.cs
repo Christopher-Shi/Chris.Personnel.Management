@@ -44,14 +44,6 @@ namespace Chris.Personnel.Management.API.Extensions
                 //});
 
                 // 接入identityserver4认证
-                //options.AddSecurityDefinition("oauth2", new OAuth2Scheme
-                //{
-                //    Flow = "implicit", // 只需通过浏览器获取令牌（适用于swagger）
-                //    AuthorizationUrl = "http://localhost:5000/connect/authorize",//获取登录授权接口
-                //    Scopes = new Dictionary<string, string> {
-                //        { "swagger_api", "同意swagger_api 的访问权限" }//指定客户端请求的api作用域。 如果为空，则客户端无法访问
-                //    }
-                //});
                 options.AddSecurityDefinition("oauth2", new OpenApiSecurityScheme
                 {
                     Type = SecuritySchemeType.OAuth2,
@@ -67,7 +59,7 @@ namespace Chris.Personnel.Management.API.Extensions
                                 }
                             }
                         }
-                    }
+                    },
                 });
 
                 //options.OperationFilter<AuthorizeCheckOperationFilter>(); // 添加IdentityServer4认证过滤
@@ -89,8 +81,8 @@ namespace Chris.Personnel.Management.API.Extensions
 
             if (requiredScopes.Any())
             {
-                operation.Responses.Add("401", new OpenApiResponse { Description = "未经授权" });
-                operation.Responses.Add("403", new OpenApiResponse { Description = "禁止访问" });
+                //operation.Responses.Add("401", new OpenApiResponse { Description = "未经授权" });
+                //operation.Responses.Add("403", new OpenApiResponse { Description = "禁止访问" });
 
                 var oAuthScheme = new OpenApiSecurityScheme
                 {

@@ -64,6 +64,12 @@ namespace Chris.Personnel.Management.API
                         .AllowAnyHeader()
                         .AllowAnyMethod());
             });
+
+            services.AddRouting(options =>
+            {
+                // 默认生成的 URL 地址改为全小写模式
+                options.LowercaseUrls = true;
+            });
         }
 
         public void ConfigureContainer(ContainerBuilder builder)
@@ -97,25 +103,6 @@ namespace Chris.Personnel.Management.API
             {
                 options.SwaggerEndpoint("/swagger/v1/swagger.json", "Chris.Personnel.Management.API V1");
                 options.RoutePrefix = "";
-                options.ConfigObject=new ConfigObject
-                {
-                    AdditionalItems = null,
-                    DeepLinking = false,
-                    DefaultModelExpandDepth = 0,
-                    DefaultModelRendering = ModelRendering.Example,
-                    DefaultModelsExpandDepth = 0,
-                    DisplayOperationId = false,
-                    DisplayRequestDuration = false,
-                    DocExpansion = DocExpansion.List,
-                    Filter = null,
-                    MaxDisplayedTags = null,
-                    OAuth2RedirectUrl = null,
-                    ShowCommonExtensions = false,
-                    ShowExtensions = false,
-                    SupportedSubmitMethods = null,
-                    Urls = null,
-                    ValidatorUrl = null
-                };
                 options.OAuthClientId("swagger client");//客服端名称
                 options.OAuthAppName("Swagger UI client"); // 描述
             });

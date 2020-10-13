@@ -32,8 +32,10 @@ namespace Chris.Personnel.Management.API.Extensions
                 .AddIdentityServerAuthentication(options =>
                 {
                     options.Authority = "https://localhost:5004"; // IdentityServer服务器地址
+                    options.RequireHttpsMetadata = false;
                     options.ApiName = "Chris.Personnel.Management.API"; // 用于针对进行身份验证的API资源的名称
                     options.RequireHttpsMetadata = true; // 指定是否为HTTPS
+                    options.SupportedTokens = IdentityServer4.AccessTokenValidation.SupportedTokens.Jwt;
                 });
         }
     }
