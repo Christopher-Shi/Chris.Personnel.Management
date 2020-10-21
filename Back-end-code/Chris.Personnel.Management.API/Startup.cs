@@ -92,7 +92,7 @@ namespace Chris.Personnel.Management.API
                     appBulider.Run(async context =>
                     {
                         context.Response.StatusCode = 500;
-                        await context.Response.WriteAsync("The program Error!");
+                        await context.Response.WriteAsync("The Chris.Personnel.Management.API program Error!");
                     });
                 });
             }

@@ -4,6 +4,7 @@ using Chris.Personnel.Management.Work.Quartz;
 using CrystalQuartz.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Server.Kestrel.Core;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -63,6 +64,17 @@ namespace Chris.Personnel.Management.Work
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+            }
+            else
+            {
+                app.UseExceptionHandler(appBulider =>
+                {
+                    appBulider.Run(async context =>
+                    {
+                        context.Response.StatusCode = 500;
+                        await context.Response.WriteAsync("The Chris.Personnel.Management.Work program Error!");
+                    });
+                });
             }
 
             app.UseHttpsRedirection();
