@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Text;
 using System.Text.RegularExpressions;
 
 namespace Chris.Personnel.Management.Common.Extensions
@@ -45,6 +46,16 @@ namespace Chris.Personnel.Management.Common.Extensions
         {
             var ts = dateTime - new DateTime(1970, 1, 1, 0, 0, 0, 0);
             return Convert.ToInt64(ts.TotalSeconds).ToString();
+        }
+
+        /// <summary>
+        /// 时间戳转datetime
+        /// </summary>
+        /// <param name="seconds"></param>
+        /// <returns></returns>
+        public static DateTime GetDateTime(this long seconds)
+        {
+            return new DateTime(1970, 1, 1, 0, 0, 0).AddSeconds(seconds);
         }
 
         public static DateTime ToStartDateTime(this DateTime dateTime)
@@ -184,6 +195,23 @@ namespace Chris.Personnel.Management.Common.Extensions
         public static string ReverseString(this string input)
         {
             return string.IsNullOrEmpty(input) ? "" : new string(input.ToCharArray().Reverse().ToArray());
+        }
+
+        /// <summary>
+        /// 16进制byte[]转为string
+        /// </summary>
+        /// <param name="arrByte"></param>
+        /// <returns></returns>
+        public static string Byte2String(this byte[] arrByte)
+        {
+            var sb = new StringBuilder();
+
+            foreach (var b in arrByte)
+            {
+                sb.Append(b > 15 ? Convert.ToString(b, 16) : '0' + Convert.ToString(b, 16));
+            }
+
+            return sb.ToString();
         }
     }
 }
