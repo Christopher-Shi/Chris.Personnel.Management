@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Threading.Tasks;
-using Chris.Personnel.Management.Common;
+using Chris.Personnel.Management.Common.CommonService;
 using Chris.Personnel.Management.Common.Helper;
-using Chris.Personnel.Management.QueryService;
 using Chris.Personnel.Management.Work.Quartz;
 using Microsoft.Extensions.Logging;
 using Quartz;
-using StackExchange.Profiling.Internal;
 
 namespace Chris.Personnel.Management.Work.Jobs
 {

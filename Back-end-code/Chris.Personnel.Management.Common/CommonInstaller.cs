@@ -1,4 +1,5 @@
 ﻿using Autofac;
+using Chris.Personnel.Management.Common.CommonService;
 
 namespace Chris.Personnel.Management.Common
 {

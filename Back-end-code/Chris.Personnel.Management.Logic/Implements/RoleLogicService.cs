@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
-using Chris.Personnel.Management.Common;
 using Chris.Personnel.Management.Common.CodeSection;
+using Chris.Personnel.Management.Common.CommonService;
 using Chris.Personnel.Management.Common.Exceptions;
 using Chris.Personnel.Management.Entity;
 using Chris.Personnel.Management.Repository;

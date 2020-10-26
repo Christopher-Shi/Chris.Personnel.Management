@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+﻿using System;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
@@ -9,6 +10,8 @@ namespace Chris.Personnel.Management.API.Extensions
     {
         public static void AddAuthorizationIds4Setup(this IServiceCollection services)
         {
+            if (services == null) throw new ArgumentNullException(nameof(services));
+
             //services.AddAuthentication(IdentityServerAuthenticationDefaults.AuthenticationScheme)
             //    .AddIdentityServerAuthentication(options =>
             //    {

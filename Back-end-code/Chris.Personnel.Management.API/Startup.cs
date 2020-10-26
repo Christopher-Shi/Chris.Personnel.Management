@@ -28,18 +28,14 @@ namespace Chris.Personnel.Management.API
         {
             services.AddSingleton(new AppSettings(Configuration));
 
+            services.AddMemoryCacheSetup();
             services.AddAutoMapperSetup();
-
             services.AddControllers();
-
             services.AddSwaggerSetup();
-
             //JWT 认证
             //services.AddAuthenticationSetup();
-
             //IdentityServer4 认证
             services.AddAuthorizationIds4Setup();
-
             //TODO:_httpContextAccessor.HttpContext.User.Identity.Name IS NULL
             services.AddHttpContextSetup();
 

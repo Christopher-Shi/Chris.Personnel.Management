@@ -3,7 +3,7 @@ using Chris.Personnel.Management.Common.Extensions;
 using Chris.Personnel.Management.Common.Helper;
 using StackExchange.Redis;
 
-namespace Chris.Personnel.Management.Common
+namespace Chris.Personnel.Management.Common.CommonService
 {
     public class RedisCacheManager : IRedisCacheManager
     {

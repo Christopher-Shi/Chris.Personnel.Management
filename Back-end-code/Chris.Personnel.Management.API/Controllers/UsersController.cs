@@ -5,6 +5,7 @@ using Chris.Personnel.Management.LogicService;
 using Chris.Personnel.Management.QueryService;
 using Chris.Personnel.Management.ViewModel;
 using System.Collections.Generic;
+using Chris.Personnel.Management.Common.Attributes;
 using Chris.Personnel.Management.Common.Enums;
 using Chris.Personnel.Management.Common.Helper;
 using Chris.Personnel.Management.UICommand;
@@ -26,6 +27,7 @@ namespace Chris.Personnel.Management.API.Controllers
             _userQueryService = userQueryService ?? throw new ArgumentNullException(nameof(userQueryService));
         }
 
+        [Cache]
         // GET: api/Users
         [HttpGet]
         public async Task<IEnumerable<UserFormViewModel>> GetUsers()
