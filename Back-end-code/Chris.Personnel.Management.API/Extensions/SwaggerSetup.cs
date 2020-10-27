@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
@@ -30,11 +31,11 @@ namespace Chris.Personnel.Management.API.Extensions
                 options.IncludeXmlComments(xmlCommandPath);
 
                 // 开启加权小锁
-                options.OperationFilter<AddResponseHeadersFilter>();
-                options.OperationFilter<AppendAuthorizeToSummaryOperationFilter>();
+                //options.OperationFilter<AddResponseHeadersFilter>();
+                //options.OperationFilter<AppendAuthorizeToSummaryOperationFilter>();
 
-                // 在header中添加token，传递到后台
-                options.OperationFilter<SecurityRequirementsOperationFilter>();
+                //// 在header中添加token，传递到后台
+                //options.OperationFilter<SecurityRequirementsOperationFilter>();
 
                 //// Jwt Bearer 认证，必须是 oauth2
                 //options.AddSecurityDefinition("oauth2", new OpenApiSecurityScheme

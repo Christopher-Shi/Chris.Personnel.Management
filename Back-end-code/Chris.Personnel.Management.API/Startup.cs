@@ -59,7 +59,8 @@ namespace Chris.Personnel.Management.API
                     builder => builder
                         .AllowAnyOrigin()
                         .AllowAnyHeader()
-                        .AllowAnyMethod());
+                        .AllowAnyMethod()
+                    );
             });
 
             services.AddRouting(options =>
