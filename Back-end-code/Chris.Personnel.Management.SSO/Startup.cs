@@ -37,7 +37,7 @@ namespace Chris.Personnel.Management.SSO
                 .AddInMemoryIdentityResources(Config.IdentityResources)
                 .AddInMemoryApiScopes(Config.ApiScopes)
                 .AddInMemoryClients(Config.Clients)
-                .AddTestUsers(TestUsers.Users); 
+                .AddTestUsers(TestUsers.Users);
 
             // not recommended for production - you need to store your key material somewhere secure
             builder.AddDeveloperSigningCredential();
@@ -61,6 +61,19 @@ namespace Chris.Personnel.Management.SSO
                     });
                 });
             }
+
+            app.Use(async (context, next) =>
+            {
+                context.Response.Headers.Add(
+                    "Content-Security-Policy",
+                    //"default-src 'self'; " +
+                    "script-src *; " +
+                    //"style-src *; " +
+                    "img-src *; " +
+                    "font-src data: ");
+
+                await next();
+            });
 
             // uncomment if you want to add MVC
             app.UseStaticFiles();

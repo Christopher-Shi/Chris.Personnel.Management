@@ -33,8 +33,13 @@ namespace Chris.Personnel.Management.QueryService
             }
             if (AppSettings.Apply("AOP", "RedisCachingAOP", "Enabled").ToBool())
             {
-                builder.RegisterType<CacheAOP>();
-                aopType.Add(typeof(CacheAOP));
+                builder.RegisterType<RedisCacheAOP>();
+                aopType.Add(typeof(RedisCacheAOP));
+            }
+            if (AppSettings.Apply("AOP", "MemoryCachingAOP", "Enabled").ToBool())
+            {
+                builder.RegisterType<MemoryCacheAOP>();
+                aopType.Add(typeof(MemoryCacheAOP));
             }
 
             var assemblyServices = Assembly.LoadFrom(servicesDllFile);

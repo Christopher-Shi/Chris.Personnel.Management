@@ -11,6 +11,8 @@ namespace Chris.Personnel.Management.API.Extensions
     {
         public static void AddAuthenticationSetup(this IServiceCollection services)
         {
+            if (services == null) throw new ArgumentNullException(nameof(services));
+
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options =>
                 {

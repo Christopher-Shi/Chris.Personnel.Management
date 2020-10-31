@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+﻿using System;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
@@ -9,6 +10,8 @@ namespace Chris.Personnel.Management.API.Extensions
     {
         public static void AddAuthorizationIds4Setup(this IServiceCollection services)
         {
+            if (services == null) throw new ArgumentNullException(nameof(services));
+
             //services.AddAuthentication(IdentityServerAuthenticationDefaults.AuthenticationScheme)
             //    .AddIdentityServerAuthentication(options =>
             //    {
@@ -18,6 +21,7 @@ namespace Chris.Personnel.Management.API.Extensions
             //    });
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                //.AddCookie("Cookies")
                 //.AddJwtBearer(options =>
                 //{
                 //    options.Authority = "https://localhost:5004"; // IdentityServer服务器地址
@@ -32,11 +36,11 @@ namespace Chris.Personnel.Management.API.Extensions
                 .AddIdentityServerAuthentication(options =>
                 {
                     options.Authority = "https://localhost:5004"; // IdentityServer服务器地址
-                    options.RequireHttpsMetadata = false;
                     options.ApiName = "Chris.Personnel.Management.API"; // 用于针对进行身份验证的API资源的名称
                     options.RequireHttpsMetadata = true; // 指定是否为HTTPS
                     options.SupportedTokens = IdentityServer4.AccessTokenValidation.SupportedTokens.Jwt;
-                });
+                })
+            ;
         }
     }
 }
