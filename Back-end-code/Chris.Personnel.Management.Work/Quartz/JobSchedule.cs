@@ -42,7 +42,6 @@ namespace Chris.Personnel.Management.Work.Quartz
         Scheduling = 2,
 
         [Description("已停止")]
-        Stopped = 3,
-
+        Stopped = 3
     }
 }
