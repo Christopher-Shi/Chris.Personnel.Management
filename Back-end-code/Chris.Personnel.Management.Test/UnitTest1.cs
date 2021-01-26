@@ -10,7 +10,7 @@ namespace Chris.Personnel.Management.Test
             //Arrange
             var sut = new Calculator();//sut-System Under Test
 
-            //Act
+            //Act 
             var result = sut.Add(1, 2);
 
             //Assert
