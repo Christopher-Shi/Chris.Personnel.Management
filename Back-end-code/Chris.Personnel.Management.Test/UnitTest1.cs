@@ -11,7 +11,7 @@ namespace Chris.Personnel.Management.Test
             var sut = new Calculator();//sut-System Under Test
 
             //Act 
-            var result = sut.Add(1, 2);
+            var result = sut.Add(1, 2); 
 
             //Assert
             Assert.Equal(3, result);
