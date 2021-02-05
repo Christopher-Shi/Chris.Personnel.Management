@@ -84,9 +84,9 @@ namespace Chris.Personnel.Management.API
             }
             else
             {
-                app.UseExceptionHandler(appBulider =>
+                app.UseExceptionHandler(appBuilder =>
                 {
-                    appBulider.Run(async context =>
+                    appBuilder.Run(async context =>
                     {
                         context.Response.StatusCode = 500;
                         await context.Response.WriteAsync("The Chris.Personnel.Management.API program Error!");
