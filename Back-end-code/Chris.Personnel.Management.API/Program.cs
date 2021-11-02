@@ -38,7 +38,7 @@ namespace Chris.Personnel.Management.API
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
-                // ½«Ä¬ÈÏServiceProviderFactoryÖ¸¶¨ÎªAutofacServiceProviderFactory
+                // ï¿½ï¿½Ä¬ï¿½ï¿½ServiceProviderFactoryÖ¸ï¿½ï¿½ÎªAutofacServiceProviderFactory
                 .UseServiceProviderFactory(new AutofacServiceProviderFactory())
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
@@ -46,10 +46,10 @@ namespace Chris.Personnel.Management.API
                         .UseStartup<Startup>()
                         .ConfigureLogging((hostingContext, builder) =>
                         {
-                            // ¹ıÂËµôÏµÍ³Ä¬ÈÏµÄÒ»Ğ©ÈÕÖ¾
+                            // // ï¿½ï¿½ï¿½Ëµï¿½ÏµÍ³Ä¬ï¿½Ïµï¿½Ò»Ğ©ï¿½ï¿½Ö¾
                             builder.AddFilter("System", LogLevel.Error);
                             builder.AddFilter("Microsoft", LogLevel.Error);
-                            // Ìí¼ÓNLog:²»´ø²ÎÊı±íÊ¾NLog.configµÄÅäÖÃÎÄ¼ş¾ÍÔÚÓ¦ÓÃ³ÌĞò¸ùÄ¿Â¼ÏÂ£¬Ò²¿ÉÒÔÖ¸¶¨ÅäÖÃÎÄ¼şµÄÂ·¾¶
+                            // ï¿½ï¿½ï¿½ï¿½NLog:ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¾NLog.configï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½Ó¦ï¿½Ã³ï¿½ï¿½ï¿½ï¿½Ä¿Â¼ï¿½Â£ï¿½Ò²ï¿½ï¿½ï¿½ï¿½Ö¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½Â·ï¿½ï¿½
                             var path = Path.Combine(Directory.GetCurrentDirectory(), "NLog.config");
                             builder.AddNLog(path);
                         });
